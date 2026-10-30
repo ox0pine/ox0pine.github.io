@@ -18,6 +18,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # scripts/git-updated.js needs the real history to resolve each post's
+          # last commit; the default shallow clone would fall back to publish dates.
+          fetch-depth: 0
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4

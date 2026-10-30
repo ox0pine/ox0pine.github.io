@@ -80,7 +80,9 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## updated_option supports 'mtime', 'date', 'empty'
-updated_option: "mtime"
+## 用 date 作兜底：scripts/git-updated.js 会再按 git 提交时间覆盖，避免 CI 里
+## mtime 全是 checkout 时间，导致 sitemap/JSON-LD 里的“最后修改”全部变成构建当天。
+updated_option: "date"
 
 # Pagination
 ## Set per_page to 0 to disable pagination
@@ -98,11 +100,22 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: tranquility
 
-# Sitemap
+# Sitemap (hexo-generator-sitemap): https://github.com/hexojs/hexo-generator-sitemap
 sitemap:
   path: sitemap.xml
-  template: ./sitemap_template.xml
+  # template 指向的文件必须存在，否则 readFileSync 会直接抛错；留空使用插件内置模板
   rel: false
   tags: true
   categories: true
+
+# Feed (hexo-generator-feed): https://github.com/hexojs/hexo-generator-feed
+feed:
+  enable: true
+  type: [atom, rss2]
+  path: [atom.xml, rss2.xml]
+  limit: 20
+  content: true
+  icon: /images/favicon-32x32.png
+  # 主题模板里已显式输出 <link rel="alternate">，避免重复注入
+  autodiscovery: false
 
