@@ -45,7 +45,7 @@ export https_proxy=http://127.0.0.1:10809
 
 ```bash
 # 下载安装脚本
-wget https://raw.githubusercontent.com/qfpqhyl/server-scripts/main/proxy/linux/install_v2ray.sh
+wget https://raw.githubusercontent.com/ox0pine/server-scripts/main/proxy/linux/install_v2ray.sh
 
 # 给脚本执行权限
 chmod +x install_v2ray.sh
@@ -227,7 +227,7 @@ A:
 
 ## 相关资源
 
-- **完整脚本仓库**: [https://github.com/qfpqhyl/server-scripts](https://github.com/qfpqhyl/server-scripts)
+- **完整脚本仓库**: [https://github.com/ox0pine/server-scripts](https://github.com/ox0pine/server-scripts)
 - **V2Ray 官方文档**: [https://www.v2fly.org/](https://www.v2fly.org/)
 
 ---

@@ -1,7 +1,8 @@
-module.exports = function (hexo) {
-  hexo.extend.generator.register('search', generateSearch);
-}
+'use strict';
 
+module.exports = hexo => {
+  hexo.extend.generator.register('search', generateSearch);
+};
 
 function generateSearch(locals) {
   const config = {
@@ -10,94 +11,47 @@ function generateSearch(locals) {
     ...this.config.search,
     ...this.theme.config.search,
     root: this.config.root
-  }
+  };
 
-  var searchfield = config.field;
-  var content = config.content;
+  const field = String(config.field ?? '').trim();
+  const includePosts = field !== 'page';
+  const includePages = field === 'page' || (field !== '' && field !== 'post');
 
-  var posts, pages;
+  const entries = [];
+  const collect = items => {
+    for (const item of items) {
+      if (item.indexing !== undefined && !item.indexing) continue;
 
-  if (searchfield.trim() != '') {
-    searchfield = searchfield.trim();
-    if (searchfield == 'post') {
-      posts = locals.posts.sort('-date');
-    } else if (searchfield == 'page') {
-      pages = locals.pages;
-    } else {
-      posts = locals.posts.sort('-date');
-      pages = locals.pages;
+      const entry = { title: item.title || 'No Title' };
+
+      if (item.path) entry.url = config.root + item.path;
+      if (config.content !== false && item._content) entry.content = item._content;
+
+      const tags = toNames(item.tags);
+      if (tags.length > 0) entry.tags = tags;
+
+      const categories = toNames(item.categories);
+      if (categories.length > 0) entry.categories = categories;
+
+      entries.push(entry);
     }
-  } else {
-    posts = locals.posts.sort('-date');
-  }
+  };
 
-  var res = new Array()
-  var index = 0
-
-  if (posts) {
-    posts.each(function (post) {
-      if (post.indexing != undefined && !post.indexing) return;
-      var temp_post = new Object()
-      temp_post.title = post.title || 'No Title'
-      if (post.path) {
-        temp_post.url = config.root + post.path
-      }
-      if (content != false && post._content) {
-        temp_post.content = post._content
-      }
-      if (post.tags && post.tags.length > 0) {
-        var tags = [];
-        post.tags.forEach(function (tag) {
-          tags.push(tag.name);
-        });
-        temp_post.tags = tags
-      }
-      if (post.categories && post.categories.length > 0) {
-        var categories = [];
-        post.categories.forEach(function (cate) {
-          categories.push(cate.name);
-        });
-        temp_post.categories = categories
-      }
-      res[index] = temp_post;
-      index += 1;
-    });
-  }
-  if (pages) {
-    pages.each(function (page) {
-      if (page.indexing != undefined && !page.indexing) return;
-      var temp_page = new Object()
-      temp_post.title = post.title || 'No Title'
-      if (page.path) {
-        temp_page.url = config.root + page.path
-      }
-      if (content != false && page._content) {
-        temp_page.content = page._content
-      }
-      if (page.tags && page.tags.length > 0) {
-        var tags = new Array()
-        var tag_index = 0
-        page.tags.each(function (tag) {
-          tags[tag_index] = tag.name;
-        });
-        temp_page.tags = tags
-      }
-      if (page.categories && page.categories.length > 0) {
-        temp_page.categories = []
-          (page.categories.each || page.categories.forEach)(function (item) {
-            temp_page.categories.push(item);
-          });
-      }
-      res[index] = temp_page;
-      index += 1;
-    });
-  }
-
-
-  var json = JSON.stringify(res);
+  if (includePosts) collect(locals.posts.sort('-date').toArray());
+  if (includePages) collect(locals.pages.toArray());
 
   return {
     path: config.path,
-    data: json
+    data: JSON.stringify(entries)
   };
-};
+}
+
+function toNames(collection) {
+  if (!collection) return [];
+
+  const items = typeof collection.toArray === 'function'
+    ? collection.toArray()
+    : Array.from(collection);
+
+  return items.map(item => item.name);
+}

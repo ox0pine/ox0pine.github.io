@@ -1,8 +1,12 @@
-const opentype = require('opentype.js');
-const path = require('path');
+'use strict';
+
 const fs = require('fs');
-const { Buffer } = require("node:buffer");
-const { getObjValues } = require("../_utils");
+const path = require('path');
+const opentype = require('opentype.js');
+
+const { getObjValues } = require('../_utils');
+
+const FONT_DIR = path.resolve(__dirname, '../../_font/');
 
 const notdefGlyph = new opentype.Glyph({
   name: '.notdef',
@@ -10,62 +14,59 @@ const notdefGlyph = new opentype.Glyph({
   path: new opentype.Path()
 });
 
-module.exports = function (hexo) {
-  hexo.extend.generator.register(`subfont`, locals => {
-    let { enable, fontName, type, style } = hexo.theme.config.zh_font;
+module.exports = hexo => {
+  hexo.extend.generator.register('subfont', () => {
+    const { zh_font: zhFont } = hexo.theme.config;
 
-    if (!enable) return;
-
-    const sourceFolder = path.resolve(__dirname, "../../_font/");
-    const outPath = '/font';
+    if (!zhFont || !zhFont.enable) return [];
 
     const text = getSubText(hexo);
-    console.log("Extract subfont: ", text);
+    hexo.log.debug('Extract subfont:', text);
 
-    return style.map(subfont => {
-      const source = path.resolve(sourceFolder, `${subfont}.${type}`);
-      return {
-        path: path.join(outPath, `${subfont}.${type}`),
-        data: compress(text, { source, name: fontName, style: subfont })
-      };
-    });
+    return zhFont.style.map(style => ({
+      path: path.posix.join('/font', `${style}.${zhFont.type}`),
+      data: compress(text, {
+        source: path.resolve(FONT_DIR, `${style}.${zhFont.type}`),
+        name: zhFont.fontName,
+        style
+      })
+    }));
   });
 };
 
-
-function compress(text, params) {
-  const { source, name, style } = params;
-  let data = fs.readFileSync(source);
-  data = new Uint8Array(data).buffer;
+function compress(text, { source, name, style }) {
+  const data = new Uint8Array(fs.readFileSync(source)).buffer;
   const font = opentype.parse(data);
-  glyphs = [notdefGlyph].concat(font.stringToGlyphs(text));
+  const glyphs = [notdefGlyph, ...font.stringToGlyphs(text)];
 
-  const sub_font = new opentype.Font({
+  const subFont = new opentype.Font({
     unitsPerEm: font.unitsPerEm,
     ascender: font.ascender,
     descender: font.descender,
     familyName: name,
     styleName: style,
-    glyphs: glyphs
+    glyphs
   });
-  const res = sub_font.toArrayBuffer();
-  return Buffer.from(res);
+
+  return Buffer.from(subFont.toArrayBuffer());
 }
 
 function getSubText(hexo) {
   const config = hexo.theme.config;
 
-  let text = [config.slogan, config.index.about.title]
-    .concat(config.subpage.pages.map(p => p.description))
-    .concat(hexo.locals.get('tags').map(tag => tag.name))
-    .concat(config.index.about.text)
-    .concat(config.index.poem)
-    .concat(config.reward.text)
-    .concat(config.foot.title);
+  const text = [
+    config.slogan,
+    config.index.about.title,
+    ...config.subpage.pages.map(page => page.description),
+    ...hexo.locals.get('tags').map(tag => tag.name),
+    ...config.index.about.text,
+    ...config.index.poem,
+    ...(config.reward?.text ?? []),
+    ...config.foot.title,
+    ...(config.cv ? getObjValues(config.cv) : [])
+  ];
 
-  if (config.cv) text = text.concat(getObjValues(config.cv));
-
-  return Array.from(new Set(text.join("").split("")))
-    .sort().join("");
-  // must be sorted and .notdef at first position. see: https://github.com/opentypejs/opentype.js/issues/94
+  // Must be sorted with .notdef first:
+  // https://github.com/opentypejs/opentype.js/issues/94
+  return [...new Set(text.join('').split(''))].sort().join('');
 }

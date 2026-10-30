@@ -9,7 +9,7 @@ toc: true
 
 # 项目更新
 
-## [WebMonitor](https://github.com/qfpqhyl/WebMonitor)
+## [WebMonitor](https://github.com/ox0pine/WebMonitor)
 
 自从上周完成了一个初版以后，这周使用 AI 又继续更新，添加了一些小功能。
 
@@ -22,7 +22,7 @@ toc: true
 
 - 加入对 Python 脚本的支持，当脚本打印的内容变动时，也进行通知。
 
-## [v2ray 安装脚本](https://github.com/qfpqhyl/server-scripts)
+## [v2ray 安装脚本](https://github.com/ox0pine/server-scripts)
 
 ### 一些 fix
 

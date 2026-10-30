@@ -28,7 +28,7 @@ toc: true
 # 创意清单
 
 - 学习 Go 语言开发终端工具，比如一个增强版的 SSH 工具，具体功能还在构思中
-- 重构网页变化监控项目，改为前后端分离架构，放在简历上展示[「已完成，项目链接」](https://github.com/qfpqhyl/WebMonitor)
+- 重构网页变化监控项目，改为前后端分离架构，放在简历上展示[「已完成，项目链接」](https://github.com/ox0pine/WebMonitor)
 
 ---
 

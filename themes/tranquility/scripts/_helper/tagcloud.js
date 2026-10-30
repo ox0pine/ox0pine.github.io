@@ -1,19 +1,15 @@
+'use strict';
+
 module.exports = function (tags, config) {
-  if (!config.fancy) {
-    config.min_font = 1;
-    config.max_font = 1;
-    config.unit = 'em';
+  const options = { ...config };
+
+  if (!options.fancy) {
+    Object.assign(options, { min_font: 1, max_font: 1, unit: 'em' });
   }
 
-  let tagcloudHTML;
+  const html = tags ? this.tagcloud(tags, options) : this.list_tags();
 
-  if (tags)
-    tagcloudHTML = this.tagcloud(tags, config);
-  else
-    tagcloudHTML = this.list_tags();
+  if (!options.fancy) return html;
 
-  if (config.fancy)
-    return `<canvas width="500" height="500" id="tagCanvas">${tagcloudHTML}<canvas>`;
-
-  return tagcloudHTML;
+  return `<canvas width="500" height="500" id="tagCanvas">${html}</canvas>`;
 };

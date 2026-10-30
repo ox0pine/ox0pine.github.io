@@ -1,5 +1,5 @@
 # slogan: "风物长宜放眼量"
-email: qfpqhyl@gmail.com
+email: ox0pine@gmail.com
 logo: "/images/logo.svg"
 
 mathjax: true # 加载 LateX 数学公式库
@@ -45,20 +45,20 @@ foot:
 
 links: # 朋友
   - name: "My GitHub"
-    url: https://github.com/qfpqhyl
+    url: https://github.com/ox0pine
 
 social:
-  - name: "@qfpqhyl"
+  - name: "@ox0pine"
     icon: "/images/logo-github.svg"
-    url: https://github.com/qfpqhyl
-  - name: "@qfpqhyl"
+    url: https://github.com/ox0pine
+  - name: "@ox0pine"
     icon: "/images/logo-twitter.svg"
-    url: https://x.com/qfpqhyl
+    url: https://x.com/ox0pine
 
 contacts:
-  - name: "qfpqhyl@gmail.com"
+  - name: "ox0pine@gmail.com"
     icon: "/images/icon/icon-email.svg"
-    url: "mailto:qfpqhyl@gmail.com"
+    url: "mailto:ox0pine@gmail.com"
 
 reward: # 赞赏
   enable: false
@@ -66,10 +66,10 @@ reward: # 赞赏
 # see https://github.com/gitalk/gitalk
 gitalk: # gitalk 评论
   enable: true
-  owner: qfpqhyl # MUST HAVE, Your Github Username
+  owner: ox0pine # MUST HAVE, Your Github Username
   admin:
-    - qfpqhyl
-  repo: qfpqhyl.github.io # MUST HAVE, The name of the repo you use to store Gitment comments
+    - ox0pine
+  repo: ox0pine.github.io # MUST HAVE, The name of the repo you use to store Gitment comments
   clientID: your_client_id_here # REQUIRED: 需要在 GitHub OAuth Apps 中创建
   clientSecret: your_client_secret_here # REQUIRED: 需要在 GitHub OAuth Apps 中创建
 
@@ -143,22 +143,22 @@ mermaid:
     startOnload: true
 
 cv:
-  enable: true
-  showInNav: true
+  enable: false
+  showInNav: false
   iconPrefix: fas
-  keywords: 简历,qfpqhyl,个人简历,技术博客,秋风飘起黄叶落,田博松
-  description: qfpqhyl的个人简历，记录博客作者的教育背景、代表作品、工作经验和荣誉奖项。
+  keywords: 简历,ox0pine,个人简历,技术博客,秋风飘起黄叶落,田博松
+  description: ox0pine的个人简历，记录博客作者的教育背景、代表作品、工作经验和荣誉奖项。
   title: 秋风飘起黄叶落的个人简历
   content:
-    title: qfpqhyl
+    title: ox0pine
     baseInfo:
       - 28届应届硕士
       - 大模型应用开发
       - 前后端全栈开发
-    email: qfpqhyl@gmail.com
-    github: qfpqhyl
+    email: ox0pine@gmail.com
+    github: ox0pine
     blog: 秋风飘起黄叶落のblog
-    blogHref: https://qfpqhyl.github.io
+    blogHref: https://ox0pine.github.io
     edu:
       title: "教育背景"
       content:
@@ -170,12 +170,12 @@ cv:
         tips: 请点击项目名称查看项目详情
         sections:
           - title: CodeRunner
-            link: https://github.com/qfpqhyl/CodeRunner
+            link: https://github.com/ox0pine/CodeRunner
             description: 远程代码执行平台
             content:
               - 基于 FastAPI + React 18 构建的现代化代码执行平台，采用 JWT + Argon2 安全认证和四级用户权限体系。核心技术栈包括 FastAPI 异步框架、Ant Design UI 组件库、Docker 容器化部署和 Conda 环境管理。实现了安全沙箱代码执行、AI 智能代码生成（支持多种 AI 模型）、个人代码库管理和社区交互系统，具备完整的用户管理、日志审计和资源配限功能。项目采用单体架构设计，支持高并发处理和多租户隔离，展现了全栈开发和系统架构设计的综合能力。
           - title: WebMonitor
-            link: https://github.com/qfpqhyl/WebMonitor
+            link: https://github.com/ox0pine/WebMonitor
             description: 智能网页内容监控与多渠道通知平台
             content:
               - 基于 FastAPI + React 18 构建的现代化网页内容监控平台，采用 JWT + bcrypt安全认证和基于角色的用户权限体系（管理员/普通用户）。核心技术栈包括 Selenium WebDriver 动态内容抓取、APScheduler任务调度、Material-UI 组件库和 SQLAlchemy ORM 数据持久化。实现了精准的 XPath选择器内容提取、智能变更检测算法、多邮件配置 SMTP 通知系统和任务订阅分享机制，具备完整的用户管理、监控日志审计、域名黑名单过滤和实时任务监控功能。项目采用前后端分离架构设计，支持 SQLite/PostgreSQL 数据库切换、无头 Chrome浏览器自动化和高并发任务处理，展现了全栈开发、Web自动化爬虫技术和系统架构设计的综合能力。
