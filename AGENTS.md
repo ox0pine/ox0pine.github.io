@@ -12,7 +12,6 @@ Hexo static blog site using the "tranquility" theme. Blog content is written in 
 npm run server    # Start local dev server at http://localhost:4000
 npm run build     # Generate static files to public/ (hexo generate)
 npm run clean     # Clean generated files and cache (hexo clean)
-npm run deploy    # Deploy to GitHub Pages (hexo deploy)
 ```
 
 Direct hexo commands also work:
@@ -132,10 +131,12 @@ themes/tranquility/
 
 ## Configuration Files
 
-- `_config.yml` - Hexo main config (URL, deployment, writing settings)
+- `_config.yml` - Hexo main config (URL, writing settings)
 - `_config.tranquility.yml` - Theme config (navigation, features, styling)
 - `scaffolds/` - Templates for new posts/pages/drafts
 
 ## Deployment
 
-Site deploys to `https://qfpqhyl.github.io` via Git-based deployment to `main` branch.
+Pushing to `main` triggers `.github/workflows/deploy.yml`, which runs `npm ci` +
+`npm run build` on Node 20 and publishes `public/` to the `gh-pages` branch.
+GitHub Pages serves `gh-pages` at `https://ox0pine.github.io`. Never commit `public/`.
