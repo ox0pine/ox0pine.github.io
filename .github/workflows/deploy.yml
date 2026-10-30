@@ -17,22 +17,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           # scripts/git-updated.js needs the real history to resolve each post's
           # last commit; the default shallow clone would fall back to publish dates.
           fetch-depth: 0
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
         with:
           version: 12.15.0
           run_install: false
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: 20
+          # Node 20 is EOL; setup-node v6+ also enables caching for npm only,
+          # so pnpm needs an explicit cache input.
+          node-version: 24
           cache: pnpm
 
       - name: Install dependencies
