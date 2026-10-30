@@ -1,0 +1,228 @@
+# slogan: "风物长宜放眼量"
+email: qfpqhyl@gmail.com
+logo: "/images/logo.svg"
+
+mathjax: true # 加载 LateX 数学公式库
+
+favicon: # 配置网页图标
+  small: /images/favicon-16x16.png
+  medium: /images/favicon-32x32.png
+  apple_touch_icon: /images/apple-touch-icon.png
+  safari_pinned_tab: /images/logo.svg
+
+subpage: # 开启"子页"功能，详见 README
+  enable: true
+  pages:
+    - name: tech # 文章的分类（category）名
+      path: tech # 若不设置则默认使用 name
+      title: 技术杂谈 # 菜单名
+      icon: /images/icon/icon-code.svg # 图标的路径
+      description: 技术分享、编程心得、开发经验 # 描述
+    - name: life # 文章的分类（category）名
+      path: life # 若不设置则默认使用 name
+      title: 生活随笔 # 菜单名
+      icon: /images/icon/icon-book.svg # 图标的路径
+      description: 生活感悟、日常记录、随笔杂谈 # 描述
+
+index: # 配置首页个性化内容
+  motto: "记录生活，分享美好"
+  poem:
+    - 秋风飘起黄叶落
+    - 岁月静好心安然
+  photo: /images/about.jpg
+  about:
+    title: 关于我
+    text:
+      - 在代码与日常间寻找平衡
+      -
+      - 分享技术与生活的美好
+
+foot:
+  title:
+    - "秋风飘起黄叶落"
+    - "岁月静好心安然"
+  linksRows: 4
+
+links: # 朋友
+  - name: "My GitHub"
+    url: https://github.com/qfpqhyl
+
+social:
+  - name: "@qfpqhyl"
+    icon: "/images/logo-github.svg"
+    url: https://github.com/qfpqhyl
+  - name: "@qfpqhyl"
+    icon: "/images/logo-twitter.svg"
+    url: https://x.com/qfpqhyl
+
+contacts:
+  - name: "qfpqhyl@gmail.com"
+    icon: "/images/icon/icon-email.svg"
+    url: "mailto:qfpqhyl@gmail.com"
+
+reward: # 赞赏
+  enable: false
+
+# see https://github.com/gitalk/gitalk
+gitalk: # gitalk 评论
+  enable: true
+  owner: qfpqhyl # MUST HAVE, Your Github Username
+  admin:
+    - qfpqhyl
+  repo: qfpqhyl.github.io # MUST HAVE, The name of the repo you use to store Gitment comments
+  clientID: your_client_id_here # REQUIRED: 需要在 GitHub OAuth Apps 中创建
+  clientSecret: your_client_secret_here # REQUIRED: 需要在 GitHub OAuth Apps 中创建
+
+  distractionFreeMode: false # Facebook-like distraction free mode
+  # When the official proxy is not available, you can change it to your own proxy address
+  proxy: https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token # This is official proxy adress
+  # Gitalk's display language depends on user's browser or system environment
+  # If you want everyone visiting your site to see a uniform language, you can set a force language value
+  # Available values: en | es-ES | fr | ru | zh-CN | zh-TW
+  language: zh-CN
+
+# see https://github.com/tea3/hexo-related-popular-posts
+related_post:
+  enable: false
+  config:
+    maxCount: 5 # Maximum count of a list. default 5
+    ulClass: # Class name of element. deafult 'popular-posts'
+    PPMixingRate: 0.4 # Mixing ratio of popular posts and related posts. default 0.0(=Related posts only)
+    isDate: # visible the date. false
+    isImage: # visible the image. false
+    isExcerpt: # visible the excerpt. false
+    PPCategoryFilter: # Option to fix category on Popular Posts. undefined
+    PPTagFilter: # Option to fix tag on Popular Posts. undefined
+
+# Baidu Webmaster tools verification.
+# See: https://ziyuan.baidu.com/site
+baidu_site_verification:
+
+# Baidu Analytics
+# See: https://tongji.baidu.com
+baidu_analytics: # <app_id>
+
+# 自定义字体，用于美化部分汉字的显示效果.
+# 可以通过替换 _font/ 目录下的字体文件替换自己喜欢的字体
+zh_font:
+  enable: true
+  fontName: sourceHanSerif
+  type: ttf
+  style:
+    - normal
+    - bold
+
+# 配置时间线 参考 README.md
+timeline:
+  enable: true
+  order: false # 是否按时间正序展示，false 为倒序
+  items:
+    - name: article
+      color: "#ee936c"
+      icon: /images/icon/icon-article.svg
+      checked: true
+    - name: app
+      color: "#60a465"
+      icon: /images/icon/icon-app.svg
+      checked: true
+    - name: event
+      color: "#568dc4"
+      icon: /images/icon/icon-event.svg
+      checked: true
+
+# 标签云
+tagcloud:
+  fancy: false
+  min_font: 14
+  max_font: 30
+
+mermaid:
+  enable: true # 启用 Mermaid 增强
+  version: latest
+  options:
+    startOnload: true
+
+cv:
+  enable: true
+  showInNav: true
+  iconPrefix: fas
+  keywords: 简历,qfpqhyl,个人简历,技术博客,秋风飘起黄叶落,田博松
+  description: qfpqhyl的个人简历，记录博客作者的教育背景、代表作品、工作经验和荣誉奖项。
+  title: 秋风飘起黄叶落的个人简历
+  content:
+    title: qfpqhyl
+    baseInfo:
+      - 28届应届硕士
+      - 大模型应用开发
+      - 前后端全栈开发
+    email: qfpqhyl@gmail.com
+    github: qfpqhyl
+    blog: 秋风飘起黄叶落のblog
+    blogHref: https://qfpqhyl.github.io
+    edu:
+      title: "教育背景"
+      content:
+        - 2021年 - 2025年，本科，电子科学与技术，燕山大学
+        - 2025年至今，硕士，电子科学与技术，西安电子科技大学
+    chapters:
+      - title: "代表作品"
+        icon: fa-briefcase
+        tips: 请点击项目名称查看项目详情
+        sections:
+          - title: CodeRunner
+            link: https://github.com/qfpqhyl/CodeRunner
+            description: 远程代码执行平台
+            content:
+              - 基于 FastAPI + React 18 构建的现代化代码执行平台，采用 JWT + Argon2 安全认证和四级用户权限体系。核心技术栈包括 FastAPI 异步框架、Ant Design UI 组件库、Docker 容器化部署和 Conda 环境管理。实现了安全沙箱代码执行、AI 智能代码生成（支持多种 AI 模型）、个人代码库管理和社区交互系统，具备完整的用户管理、日志审计和资源配限功能。项目采用单体架构设计，支持高并发处理和多租户隔离，展现了全栈开发和系统架构设计的综合能力。
+          - title: WebMonitor
+            link: https://github.com/qfpqhyl/WebMonitor
+            description: 智能网页内容监控与多渠道通知平台
+            content:
+              - 基于 FastAPI + React 18 构建的现代化网页内容监控平台，采用 JWT + bcrypt安全认证和基于角色的用户权限体系（管理员/普通用户）。核心技术栈包括 Selenium WebDriver 动态内容抓取、APScheduler任务调度、Material-UI 组件库和 SQLAlchemy ORM 数据持久化。实现了精准的 XPath选择器内容提取、智能变更检测算法、多邮件配置 SMTP 通知系统和任务订阅分享机制，具备完整的用户管理、监控日志审计、域名黑名单过滤和实时任务监控功能。项目采用前后端分离架构设计，支持 SQLite/PostgreSQL 数据库切换、无头 Chrome浏览器自动化和高并发任务处理，展现了全栈开发、Web自动化爬虫技术和系统架构设计的综合能力。
+
+      # - title: 工作经验
+      #   icon: fa-laptop-code
+      #   sections:
+      #     - title: 大唐翰林供奉
+      #       description: 743 - 744
+      #       content:
+      #         - 赐宫锦袍。暮春，兴庆池牡丹盛开，玄宗与杨玉环同赏，李白又奉诏作《清平调》。对御用文人生活日渐厌倦，始纵酒以自昏秽。
+      #         - 与贺知章等人结“酒中八仙”之游，玄宗呼之不朝。尝奉诏醉中起草诏书，引足令高力士脱靴，宫中人恨之，谗谤于玄宗，玄宗疏之，后玄宗赐金放还。
+      - title: 荣誉奖项
+        icon: fa-trophy
+        list: true
+        content:
+          - 河北省优秀毕业生
+          - 第21届全国大学生信息安全与对抗技术竞赛国家级二等奖
+          - 第22届中国研究生数学建模竞赛国家三等奖
+          - 第14届全国大学生数学建模竞赛省级一等奖
+      - title: 技能特长
+        icon: fa-star
+        content:
+          - 大模型应用开发：熟练掌握OpenAI GPT、Claude、文心一言等主流大模型API集成与开发，具备Prompt优化设计、Function Calling、向量数据库检索增强生成(RAG)和Agent智能体开发经验。
+          - 前后端全栈开发：精通FastAPI异步后端框架、React 18前端开发，熟悉Vue、NextJS等现代框架，掌握RESTful API设计和WebSocket实时通信技术。
+          - 数据库与数据工程：熟悉MySQL、PostgreSQL关系型数据库，掌握MongoDB、Redis等NoSQL数据库，具备数据清洗、处理和可视化分析能力。
+          - 自动化与工具开发：熟练使用n8n、Playwright等自动化工具进行工作流设计和二次开发，具备CI/CD流水线搭建和DevOps实践经验。
+          - 容器化与部署：精通Docker容器化技术和Kubernetes编排，熟悉云服务(AWS、阿里云)部署和微服务架构设计。
+          - AI工程化能力：具备模型训练优化、API服务封装、性能监控和大规模并发处理经验，熟悉LangChain、LlamaIndex等AI开发框架。
+
+search:
+  path: search.json
+  enable: true
+  field: post
+  content: true
+
+algolia:
+  enable: true
+  appId: appId
+  apiKey: apiKey
+  indexName: indexName
+  insights: true
+  debug: false
+
+nav:
+  sticky: false
+
+google_ad:
+  enable: false
+  meta_tag: "G-XXXXXXXXXX" # Google Analytics meta tag

@@ -1,0 +1,99 @@
+{% extends "_partials/layout.njk" %}
+{% block link %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for("/css/post.css") }}"/>
+  {% if theme.gitalk.enable %}<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>{% endif %}
+{% endblock link %}
+
+{% block script %}
+  {% if theme.gitalk.enable %}{{ partial("_third_party/gitalk.njk") }}{% endif %}
+
+  <!-- 面包屑导航结构化数据 -->
+  {% if page.categories %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首页",
+        "item": "{{ url_for('/') }}"
+      }{% if page.categories %},
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ page.categories[0].name }}",
+        "item": "{{ url_for(page.categories[0].path) }}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{ page.title }}",
+        "item": "{{ page.permalink }}"
+      }{% endif %}
+    ]
+  }
+  </script>
+  {% endif %}
+{% endblock script %}
+{% block body %}
+  <article class="post-content">
+    <div class="post-inner{{ '--toc' if page.toc else '' }}">
+      <div class="post-content__head">
+        <div class="post-title">{{ page.title or "未命名" }}</div>
+        <div class="post-info">
+          {{ partial("_partials/macros/tags.njk", {tags: page.tags}) }}
+          <span class="post-date">{{ date(page.date) }}</span>
+          {% if page.categories %}
+            <span class="post-category">分类:
+              {% for category in page.categories %}
+                <a href="{{ url_for(category.path) }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+              {% endfor %}
+            </span>
+          {% endif %}
+        </div>
+        {% if page.excerpt or page.description %}
+          <div class="post-excerpt">
+            <p>{{ page.excerpt or page.description }}</p>
+          </div>
+        {% endif %}
+      </div>
+      {% if page.toc %}
+        <aside class="toc-outer">
+          <div class="toc-title">目录</div>
+          {{ toc(page.content, {list_number: false, max_depth: 4, class: 'post-toc'}) }}
+          <a href="{{ page.link }}#" class="toc-top">回到顶部</a>
+        </aside>
+      {% endif %}
+      <div class="post-content__body">
+        {% if page.photos %}
+          <div class="post-gallery">
+            {% for photo in page.photos %}<img width="auto" height="auto" alt="cover" src="{{ url_for(photo) }}"/>{% endfor %}
+          </div>
+        {% endif %}
+        {{ page.content }}
+      </div>
+    </div>
+    {% if theme.mermaid.enable %}
+      <script src='https://unpkg.com/mermaid@{{ theme.mermaid.version }}/dist/mermaid.min.js'></script>
+      <script>
+        if (window.mermaid) {
+          mermaid.initialize({{ theme.mermaid.options | dump }});
+        }
+      </script>
+    {% endif %}
+  </article>
+  <div class="post__foot">
+    {% if theme.reward.enable %}
+      {% include "_partials/components/reward.njk" %}
+    {% endif %}
+    {% include "_partials/components/post-nav.njk" %}
+    {% if theme.related_post.enable %}
+      {% include "_partials/components/related-post.njk" %}
+    {% endif %}
+    {% if theme.gitalk.enable %}
+      <div id="gitalk-container"></div>
+    {% endif %}
+  </div>
+{% endblock body %}

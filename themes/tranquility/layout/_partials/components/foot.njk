@@ -1,0 +1,43 @@
+<div class="foot">
+  <div class="foot-inner">
+    <div class="foot__head">
+      {% for line in theme.foot.title %}
+        <div class="foot-line">
+          {% for word in line %}<div class="matts">{{ word }}</div>{% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="foot__body">
+      {% if theme.links %}
+        <div class="foot-item">
+          <div class="foot-item__head">朋友</div>
+          <div class="foot-item__body">
+            {% set friendsLinks = theme.links.concat({
+                          'name': '申请友链',
+                          'url': 'mailto:' + theme.email + '?subject=申请' + config.url + '的友链',
+                          'icon': '/images/icon/icon-link+.svg'
+                        }) %}
+            {{ partial("_partials/macros/group-link.njk", {links: friendsLinks, groupSize: theme.foot.linksRows}) }}
+          </div>
+        </div>
+      {% endif %}
+      {% if theme.social %}
+        <div class="foot-item">
+          <div class="foot-item__head">账号</div>
+          <div class="foot-item__body">
+            {{ partial("_partials/macros/group-link.njk", {links: theme.social, groupSize: theme.foot.linksRows}) }}
+          </div>
+        </div>
+      {% endif %}
+      <div class="foot-item">
+        <div class="foot-item__head">联系</div>
+        <div class="foot-item__body">
+          {{ partial("_partials/macros/group-link.njk", {links: theme.contacts, groupSize: theme.foot.linksRows}) }}
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <a href="{{ config.url }}">{{ config.title }}</a> &nbsp;|&nbsp;记录我的生活
+    </div>
+  </div>
+</div>

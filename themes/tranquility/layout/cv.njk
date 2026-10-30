@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <meta charset="utf-8" />
+  <meta name="keywords" content="{{ page.keywords }}" />
+  <meta name="description" content="{{ page.description }}" />
+  <head>
+    {% if theme.zh_font.enable %}
+      {% include('./_partials/components/font.njk') %}
+    {% endif %}
+    <link rel="stylesheet" href="{{ url_for("/css/cv.css") }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>{{ page.title or site.author + "'s CV" }}</title>
+  </head>
+  {% set info = page.content %}
+  <body>
+    <div class="paper">
+      <header>
+        <div class="title">{{ info.title }}</div>
+        <div class="base-info">
+          {% for item in info.baseInfo %}<div class="info-item">{{ item }}</div>{% endfor %}
+        </div>
+        <div class="links">
+          {% if info.tel %}
+            <a href="tel:{{ info.tel }}" class="text-link">
+              <i class="fas fa-mobile"></i>
+            {{ info.tel }}</a>
+          {% endif %}
+          {% if info.email %}
+            <a href="mailto:{{ info.email }}" class="text-link">
+              <i class="fas fa-envelope"></i>
+              {{ info.email }}
+            </a>
+          {% endif %}
+          {% if info.github %}
+            <a href="https://github.com/{{ info.github }}" class="text-link">
+              <i class="fab fa-github"></i>
+              {{ info.github }}
+            </a>
+          {% endif %}
+          {% if info.blogHref %}
+            <a href="{{ info.blogHref }}" class="text-link">
+              <i class="fas fa-blog"></i>
+              {{ info.blog }}
+            </a>
+          {% endif %}
+        </div>
+      </header>
+      <article>
+        {% set edu = info.edu %}
+        <div class="chapter">
+          <div class="chapter-title">
+            <i class="fa-solid fa-graduation-cap"></i>
+            {{ edu.title }}
+          </div>
+          <div class="section">
+            {% for p in edu.content %}<p>{{ p }}</p>{% endfor %}
+          </div>
+        </div>
+        {% for chp in info.chapters %}
+          <div class="chapter">
+            <div class="chapter-title">
+              {% if chp.icon %}
+                {% set isSvg = '<svg' in chp.icon %}
+                {% if isSvg %}
+                  {{ chp.icon | safe }}
+                {% elif chp.icon.name %}
+                  <i class="{{ chp.icon.type }} {{ chp.icon.name }}"></i>
+                {% else %}
+                  <i class="{{ page.iconPrefix }} {{ chp.icon }}"></i>
+                {% endif %}
+              {% endif %}
+              {{ chp.title }}
+              {% if chp.tips %}<div class="tips">{{ chp.tips }}</div>{% endif %}
+            </div>
+            {% if chp.sections %}
+              {% for sec in chp.sections %}
+                <a href="{{ sec.link or '#' }}" class="section__head">
+                  <div class="section-title">{{ sec.title }}</div>
+                  <div class="section-title-des">{{ sec.description }}</div>
+                </a>
+                {% for p in sec.content %}<p>{{ p }}</p>{% endfor %}
+              {% endfor %}
+            {% elif chp.content %}
+              {% if chp.list %}
+                <ul class="section">
+                  {% for p in chp.content %}<li>{{ p }}</li>{% endfor %}
+                </ul>
+              {% else %}
+                <div class="section">
+                  {% for p in chp.content %}<p>{{ p }}</p>{% endfor %}
+                </div>
+              {% endif %}
+            {% endif %}
+          </div>
+        {% endfor %}
+      </article>
+    </div>
+  </body>
+</html>
