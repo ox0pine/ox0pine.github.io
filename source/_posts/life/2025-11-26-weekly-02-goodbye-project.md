@@ -35,7 +35,7 @@ toc: true
 
 我想出的解决方法是让 AI 把这个项目或者库的文档爬取出来整理成 md 格式供我们使用的 AI 后续查阅，能很好的降低幻觉，或者说是避免数据的过时性。比如下面这个截图是我用脚本整理出来的 gymnasium 的使用文档。
 
-{% asset_img week2_2.png "gymnasium" %}
+{% asset_img gymnasium.png "gymnasium" %}
 
 # 怎么安排学习
 
@@ -48,4 +48,4 @@ toc: true
 
 > 萧瑟秋风今又是，换了人间。
 
-{% asset_img week2_1.jpg "拍摄于西安电子科技大学 — 2024年11月" %}
+{% asset_img xidian-campus.jpg "拍摄于西安电子科技大学 — 2024年11月" %}

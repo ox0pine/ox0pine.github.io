@@ -1,6 +1,6 @@
 ---
 title: 如何使用Cloudflare Tunnel
-date: 2026-1-24
+date: 2026-01-24
 categories: tech
 tags: [Cloudflare, 网络工具]
 timeline: article
