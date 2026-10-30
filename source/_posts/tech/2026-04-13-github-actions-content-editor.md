@@ -27,7 +27,7 @@ toc: true
 
 它除了常规文档之外，还专门提供了 [`llms.txt`](https://base-ui.com/llms.txt)，官方也明确提到，可以把文档的 Markdown 版本或者 `llms.txt` 直接提供给 AI 助手，帮助模型更准确地理解组件和 API。
 
-{% asset_img base-ui-llms.png "Base UI 文档中的 Working with LLMs" %}
+![Base UI 文档中的 Working with LLMs](2026-04-13-github-actions-content-editor/base-ui-llms.png)
 
 这个细节让我很有感触。因为它其实在做一件很现代的事：不是只考虑“人怎么读文档”，而是连“模型怎么理解文档”也一起考虑进去了。
 

@@ -43,6 +43,11 @@ external_link:
 filename_case: 0
 render_drafts: false
 post_asset_folder: true
+# 图片用标准 Markdown 写，路径就是编辑器里看到的相对路径（文章资源目录/文件名）：
+#   ![东城地坛公园](2025-11-17-weekly-01-restart/ditan-park.jpg)
+# VS Code / Typora / Obsidian 预览可直接显示；scripts/post-assets.js 在构建时把它
+# 换成 /2025/11/17/weekly-01-restart/ditan-park.jpg。裸文件名（ditan-park.jpg）
+# 也支持，只要该文件确实在文章资源目录里。
 relative_link: false
 future: true
 syntax_highlighter: highlight.js
@@ -56,6 +61,13 @@ prismjs:
   preprocess: true
   line_number: true
   tab_replace: ""
+
+# Markdown 渲染（hexo-renderer-marked）
+marked:
+  # 图片路径由 scripts/post-assets.js 统一改写，这里不再使用 postAsset
+  # （它按 post.slug 拼路径，文件名带日期前缀时会多出一层目录）。
+  postAsset: false
+  prependRoot: true
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
