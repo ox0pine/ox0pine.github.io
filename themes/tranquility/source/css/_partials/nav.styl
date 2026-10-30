@@ -55,10 +55,21 @@ if (hexo-config('algolia.enable')) {
   letter-spacing: 0.1em;
   text-decoration: none;
   margin: 0 20px;
-}
+  position: relative;
 
-.nav-menu-item:hover {
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
+
+  &[aria-current='page']::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 2px;
+    background-color: $black-dim;
+  }
 }
 
 @media screen and (max-width: 1023px) {

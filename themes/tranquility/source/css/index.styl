@@ -51,21 +51,23 @@ for item in hexo-config('timeline.items') {
 
 .wall-title {
   font-weight: 600;
-  font-size: 72px;
+  font-size: clamp(2.25rem, 7.2vw, 4.5rem);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
   animation: flyIn 500ms ease-out;
 }
 
 .wall-subtitle {
-  font-size: 36px;
+  font-size: clamp(1.15rem, 3.4vw, 2.25rem);
   font-weight: bold;
   margin-top: 10px;
 }
 
 .wall-description {
-  font-size: 20px;
+  font-size: clamp(0.9rem, 2vw, 1.25rem);
   font-weight: 400;
   margin: 10px 0;
-  font-family: sourceHanSerif, serif;
+  font-family: $font-family-serif;
   letter-spacing: 0.2em;
 }
 
@@ -73,6 +75,8 @@ for item in hexo-config('timeline.items') {
   position: absolute;
   right: 0;
   top: 50%;
+  width: 400px;
+  height: 400px;
   margin-top: -200px;
 }
 
@@ -129,7 +133,7 @@ for item in hexo-config('timeline.items') {
 .poem {
   font-size: 18px;
   position: absolute;
-  font-family: sourceHanSerif, serif;
+  font-family: $font-family-serif;
   left: 50%;
   top: calc(50% + 80px);
   opacity: 0.2;
@@ -157,7 +161,9 @@ for item in hexo-config('timeline.items') {
 .about-photo {
   width: 300px;
   height: 450px;
-  background: url('') center center / cover no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
   margin: 0 10px;
   transition: all 200ms ease-out;
 
@@ -169,7 +175,7 @@ for item in hexo-config('timeline.items') {
 
 .about-text {
   font-weight: bold;
-  font-family: sourceHanSerif, serif;
+  font-family: $font-family-serif;
 }
 
 .about-title {
@@ -503,6 +509,8 @@ for v, k in timeline_colors {
     top: 60%;
     right: 10%;
     width: 300px;
+    height: 300px;
+    margin-top: -150px;
   }
 
   .normal-eqt {

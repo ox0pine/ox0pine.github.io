@@ -11,16 +11,6 @@
   margin: 0 auto;
   max-width: 900px;
 
-  &--toc {
-    @extend .post-inner;
-    max-width: 760px;
-    padding-right: 230px;
-
-    .post-content__body {
-      max-width: 760px;
-    }
-  }
-
   .video-container {
     height: 0;
     margin-bottom: 20px;
@@ -40,6 +30,27 @@
   }
 }
 
+/* Article + sticky table of contents as a two column grid.
+   The old implementation floated the TOC and pulled it back with a negative
+   margin, which overflowed between 760px and 1023px wide viewports. */
+.post-inner--toc {
+  max-width: 1030px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 200px;
+  column-gap: 30px;
+  align-items: start;
+
+  .post-content__head,
+  .post-content__body {
+    grid-column: 1;
+  }
+
+  .toc-outer {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+}
+
 .post-content {
   padding: 10px 0;
   margin: 0 auto;
@@ -49,30 +60,39 @@
   align-items: center;
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   margin-bottom: 20px;
 }
 
 .post-title {
   font-size: 30px;
+  font-weight: bold;
+  line-height: 1.45;
+  margin: 0;
 }
 
 .post-content__head {
   margin: 40px 0;
 }
 
-.toc-outer {
-  opacity: 0.9;
-  position: sticky;
-  top: 60px;
-  float: right;
-  margin-right: -230px;
-  max-height: calc(100vh - 250px);
-  min-height: 400px;
-  padding-left: 30px;
-  overflow-y: auto;
-  width: 200px;
+.post-content__head .post-excerpt {
   color: $black-lighter;
+  font-size: $font-size-small;
+  line-height: 1.8em;
+
+  p {
+    margin: 0;
+  }
+}
+
+.toc-outer {
+  position: sticky;
+  top: 20px;
+  max-height: calc(100vh - 40px);
+  padding-left: 10px;
+  overflow-y: auto;
+  color: $black-lighter;
+  font-size: $font-size-small;
 
   .toc-title, .toc-top {
     display: inline-block;
@@ -107,7 +127,6 @@
     margin: 0;
     padding: 0;
     display: inline-block;
-    text-align: left;
     box-sizing: border-box;
     line-height: 1.25em;
 
@@ -173,20 +192,6 @@
   margin: 40px 0;
 }
 
-@media screen and (max-width: 760px) {
-  .post-inner--toc {
-    padding: 0;
-
-    .post-content__body {
-      max-width: 100%;
-    }
-  }
-
-  .toc-outer {
-    display: none;
-  }
-}
-
 @media screen and (max-width: 1023px) {
   .body {
     padding-left: 30px;
@@ -194,6 +199,15 @@
   }
 
   .post-gallery {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .post-inner--toc {
+    display: block;
+    max-width: 900px;
+
+    .toc-outer {
+      display: none;
+    }
   }
 }

@@ -1,11 +1,11 @@
 {% for subfont in theme.zh_font.style %}
   <style>
     @font-face {
-        font-family:{{ theme.zh_font.fontName }};
-        src: url({{ url_for('/font/') + 'SourceHanSerifSC-' + subfont + '.' + theme.zh_font.type }});
-        font-weight: {{ subfont }};
-        font-style: normal;
-        font-display: swap;
+      font-family: {{ theme.zh_font.fontName }};
+      src: url('{{ url_for('/font/' ~ subfont ~ '.' ~ theme.zh_font.type) }}');
+      font-weight: {{ subfont }};
+      font-style: normal;
+      font-display: swap;
     }
   </style>
 {% endfor %}

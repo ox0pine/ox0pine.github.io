@@ -1,9 +1,4 @@
 @import '_variables';
-@import '_font';
-
-$table-odd-line-bg = $whitesoke-light;
-
-@import '_variables';
 
 html {
   font-family: $font-family-base;
@@ -11,6 +6,7 @@ html {
   color: $text-color;
   text-align: justify;
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 html, body {
@@ -28,6 +24,27 @@ a {
 
 a:hover {
   color: $link-hover-color;
+}
+
+:focus-visible {
+  outline: 2px solid $blue-link;
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  padding: 10px 16px;
+  background: #fff;
+  border: 1px solid $grey-lighter;
+
+  &:focus {
+    left: 10px;
+    top: 10px;
+    color: $link-hover-color;
+  }
 }
 
 blockquote {
@@ -64,13 +81,13 @@ th {
 }
 
 tbody tr:nth-of-type(odd) {
-  background: $table-odd-line-bg;
+  background: $whitesmoke-light;
 }
 
 figure figcaption {
   text-align: center;
   font-size: $font-size-smaller;
-  color: $blak-lighter;
+  color: $black-lighter;
 }
 
 p, figure {
@@ -78,5 +95,23 @@ p, figure {
     display: block;
     margin: 0 auto;
     max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  html {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

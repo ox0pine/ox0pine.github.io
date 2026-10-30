@@ -8,3 +8,4 @@ require('./_generator/cv')(hexo);
 require('./_generator/search')(hexo);
 require('./_timeline')(hexo);
 require('./_helper')(hexo);
+require('./filters/html')(hexo);

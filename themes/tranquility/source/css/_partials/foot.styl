@@ -20,7 +20,7 @@
   margin: 0 20px 50px;
   font-size: 36px;
   font-weight: bold;
-  font-family: sourceHanSerif, serif;
+  font-family: $font-family-serif;
   cursor: default;
   display: flex;
   flex-wrap: wrap;
@@ -65,9 +65,13 @@
   justify-content: center;
   text-align: center;
   font-size: $font-size-smaller;
-  color: $black-light;
+  color: #999;
+
+  a {
+    color: #bbb;
+  }
 
   a:hover {
-    color: $black-lighter;
+    color: #fff;
   }
 }

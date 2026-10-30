@@ -1,4 +1,4 @@
-# slogan: "风物长宜放眼量"
+slogan: "风物长宜放眼量"
 email: ox0pine@gmail.com
 logo: "/images/logo.svg"
 
@@ -65,7 +65,9 @@ reward: # 赞赏
 
 # see https://github.com/gitalk/gitalk
 gitalk: # gitalk 评论
-  enable: true
+  # 需要在 GitHub OAuth Apps 中创建应用并填入真实的 clientID / clientSecret 后再开启，
+  # 否则每篇文章的评论区都会渲染错误。
+  enable: false
   owner: ox0pine # MUST HAVE, Your Github Username
   admin:
     - ox0pine
@@ -212,8 +214,10 @@ search:
   field: post
   content: true
 
+# Algolia DocSearch 需要真实的三项凭据；未配置时必须关闭，
+# 否则会顶掉本地搜索（search.enable），导致站内搜索不可用。
 algolia:
-  enable: true
+  enable: false
   appId: appId
   apiKey: apiKey
   indexName: indexName

@@ -1,180 +1,235 @@
-const searchBtn = document.querySelector("#search-btn")
-const searchIpt = document.querySelector("#search-input")
-const searchResult = document.querySelector("#search-result")
-const searchClearBtn = document.querySelector("#search-clear")
+const searchBtn = document.querySelector('#search-btn')
+const searchIpt = document.querySelector('#search-input')
+const searchResult = document.querySelector('#search-result')
+const searchClearBtn = document.querySelector('#search-clear')
+const searchMask = document.querySelector('#search-mask')
 
-const searchMask = document.querySelector("#search-mask")
+const MAX_RESULTS = 30
+const SNIPPET_WORDS = 24
 
 let searchStatus = 0
+let searchUrl = ''
+let searchDataPromise = null
 
 function showSearchDialog() {
   if (searchStatus) return
+
   searchMask.style.display = 'block'
   document.body.style.overflow = 'hidden'
   searchIpt.focus()
   searchStatus = 1
+  // Warm the index only once the dialog is opened; pages that never search
+  // no longer download search.json on load.
+  fetchSearchData().catch(() => {})
 }
 
 function closeSearchDialog() {
   if (!searchStatus) return
-  searchMask.style.display = 'None'
-  document.body.style.overflow = 'inherit'
-  searchIpt.value = ""
+
+  searchMask.style.display = 'none'
+  document.body.style.overflow = ''
+  searchIpt.value = ''
+  clearResult()
   searchStatus = 0
+  if (searchBtn) searchBtn.focus()
 }
 
 function searchInitialize(url) {
-  fetch(url).then(res => res.json()).then(res => {
-    const inputHandler = debounce(doSearch)
+  if (!searchMask || !searchIpt || !searchResult) return
 
-    searchBtn.style.display = "flex"
+  searchUrl = url
+  if (searchBtn) searchBtn.style.display = 'flex'
 
-    document.addEventListener('keydown', e => {
-      if ((e.ctrlKey || e.metaKey) && e.key == "k") {
-        if (searchStatus) closeSearchDialog()
-        else showSearchDialog()
-      }
-      if (e.key == 'Escape') closeSearchDialog()
-    })
+  const inputHandler = debounce(handleInput, 200)
 
-    searchClearBtn.addEventListener('click', () => {
-      searchIpt.value = ""
-      clearResult()
-    })
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault()
+      if (searchStatus) closeSearchDialog()
+      else showSearchDialog()
+    }
+    if (e.key === 'Escape') closeSearchDialog()
+  })
 
-    searchBtn.addEventListener('click', () => {
+  if (searchBtn) {
+    searchBtn.addEventListener('click', showSearchDialog)
+    searchBtn.addEventListener('keydown', e => {
+      if (e.key !== 'Enter' && e.key !== ' ') return
+      e.preventDefault()
       showSearchDialog()
     })
+  }
 
-    searchMask.addEventListener('click', e => {
-      if (e.target !== searchMask) return
-      closeSearchDialog()
-    }, true)
+  if (searchClearBtn) {
+    const clear = () => {
+      searchIpt.value = ''
+      clearResult()
+      searchIpt.focus()
+    }
+    searchClearBtn.addEventListener('click', clear)
+    searchClearBtn.addEventListener('keydown', e => {
+      if (e.key !== 'Enter' && e.key !== ' ') return
+      e.preventDefault()
+      clear()
+    })
+  }
 
-    searchIpt.addEventListener('input', inputHandler.bind(searchIpt, res))
-  })
+  searchMask.addEventListener('click', e => {
+    if (e.target !== searchMask) return
+    closeSearchDialog()
+  }, true)
+
+  searchIpt.addEventListener('input', inputHandler)
+}
+
+function fetchSearchData() {
+  if (!searchDataPromise) {
+    searchDataPromise = fetch(searchUrl)
+      .then(res => {
+        if (!res.ok) throw new Error(`search.json ${res.status}`)
+        return res.json()
+      })
+      .catch(err => {
+        searchDataPromise = null
+        throw err
+      })
+  }
+  return searchDataPromise
+}
+
+async function handleInput() {
+  const value = searchIpt.value.trim()
+  if (!value) return clearResult()
+
+  let data
+  try {
+    data = await fetchSearchData()
+  } catch (error) {
+    searchResult.innerHTML = '<div class="search-result-empty">搜索索引加载失败，请刷新重试</div>'
+    return
+  }
+
+  // The input may have changed while the index was loading.
+  if (searchIpt.value.trim() !== value) return
+
+  const keywords = [...new Set(value.toLowerCase().split(/[\s-]+/).filter(Boolean))]
+  renderSearchResult(search(data, keywords), searchResult)
 }
 
 function clearResult() {
   searchResult.innerHTML = ''
 }
 
-function doSearch(data) {
-  if (this.value.trim().length <= 0) return clearResult()
-
-  var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-
-  const result = search(data, keywords)
-
-  renderSearchResult(result, searchResult)
-}
-
 function search(data, keywords) {
-  const matchedPost = []
+  const result = []
 
-  data
-    .filter(post => post.content)
-    .forEach(post => {
-      let postTitle = post.title && post.title.trim()
-      postTitle = (postTitle && postTitle.length > 0) ? postTitle : "Untitled"
+  for (const post of data) {
+    if (!post.content) continue
 
-      const postContent = post.content.trim().replace(/<[^>]+>/g, "")
+    const title = (post.title || 'Untitled').trim()
+    const content = post.content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+    const loweredTitle = title.toLowerCase()
+    const loweredContent = content.toLowerCase()
 
-      const matchedContentIdices = []
+    let hit = -1
+    for (const keyword of keywords) {
+      const titleIndex = loweredTitle.indexOf(keyword)
+      const contentIndex = loweredContent.indexOf(keyword)
+      if (titleIndex < 0 && contentIndex < 0) continue
+      if (hit < 0) hit = contentIndex >= 0 ? contentIndex : 0
+    }
 
-      keywords.forEach((keyword, i) => {
-        const index_title = postTitle.toLowerCase().indexOf(keyword);
-        const index_content = postContent.toLowerCase().indexOf(keyword);
+    if (hit < 0) continue
 
-        if (index_title < 0 && index_content < 0) return
+    result.push({ url: post.url, title, snippet: snippetAt(hit, content, keywords) })
+    if (result.length >= MAX_RESULTS) break
+  }
 
-        matchedContentIdices.push(Math.max(index_content, 0))
-      });
-
-      if (matchedContentIdices.length) matchedPost.push({
-        url: post.url,
-        content: trimeContent(matchedContentIdices, postContent, keywords),
-        title: postTitle
-      })
-    });
-
-  return matchedPost
+  return result
 }
 
 function renderSearchResult(result, el) {
   el.innerHTML = ''
 
-  if (!result || result.length <= 0) {
+  if (!result || result.length === 0) {
     el.innerHTML = '<div class="search-result-empty">无结果</div>'
+    return
   }
 
   const list = document.createDocumentFragment()
-  result.forEach(res => {
-    const item = document.createElement('a')
-    item.className = 'search-result-item'
-    item.href = res.url
 
-    const title = document.createElement('DIV')
+  result.forEach(item => {
+    const link = document.createElement('a')
+    link.className = 'search-result-item'
+    link.href = item.url
+
+    const title = document.createElement('div')
     title.className = 'search-result__head'
-    title.innerText = res.title
+    title.textContent = item.title
 
-    const content = document.createElement('DIV')
-    content.className = 'search-result__body'
-    res.content.forEach(contentText => {
-      const contentItem = document.createElement('DIV')
-      contentItem.innerHTML = contentText
-      content.appendChild(contentItem)
-    })
+    const body = document.createElement('div')
+    body.className = 'search-result__body'
+    body.innerHTML = item.snippet
 
-    item.append(title, content)
-    list.append(item)
+    link.append(title, body)
+    list.append(link)
   })
 
   el.appendChild(list)
 }
 
-function trimeContent(keyIndexs, content, keywords, wordLen = 20) {
-  const reg = /[\u4e00-\u9fa5]|\w+/gd
-  const splitIndex = []
-  let arr
-  while ((arr = reg.exec(content)) !== null)
-    splitIndex.push(arr.indices[0])
+function wordRanges(content) {
+  const ranges = []
+  const reg = /[\u4e00-\u9fa5]|\w+/g
+  let match
 
-  return keyIndexs.map(key => {
-    let pos = binaryFind(splitIndex, key)
-    const wordStart = Math.max(0, pos - 10)
-    const wordEnd = Math.min(wordLen + wordStart, splitIndex.length - 1)
-    const start = splitIndex[wordStart][0]
-    const end = splitIndex[wordEnd][1]
-
-    keywords.forEach(keyword => {
-      content = content
-        .slice(start, end)
-        .replace(new RegExp(keyword, 'ig'),
-          `<span class="search-keyword">${keyword}</span>`)
-    })
-
-    return content
-  })
-}
-
-function binaryFind(arr, value) {
-  let i = 0, j = arr.length - 1, mid = j
-  while (i <= j) {
-    if (value < arr[mid][0]) j = mid - 1;
-    else if (value > arr[mid][1]) i = mid + 1
-    else return mid
-    mid = Math.floor((i + j) / 2)
+  while ((match = reg.exec(content)) !== null) {
+    ranges.push([match.index, match.index + match[0].length])
   }
-  return mid
+
+  return ranges
 }
 
-function debounce(fn, t = 400) {
+function snippetAt(index, content, keywords, wordLen = SNIPPET_WORDS) {
+  const ranges = wordRanges(content)
+  if (ranges.length === 0) return highlight(content.slice(0, 100), keywords)
+
+  const found = ranges.findIndex(range => range[0] > index)
+  const center = found === -1 ? ranges.length - 1 : Math.max(found - 1, 0)
+  const start = ranges[Math.max(center - 8, 0)][0]
+  const end = ranges[Math.min(center + wordLen, ranges.length - 1)][1]
+
+  return (start > 0 ? '…' : '') +
+    highlight(content.slice(start, end), keywords) +
+    (end < content.length ? '…' : '')
+}
+
+function highlight(text, keywords) {
+  const escaped = escapeHtml(text)
+  if (keywords.length === 0) return escaped
+
+  const pattern = new RegExp(`(${keywords.map(escapeRegExp).join('|')})`, 'ig')
+  return escaped.replace(pattern, '<span class="search-keyword">$1</span>')
+}
+
+function escapeHtml(text) {
+  return text.replace(/[&<>"]/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;'
+  }[char]))
+}
+
+function escapeRegExp(text) {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function debounce(fn, time = 200) {
   let timer = null
+
   return function (...args) {
     clearTimeout(timer)
-    timer = setTimeout(() => {
-      fn.call(this, ...args)
-    }, t)
+    timer = setTimeout(() => fn.apply(this, args), time)
   }
 }

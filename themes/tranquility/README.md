@@ -387,18 +387,14 @@ mathjax: true # 加载 LateX 数学公式库
 
 Mermaid 是一个基于 Javascript 的图表绘制工具，通过解析类 Markdown 的文本语法来实现图表的创建和动态修改。
 
-- 首先安装依赖
-
-    ```bash
-    npm install hexo-filter-mermaid-diagrams
-    ```
+- 主题已内置支持：`before_post_render` 过滤器会把 ` ```mermaid ` 代码块转成 `<pre class="mermaid">`，并在**包含图表的页面**才引入 Mermaid 脚本。无需安装额外插件。
 
 - 在配置文件中启用
 
     ```yml
     mermaid:
       enable: true # 启用 Mermaid 增强
-      version: latest
+      version: 11 # 也可以写 latest，但固定版本更稳
       options: 
         startOnload: true
     ```

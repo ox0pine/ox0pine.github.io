@@ -80,6 +80,13 @@
   border: none;
   height: 2em;
   padding: 4px;
+  background: transparent;
+
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+  }
 }
 
 .search__body {

@@ -1,4 +1,4 @@
-<div class="foot">
+<footer class="foot">
   <div class="foot-inner">
     <div class="foot__head">
       {% for line in theme.foot.title %}
@@ -29,15 +29,20 @@
           </div>
         </div>
       {% endif %}
-      <div class="foot-item">
-        <div class="foot-item__head">联系</div>
-        <div class="foot-item__body">
-          {{ partial("_partials/macros/group-link.njk", {links: theme.contacts, groupSize: theme.foot.linksRows}) }}
+      {% if theme.contacts %}
+        <div class="foot-item">
+          <div class="foot-item__head">联系</div>
+          <div class="foot-item__body">
+            {{ partial("_partials/macros/group-link.njk", {links: theme.contacts, groupSize: theme.foot.linksRows}) }}
+          </div>
         </div>
-      </div>
+      {% endif %}
     </div>
     <div class="copyright">
-      <a href="{{ config.url }}">{{ config.title }}</a> &nbsp;|&nbsp;记录我的生活
+      <a href="{{ url_for('/') }}">{{ config.title }}</a> &nbsp;|&nbsp;记录我的生活
+      {% if config.feed and config.feed.enable %}
+        &nbsp;|&nbsp;<a href="{{ url_for('/atom.xml') }}">RSS 订阅</a>
+      {% endif %}
     </div>
   </div>
-</div>
+</footer>

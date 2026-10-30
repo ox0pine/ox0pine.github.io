@@ -1,46 +1,48 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+{%- set seo = seo_meta(page, config, theme, { home: is_home(), post: is_post(), tag: is_tag(), category: is_category() }) -%}
+{%- set navClass = 'head--sticky' if theme.nav and theme.nav.sticky else 'head' -%}
+<html lang="{{ page.language or config.language or 'zh-CN' }}">
   <head>
-    <meta charset="utf8"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#ffffff"/>
     {% if theme.google_ad.enable %}
       <meta name="google-adsense-account" content="{{ theme.google_ad.meta_tag }}"/>
     {% endif %}
-    <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="{{ page.permalink or config.url }}"/>
-
-    <!-- Language and alternate links -->
-    {% if page.language %}
-      <html lang="{{ page.language }}"/>
-    {% else %}
-      <html lang="{{ config.language or 'zh-CN' }}"/>
+    <title>{{ seo.title }}</title>
+    <link rel="canonical" href="{{ seo.url }}"/>
+    {% if config.feed and config.feed.enable %}
+      <link rel="alternate"
+            type="application/atom+xml"
+            title="{{ config.title }}"
+            href="{{ url_for('/atom.xml') }}"/>
+      <link rel="alternate"
+            type="application/rss+xml"
+            title="{{ config.title }}"
+            href="{{ url_for('/rss2.xml') }}"/>
     {% endif %}
+    <meta name="description" content="{{ seo.description }}"/>
+    {% if seo.keywords %}<meta name="keywords" content="{{ seo.keywords }}"/>{% endif %}
 
-    <title>
-      {% if is_home() %}
-        {{ config.title }}
-      {% elif is_post() %}
-        {{ page.title }} | {{ config.title }}
-      {% elif is_tag() %}
-        {{ page.tag }} | {{ config.title }}
-      {% else %}
-        {{ page.title }} | {{ config.title }}
-      {% endif %}
-    </title>
-    {% if is_post() %}
-      <meta name="description" content="{{ page.excerpt or page.description or truncate(strip_html(page.content), {length: 160, omission: '...'}) }}"/>
-          <meta name="keywords" content="{{ config.keywords }}"/>
-    {% elif is_category() %}
-      <meta name="description" content="{{ page.category }}分类下的所有文章 - {{ config.description }}"/>
-      <meta name="keywords" content="{{ page.category }}, {{ config.keywords }}"/>
-    {% elif is_tag() %}
-      <meta name="description" content="{{ page.tag }}标签下的所有文章 - {{ config.description }}"/>
-      <meta name="keywords" content="{{ page.tag }}, {{ config.keywords }}"/>
-    {% else %}
-      <meta name="description" content="{{ config.description }}"/>
-      <meta name="keywords" content="{{ config.keywords }}"/>
-    {% endif %}
+    <!-- Open Graph -->
+    <meta property="og:type" content="{{ seo.type }}"/>
+    <meta property="og:site_name" content="{{ config.title }}"/>
+    <meta property="og:locale" content="{{ seo.locale }}"/>
+    <meta property="og:title" content="{{ seo.title }}"/>
+    <meta property="og:description" content="{{ seo.description }}"/>
+    <meta property="og:url" content="{{ seo.url }}"/>
+    <meta property="og:image" content="{{ seo.image }}"/>
+    {% if seo.published %}<meta property="article:published_time" content="{{ seo.published }}"/>{% endif %}
+    {% if seo.modified %}<meta property="article:modified_time" content="{{ seo.modified }}"/>{% endif %}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="{{ seo.title }}"/>
+    <meta name="twitter:description" content="{{ seo.description }}"/>
+    <meta name="twitter:url" content="{{ seo.url }}"/>
+    <meta name="twitter:image" content="{{ seo.image }}"/>
+
     {% if theme.favicon.apple_touch_icon %}
       <link rel="apple-touch-icon"
             sizes="180x180"
@@ -66,136 +68,49 @@
     {% if theme.favicon.android_manifest %}
       <link rel="manifest" href="{{ url_for(theme.favicon.android_manifest) }}"/>
     {% endif %}
+
     {% if theme.zh_font.enable %}
       {% include('./components/font.njk') %}
     {% endif %}
-    <link rel="stylesheet"
-          type="text/css"
-          href='{{ url_for("/css/layout.css") }}'/>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('/css/layout.css') }}"/>
+
     {% if theme.baidu_analytics %}
       <script>
         var _hmt = _hmt || [];
         (function () {
           var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?{{theme.baidu_analytics}}";
+          hm.src = "https://hm.baidu.com/hm.js?{{ theme.baidu_analytics }}";
           var s = document.getElementsByTagName("script")[0];
-          s
-            .parentNode
-            .insertBefore(hm, s);
+          s.parentNode.insertBefore(hm, s);
         })();
       </script>
     {% endif %}
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content="{{ page.permalink or config.url }}"/>
-    <meta property="og:title" content="
-      {% if is_home() %}
-        {{ config.title }}
-      {% elif is_post() %}
-        {{ page.title }} | {{ config.title }}
-      {% else %}
-        {{ page.title }} | {{ config.title }}
-      {% endif %}"/>
-    <meta property="og:description" content="
-      {% if is_post() %}
-        {{ page.excerpt or page.description or truncate(strip_html(page.content), {length: 160, omission: '...'}) }}
-      {% elif is_category() %}
-        {{ page.category }}分类下的所有文章 - {{ config.description }}
-      {% elif is_tag() %}
-        {{ page.tag }}标签下的所有文章 - {{ config.description }}
-      {% else %}
-        {{ config.description }}
-      {% endif %}"/>
-    <meta property="og:image" content="
-      {% if page.photos %}
-        {{ url_for(page.photos[0]) }}
-      {% elif theme.index.photo %}
-        {{ url_for(theme.index.photo) }}
-      {% else %}
-        {{ url_for(theme.logo) }}
-      {% endif %}"/>
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image"/>
-    <meta property="twitter:url" content="{{ page.permalink or config.url }}"/>
-    <meta property="twitter:title" content="
-      {% if is_home() %}
-        {{ config.title }}
-      {% elif is_post() %}
-        {{ page.title }} | {{ config.title }}
-      {% else %}
-        {{ page.title }} | {{ config.title }}
-      {% endif %}"/>
-    <meta property="twitter:description" content="
-      {% if is_post() %}
-        {{ page.excerpt or page.description or truncate(strip_html(page.content), {length: 160, omission: '...'}) }}
-      {% elif is_category() %}
-        {{ page.category }}分类下的所有文章 - {{ config.description }}
-      {% elif is_tag() %}
-        {{ page.tag }}标签下的所有文章 - {{ config.description }}
-      {% else %}
-        {{ config.description }}
-      {% endif %}"/>
-    <meta property="twitter:image" content="
-      {% if page.photos %}
-        {{ url_for(page.photos[0]) }}
-      {% elif theme.index.photo %}
-        {{ url_for(theme.index.photo) }}
-      {% else %}
-        {{ url_for(theme.logo) }}
-      {% endif %}"/>
-
-    <!-- Structured Data -->
-    {% if is_post() %}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "{{ page.title }}",
-      "image": [
-        {% if page.photos %}
-          {% for photo in page.photos %}
-            "{{ url_for(photo) }}"{% if not loop.last %},{% endif %}
-          {% endfor %}
-        {% else %}
-          "{{ url_for(theme.logo) }}"
-        {% endif %}
-      ],
-      "datePublished": "{{ date(page.date, 'YYYY-MM-DD') }}",
-      "dateModified": "{{ date(page.updated, 'YYYY-MM-DD') or date(page.date, 'YYYY-MM-DD') }}",
-      "author": {
-        "@type": "Person",
-        "name": "{{ config.author }}"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "{{ config.title }}",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "{{ url_for(theme.logo) }}"
-        }
-      },
-      "description": "{{ page.excerpt or page.description or truncate(strip_html(page.content), {length: 160, omission: '...'}) }}"
-    }
-    </script>
-    {% endif %}
+    {% for data in seo.jsonld %}
+      <script type="application/ld+json">{{ data | dump }}</script>
+    {% endfor %}
 
     {% block link %}{% endblock link %}
   </head>
   <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
     {% if theme.algolia and theme.algolia.enable %}
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/>
     {% elif theme.search and theme.search.enable %}
       {% include("./components/search-main.njk") %}
     {% endif %}
-    {% set headClass = 'head--sticky'if theme.nav and theme.nav.sticky else 'head' %}
-    <div class={{ headClass }}>
+    <div class="{{ navClass }}">
       <div class="nav">
-        <a href='{{ url_for("/") }}' class="nav-logo">
-          <img alt="logo" height="60px" width="60px" src="{{ url_for(theme.logo) }}"/>
+        <a href="{{ url_for('/') }}" class="nav-logo" aria-label="{{ config.title }} 首页">
+          <img alt=""
+               width="60"
+               height="60"
+               loading="eager"
+               fetchpriority="high"
+               src="{{ url_for(theme.logo) }}"/>
         </a>
-        <input id="navBtn" type="checkbox"/>
+        <input id="navBtn" type="checkbox" aria-hidden="true" tabindex="-1"/>
         <div class="nav-right">
           {% if theme.algolia and theme.algolia.enable %}
             <div class="search-outer" id="algolia-search"></div>
@@ -205,52 +120,57 @@
           <div class="nav-menu">
             {% if theme.subpage.enable %}
               {% for nav in theme.subpage.pages %}
-                {% if nav.url %}
-                  <a class="nav-menu-item" href="{{ nav.url }}">{{ nav.title }}</a>
-                {% else %}
-                  <a class="nav-menu-item" href="{{ url_for(nav.path or nav.name) }}">{{ nav.title }}</a>
-                {% endif %}
+                {% set navPath = nav.path or nav.name %}
+                <a class="nav-menu-item"
+                   href="{{ nav.url or nav_url(navPath) }}"{% if not nav.url and nav_current(page, navPath) %} aria-current="page"{% endif %}>{{ nav.title }}</a>
               {% endfor %}
             {% else %}
-              <a class="nav-menu-item" href='{{ url_for("/blog/") }}'>博客</a>
+              <a class="nav-menu-item"
+                 href="{{ nav_url('blog') }}"{% if nav_current(page, 'blog') %} aria-current="page"{% endif %}>博客</a>
             {% endif %}
             {% if theme.cv.enable and theme.cv.showInNav %}
-              <a class="nav-menu-item" href='{{ url_for("/cv/") }}'>个人简历</a>
+              <a class="nav-menu-item"
+                 href="{{ nav_url('cv') }}"{% if nav_current(page, 'cv') %} aria-current="page"{% endif %}>个人简历</a>
             {% endif %}
           </div>
         </div>
-        <label class="nav-btn" for="navBtn"></label>
+        <label class="nav-btn" for="navBtn" aria-label="打开导航菜单"></label>
       </div>
     </div>
-    <div class="body">
+    <main class="body" id="main-content">
       {% block body %}{% endblock body %}
-    </div>
+    </main>
     {% include "./components/foot.njk" %}
-    {% if theme.mathjax %}
+
+    {% if needs_math(page, theme.mathjax) %}
       <script src="https://unpkg.com/js-polyfills@0.1.43/es6.js"></script>
       <script id="MathJax-script"
               async
-              src="https://www.unpkg.com/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+              src="https://unpkg.com/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
     {% endif %}
     {% if theme.algolia and theme.algolia.enable %}
       <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
       <script type="text/javascript">
         docsearch({
-          appId: '{{theme.algolia.appId}}',
-          apiKey: '{{theme.algolia.apiKey}}',
-          indexName: '{{theme.algolia.indexName}}',
-          insights: '{{theme.algolia.insights}}',
+          appId: '{{ theme.algolia.appId }}',
+          apiKey: '{{ theme.algolia.apiKey }}',
+          indexName: '{{ theme.algolia.indexName }}',
+          insights: '{{ theme.algolia.insights }}',
           container: 'div#algolia-search',
-          debug: '{{theme.algolia.debug}}'
+          debug: '{{ theme.algolia.debug }}'
         });
       </script>
     {% elif theme.search and theme.search.enable %}
-      <script src="{{url_for('js/search.js')}}"></script>
+      <script src="{{ url_for('js/search.js') }}" defer></script>
       <script>
-        searchInitialize("{{url_for(theme.search.path)}}")
+        window.addEventListener('DOMContentLoaded', function () {
+          searchInitialize("{{ url_for(theme.search.path) }}")
+        })
       </script>
     {% endif %}
-    <script src="{{url_for('js/copy-code.js')}}"></script>
+    {% if is_post() %}
+      <script src="{{ url_for('js/copy-code.js') }}" defer></script>
+    {% endif %}
     {% block script %}{% endblock script %}
   </body>
 </html>
