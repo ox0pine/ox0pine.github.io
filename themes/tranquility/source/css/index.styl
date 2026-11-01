@@ -49,6 +49,12 @@ for item in hexo-config('timeline.items') {
   z-index: 3;
 }
 
+/* Only the home cover keeps a floor; category and moments pages reuse
+   .wall for their header and must stay content-sized. */
+.wall-index {
+  min-height: 440px;
+}
+
 .wall-title {
   font-weight: 600;
   font-size: clamp(2.25rem, 7.2vw, 4.5rem);
@@ -442,7 +448,7 @@ for v, k in timeline_colors {
 }
 
 @media screen and (max-width: 1023px) {
-  .wall {
+  .wall-index {
     height: calc(100vh - 60px);
     height: calc(100dvh - 60px);
     min-height: 420px;
