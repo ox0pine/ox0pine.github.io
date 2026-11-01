@@ -171,9 +171,10 @@ for item in hexo-config('timeline.items') {
 
 .about-body {
   font-size: $font-size-base;
-  line-height: 2.1;
-  letter-spacing: 0.08em;
-  font-weight: bold;
+  line-height: 2;
+  letter-spacing: 0.05em;
+  /* 这是一段散文而不是几行标语：常规字重比加粗更好读，长段落尤其如此。 */
+  font-weight: normal;
   font-family: $font-family-serif;
   /* 中英混排时两端对齐会在西文单词处拉出明显字距，左对齐更稳。 */
   text-align: left;
@@ -185,6 +186,13 @@ for item in hexo-config('timeline.items') {
 
   &:last-child {
     margin-bottom: 0;
+  }
+
+  /* 开场那句是打招呼，比正文大一号，和后面的散文拉开层次。 */
+  &:first-child {
+    margin-bottom: 1.6em;
+    font-size: 20px;
+    letter-spacing: 0.08em;
   }
 }
 
