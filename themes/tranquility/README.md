@@ -160,6 +160,37 @@ subpage: # 开启“子页”功能，详见 README
 
 新建文章后，只需要把文章头部的 `category` 字段设置为某子页的 `name` 即可将该文章划分到该子页下。
 
+### X 动态子页
+
+子页默认按分类聚合文章，但也可以用 `type: twitter` 声明一个不聚合文章、只展示 X（Twitter）动态的子页：
+
+```yml
+subpage:
+  enable: true
+  pages:
+    - name: moments
+      path: moments
+      title: 动态随笔
+      icon: /images/icon/icon-twitter.svg
+      description: 同步自 X 的碎片化动态
+      type: twitter  # 不按分类取文章，改渲染 X 动态
+      twitter:
+        username: ox0pine  # X 用户名，不带 @
+        limit: 20  # 页面上最多展示多少条
+```
+
+页面内容是构建期静态渲染的，数据来自 `source/_data/twitter.json`，由仓库里的 `.github/workflows/twitter.yml` 每天抓取一次并提交（提交会触发部署）。因此读者端不需要访问 x.com，也没有第三方脚本；代价是内容最多滞后一天，页脚会标出“同步于”。
+
+抓取脚本是 `tools/fetch-twitter.js`（放在 `scripts/` 之外，因为 Hexo 会把 `scripts/` 下每个文件都 require 一遍），可以本地手动跑：
+
+```bash
+TWITTER_USERNAME=ox0pine node tools/fetch-twitter.js
+```
+
+数据源是 `syndication.twitter.com` —— X 官方嵌入组件用的同一个免密钥接口，因此不需要任何 token 或 secret。抓取失败时保留上一次的快照，页面不会变空。
+
+没有 `type` 声明的子页仍然按分类聚合文章（`type` 缺省等于 `category`）。
+
 ### 时间线
 
 时间线的设计初衷是为了展示博主的**重要**事件或履历，如荣誉、宿醉、死亡等[<sup>[1]</sup>](#ref1)。

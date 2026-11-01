@@ -1,0 +1,105 @@
+/* X 动态页（subpage 中 type: twitter 的子页）。
+   内容由 scripts/fetch-twitter.js 在构建前抓取，这里只是普通的列表排版。 */
+@import '_variables';
+
+.tweets {
+  max-width: $content-width;
+  margin: 0 auto 60px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.tweet {
+  padding: 22px 0;
+  border-bottom: 1px solid $grey-lighter;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.tweet__head {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 8px;
+  font-size: $font-size-small;
+  color: $black-extra-lighter;
+}
+
+.tweet__author {
+  font-weight: bold;
+  color: $black-dim;
+  margin-right: 12px;
+}
+
+.tweet__permalink {
+  margin-left: auto;
+  font-size: $font-size-smallest;
+  color: $black-extra-lighter;
+  text-decoration: none;
+
+  &:hover {
+    color: $link-hover-color;
+    text-decoration: underline;
+  }
+}
+
+.tweet__body {
+  color: $text-color;
+  line-height: 1.75;
+  word-break: break-word;
+}
+
+.tweet-link {
+  color: $blue-link;
+}
+
+.tweet__media {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  margin-top: 12px;
+
+  &--1 {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+}
+
+.tweet__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+.tweets-empty,
+.tweets-foot {
+  color: $black-lighter;
+  font-size: $font-size-small;
+  line-height: 1.8;
+}
+
+.tweets-empty {
+  margin: 80px auto;
+  text-align: center;
+}
+
+.tweets-foot {
+  margin: 24px 0 0;
+
+  a {
+    color: $blue-link;
+  }
+}
+
+.tweets-updated {
+  margin-left: 12px;
+  color: $black-extra-lighter;
+}
+
+@media screen and (max-width: 760px) {
+  .tweets {
+    padding: 0 10px;
+  }
+}

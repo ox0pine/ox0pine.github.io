@@ -3,6 +3,12 @@ name: Build and Deploy Hexo
 on:
   push:
     branches: [main]
+  # Commits pushed with the default GITHUB_TOKEN never trigger other workflows,
+  # so the daily twitter update cannot chain through `push`. Chaining through
+  # `workflow_run` works: that event fires on completion of the updater itself.
+  workflow_run:
+    workflows: ["Update X timeline"]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -19,6 +25,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
         with:
+          # Always build the branch head: on `workflow_run` the payload points at
+          # the updater's own commit, which may predate the snapshot it pushed.
+          ref: main
           # scripts/git-updated.js needs the real history to resolve each post's
           # last commit; the default shallow clone would fall back to publish dates.
           fetch-depth: 0

@@ -41,8 +41,10 @@ Hook priority is the ordering contract between scripts. Keep the comments that s
 | `source/_posts/<post-name>/` | Post asset folder (`post_asset_folder: true`), named exactly like the `.md` |
 | `source/robots.txt` | Only hand-written file in `source/`; disallows `/css/`, `/js/`, `/search.json` |
 | `scripts/` | Site-level filters/generators: slug, assets, git dates, legacy redirects |
+| `tools/` | Standalone maintenance scripts run by CI, not by Hexo |
+| `source/_data/twitter.json` | X 动态快照，written by `tools/fetch-twitter.js`; never hand-edit |
 | `themes/tranquility/scripts/` | Theme hooks: `_generator/`, `_helper/`, `filters/` |
-| `themes/tranquility/layout/` | Nunjucks templates (`index`, `post`, `category`, `tag`, `cv`, `_partials/`) |
+| `themes/tranquility/layout/` | Nunjucks templates (`index`, `post`, `category`, `tag`, `twitter`, `cv`, `_partials/`) |
 | `themes/tranquility/source/` | Stylus CSS entries + client JS (`search.js`, `copy-code.js`, `heart-curve.js`) |
 | `themes/tranquility/_font/` | 27 MB TTF sources subset at build time (see `_generator/font.js`) |
 | `_config.yml` / `_config.tranquility.yml` | Hexo core config / theme config override |
@@ -83,10 +85,12 @@ pnpm exec hexo new post --path life/2025-10-30-my-slug   # new post + asset fold
 | `scripts/post-slug.js` / `post-assets.js` | The two URL-shaping filters; priorities 5 and 6 |
 | `scripts/git-updated.js` | `git log -1 --format=%cI`; requires full clone (`fetch-depth: 0`) |
 | `scripts/redirects.js` | Legacy URL table — the only place old links survive |
+| `tools/fetch-twitter.js` | Standalone Node script (not a Hexo plugin): fetches X posts into `source/_data/twitter.json`. Lives outside `scripts/` because Hexo `require`s every file there |
 | `themes/tranquility/scripts/_helper/seo.js` | Single source of title/description/OG/Twitter/JSON-LD; used by `layout/_partials/layout.njk` |
 | `themes/tranquility/scripts/filters/html.js` | Mermaid conversion + conditional bundle, lazy images, both `before_post_render` and `after_render:html` |
 | `themes/tranquility/scripts/_generator/search.js` | Writes `search.json` (`title`, `url`, `content`, `tags`, `categories`); `source/js/search.js` consumes it lazily |
 | `.github/workflows/deploy.yml` | Node 24, pnpm 12.15.0, `pnpm build`, `peaceiris/actions-gh-pages@v4` → `gh-pages` |
+| `.github/workflows/twitter.yml` | Daily cron: `node tools/fetch-twitter.js` → commits `source/_data/twitter.json` → deploy |
 
 ## Runtime/Tooling Preferences
 

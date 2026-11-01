@@ -47,6 +47,9 @@ function subpageGenerator(locals) {
   const orderBy = config.subpage_generator.order_by || '-date';
 
   return subpage.pages.flatMap(page => {
+    // 非分类子页（如 type: twitter）由各自生成器负责，这里只管文章页
+    if (page.type && page.type !== 'category') return [];
+
     const category = locals.categories.findOne({ name: page.name });
     const path = page.path || page.name;
     const normalizedPath = path.endsWith('/') ? path : `${path}/`;

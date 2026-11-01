@@ -23,6 +23,17 @@ subpage: # 开启"子页"功能，详见 README
       title: 生活随笔 # 菜单名
       icon: /images/icon/icon-book.svg # 图标的路径
       description: 生活感悟、日常记录、随笔杂谈 # 描述
+    # 非文章分类的子页：不聚合文章，而是渲染 X（Twitter）动态。
+    # 内容来自 source/_data/twitter.json，由 .github/workflows/twitter.yml 每天抓取提交。
+    - name: moments
+      path: moments
+      title: 动态随笔
+      icon: /images/icon/icon-twitter.svg
+      description: 同步自 X 的碎片化动态
+      type: twitter
+      twitter:
+        username: ox0pine
+        limit: 20 # 最多展示最近多少条，抓取脚本的 TWITTER_LIMIT 决定入库条数
 
 index: # 配置首页个性化内容
   motto: "记录生活，分享美好"

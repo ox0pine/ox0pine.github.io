@@ -1,0 +1,48 @@
+name: Update X timeline
+
+# 每天把 X 上的最新动态抓成 source/_data/twitter.json 并提交，
+# 提交会顺带触发 deploy.yml 重新构建站点。
+on:
+  schedule:
+    - cron: '17 3 * * *' # 每天 03:17 UTC（北京时间 11:17），避开整点的排队高峰
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: twitter
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      # 抓不到就保留上一次的快照，不让页面变成空白
+      - name: Fetch tweets
+        env:
+          TWITTER_USERNAME: ox0pine
+          TWITTER_LIMIT: 20
+        run: node tools/fetch-twitter.js
+
+      - name: Commit snapshot
+        run: |
+          if git diff --quiet -- source/_data/twitter.json; then
+            echo "没有新动态"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add source/_data/twitter.json
+          git commit -m "chore(twitter): 更新 X 动态快照"
+          git pull --rebase origin main
+          git push

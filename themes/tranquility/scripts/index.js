@@ -3,6 +3,7 @@
 'use strict';
 
 require('./_generator/subpage')(hexo);
+require('./_generator/twitter')(hexo);
 require('./_generator/font')(hexo);
 require('./_generator/cv')(hexo);
 require('./_generator/search')(hexo);

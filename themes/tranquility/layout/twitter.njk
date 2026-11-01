@@ -1,0 +1,60 @@
+{% extends "_partials/layout.njk" %}
+{% block link %}
+  {# 头部复用分类页的 wall 结构，样式必须跟着引进来 #}
+  <link rel="stylesheet" type="text/css" href="{{ url_for("/css/category.css") }}"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for("/css/twitter.css") }}"/>
+{% endblock link %}
+{% block body %}
+  {% set twitter = page.twitter %}
+  <div class="wall wall-category wall-category--plain">
+    <div class="wall-main">
+      <div class="wall-category-title">
+        <div class="title-icon"
+             style="background-image: url({{ url_for(page.icon) }})"></div>
+        {{ page.title or page.name }}
+      </div>
+      {% if page.description %}<div class="wall-category-description">{{ page.description }}</div>{% endif %}
+    </div>
+  </div>
+  <div class="tweets">
+    {% if not page.tweets.length %}
+      <p class="tweets-empty">
+        还没有同步到动态。抓取脚本每天跑一次，现在也可以
+        <a href="https://x.com/{{ twitter.username }}" target="_blank" rel="noopener">去 X 上看 @{{ twitter.username }}</a>。
+      </p>
+    {% else %}
+      {% for tweet in page.tweets %}
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@{{ twitter.username }}</span>
+            <time class="tweet__time" datetime="{{ tweet.createdAt }}">{{ tweet.time }}</time>
+            <a class="tweet__permalink"
+               href="{{ tweet.url }}"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          <div class="tweet__body">{{ tweet_text(tweet.text) }}</div>
+          {% if tweet.media.length %}
+            <div class="tweet__media tweet__media--{{ tweet.media.length }}">
+              {% for item in tweet.media %}
+                <a class="tweet__photo"
+                   href="{{ tweet.url }}"
+                   target="_blank"
+                   rel="noopener">
+                  <img src="{{ item.url }}"
+                       alt="{{ item.alt }}"
+                       loading="lazy"
+                       decoding="async"/>
+                </a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </article>
+      {% endfor %}
+      <p class="tweets-foot">
+        <a href="https://x.com/{{ twitter.username }}" target="_blank" rel="noopener">在 X 上查看全部动态</a>
+        {% if page.updatedLabel %}<span class="tweets-updated">同步于 {{ page.updatedLabel }}</span>{% endif %}
+      </p>
+    {% endif %}
+  </div>
+{% endblock body %}
