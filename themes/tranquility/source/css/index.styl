@@ -44,7 +44,6 @@ for item in hexo-config('timeline.items') {
 }
 
 .wall-main {
-  cursor: pointer;
   position: relative;
   text-align: center;
   margin-top: -20vh;
@@ -56,7 +55,7 @@ for item in hexo-config('timeline.items') {
   font-size: clamp(2.25rem, 7.2vw, 4.5rem);
   line-height: 1.15;
   overflow-wrap: anywhere;
-  animation: flyIn 480ms $ease-out;
+  animation: flyIn 320ms $ease-out;
 }
 
 .wall-subtitle {
@@ -84,9 +83,11 @@ for item in hexo-config('timeline.items') {
 
 .hello-world {
   position: absolute;
-  top: calc(50% - 80px);
-  right: calc(50% + 230px);
-  font-size: 30px;
+  /* Decorations live in the page margins: the centred title owns the middle
+     band, so anything anchored to `50%` ends up behind the headline. */
+  top: calc(50% - 240px);
+  left: 6vw;
+  font-size: 26px;
   display: flex;
   align-items: flex-end;
   width: 220px;
@@ -118,16 +119,16 @@ for item in hexo-config('timeline.items') {
 
 .normal-eqt {
   position: absolute;
-  top: calc(50% + 100px);
-  right: 50%;
+  bottom: 22%;
+  left: 6vw;
   opacity: 0.8;
 }
 
 .motto {
   font-size: 28px;
   font-weight: bold;
-  right: 0;
-  bottom: calc(50% - 200px);
+  right: 6vw;
+  bottom: 12%;
   position: absolute;
   opacity: 0.3;
 }
@@ -136,8 +137,10 @@ for item in hexo-config('timeline.items') {
   font-size: 18px;
   position: absolute;
   font-family: $font-family-serif;
-  left: 50%;
-  top: calc(50% + 80px);
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: calc(50% + 120px);
   opacity: 0.2;
 }
 
@@ -395,7 +398,7 @@ for v, k in timeline_colors {
   @extend .timeline-item;
   height: 0;
   padding: 0;
-  transform: rotateX(90deg);
+  transform: translateY(-6px);
   opacity: 0;
 }
 
@@ -423,10 +426,30 @@ for v, k in timeline_colors {
 @media screen and (max-width: 1023px) {
   .wall {
     height: calc(100vh - 60px);
+    height: calc(100dvh - 60px);
   }
 
+  /* Decorations are grid-positioned for wide screens; on a phone the curve
+     sits on top of the subtitle text and the formula becomes unreadable.
+     Keep the terminal line above the title and drop the rest to the bottom. */
   .hello-world {
+    font-size: 20px;
     left: 20px;
+    right: auto;
+    top: calc(50% - 260px);
+  }
+
+  .normal-eqt,
+  .poem {
+    display: none;
+  }
+
+  #heart-curve {
+    top: auto;
+    bottom: 32px;
+    width: 280px;
+    height: 280px;
+    margin-top: 0;
   }
 
   .about {
@@ -447,6 +470,13 @@ for v, k in timeline_colors {
     .timeline-item {
       flex-direction: column;
       height: auto;
+    }
+
+    /* Filtering out a type must still collapse the row; the rule above has
+       the same specificity, so repeat the hidden state after it. */
+    .timeline-item--hidden {
+      height: 0;
+      padding: 0;
     }
 
     .line-date {
@@ -475,27 +505,5 @@ for v, k in timeline_colors {
   .about-body {
     font-size: 16px;
     line-height: 2;
-  }
-
-  .hello-world {
-    top: 15%;
-  }
-
-  #heart-curve {
-    top: 60%;
-    right: 10%;
-    width: 300px;
-    height: 300px;
-    margin-top: -150px;
-  }
-
-  .normal-eqt {
-    bottom: 14%;
-    left: 40%;
-    top: auto;
-
-    img {
-      width: 200px;
-    }
   }
 }

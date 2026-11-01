@@ -25,12 +25,38 @@
     text-align: left;
   }
 
+  #tags-outer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  /* Tag cloud renders plain links; as inline text they read as one run-on
+     sentence, so give each one a chip that shows its own hit area. */
   #tags-outer a {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 12px;
+    border: 1px solid $grey-lighter;
+    border-radius: 999px;
+    color: $blue-link;
+    font-size: 14px;
+    line-height: 1.7;
     text-decoration: none;
-    color: #2c5fa5;
-    display: inline-block;
-    margin-right: 8px;
-    transition: color 200ms ease-out;
+    transition: background-color 150ms ease, border-color 150ms ease,
+      color 150ms ease, transform 140ms $ease-out;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: $white-blue;
+        border-color: $grey-light;
+      }
+    }
+
+    &:active {
+      transform: scale(0.96);
+    }
   }
 }
 
@@ -58,14 +84,6 @@
   width: 100%;
 }
 
-.wall-category-tags .tag {
-  display: inline-block;
-  border: 1px solid #eee;
-  border-radius: 50%;
-  padding: 8px 10px;
-  box-sizing: border-box;
-}
-
 .post-list-empty {
   margin: 80px auto;
   text-align: center;
@@ -77,6 +95,7 @@
   margin: 0;
   padding: 28px 20px;
   border-bottom: 1px solid $grey-lighter;
+  transition: background-color 160ms ease;
 
   &--sticky {
     @extend .post-card;
@@ -85,6 +104,16 @@
 
   &:last-child {
     border-bottom: none;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: $white-blue-lightest;
+
+      .post-card__title {
+        color: $blue-link;
+      }
+    }
   }
 }
 
@@ -107,6 +136,7 @@
   text-decoration: none;
   font-size: 24px;
   font-weight: bold;
+  transition: color 150ms ease;
 }
 
 .post-title-pined {
@@ -167,24 +197,24 @@
   margin: 0 auto;
   max-width: 900px;
   font-size: 40px;
-  padding: 80px 0 20px;
+  padding: 80px 20px 20px;
   font-family: $font-family-serif;
 }
 
 @media screen and (max-width: 1023px) {
-  .wall-category {
-    .tag-page-title {
-      padding-left: 30px;
-      padding-right: 30px;
-    }
+  /* The tag page has no .wall-category wrapper, so these used to skip it;
+     keep one padding scale for both page types. */
+  .tag-page-title {
+    padding: 60px 20px 12px;
+  }
 
-    .post-list {
-      padding: 0 10px;
-    }
+  .wall-category .post-list,
+  .tag-page-title + .post-list {
+    padding: 0 10px;
+  }
 
-    #tags-outer {
-      padding-top: 30px;
-    }
+  .wall-category #tags-outer {
+    padding-top: 20px;
   }
 }
 

@@ -56,6 +56,20 @@
   margin: 0 auto;
 }
 
+/* Article prose justifies; the rest of the site stays left-aligned so Latin
+   words in UI text do not open gaps between characters. */
+.post-content__body p {
+  text-align: justify;
+}
+
+/* The phone header is fixed over the page, so in-page anchors need clearance
+   between the bar and the heading they land on. */
+@media screen and (max-width: 1023px) {
+  .post-content__body :is(h2, h3, h4, h5) {
+    scroll-margin-top: 76px;
+  }
+}
+
 .post-gallery {
   align-items: center;
   display: grid;
@@ -96,7 +110,9 @@
   overflow-y: auto;
   padding-right: 4px;
   border-left: 1px solid $gainsboro;
-  color: $black-extra-lighter;
+  /* Nested levels keep a #666 floor: #999 on white is 2.8:1, which fails
+     WCAG AA at these sizes. Depth is carried by indent and size instead. */
+  color: $black-light;
   font-size: 13px;
   scrollbar-width: thin;
 
@@ -104,7 +120,7 @@
     display: block;
     margin: 0;
     padding: 6px 0 10px 14px;
-    color: $grey-dark;
+    color: $black-lighter;
     font-size: 12px;
     font-weight: bold;
     letter-spacing: 0.22em;
@@ -138,7 +154,7 @@
     padding-top: 4px;
     padding-bottom: 4px;
     padding-left: 12px;
-    color: $grey-dark;
+    color: $black-lighter;
     font-size: 12px;
     line-height: 1.45;
   }
@@ -148,7 +164,7 @@
     padding-top: 4px;
     padding-bottom: 4px;
     padding-left: 12px;
-    color: $grey;
+    color: $black-lighter;
     font-size: 12px;
     line-height: 1.45;
   }

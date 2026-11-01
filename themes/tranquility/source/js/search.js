@@ -14,7 +14,9 @@ let searchDataPromise = null
 function showSearchDialog() {
   if (searchStatus) return
 
-  searchMask.style.display = 'block'
+  // The open state lives on the mask so CSS can own the enter transition;
+  // see `@starting-style` in _partials/search.styl.
+  searchMask.classList.add('is-open')
   document.body.style.overflow = 'hidden'
   searchIpt.focus()
   searchStatus = 1
@@ -26,7 +28,7 @@ function showSearchDialog() {
 function closeSearchDialog() {
   if (!searchStatus) return
 
-  searchMask.style.display = 'none'
+  searchMask.classList.remove('is-open')
   document.body.style.overflow = ''
   searchIpt.value = ''
   clearResult()

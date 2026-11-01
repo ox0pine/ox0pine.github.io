@@ -25,7 +25,7 @@ function generateSearch(locals) {
       const entry = { title: item.title || 'No Title' };
 
       if (item.path) entry.url = config.root + item.path;
-      if (config.content !== false && item._content) entry.content = item._content;
+      if (config.content !== false && item._content) entry.content = stripMarkdown(item._content);
 
       const tags = toNames(item.tags);
       if (tags.length > 0) entry.tags = tags;
@@ -54,4 +54,26 @@ function toNames(collection) {
     : Array.from(collection);
 
   return items.map(item => item.name);
+}
+
+/* `_content` is raw Markdown. Search snippets showed the syntax ("## ",
+   "[text](url)", backticks), so reduce it to readable text before indexing.
+   Only the presentation markers are removed — words, numbers and command
+   lines survive, so searching for `cloudflared` or `brew install` still hits. */
+function stripMarkdown(text) {
+  return String(text)
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')           // images
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')          // links keep their text
+    .replace(/^ {0,3}#{1,6}[ \t]+/gm, '')             // heading markers
+    .replace(/^ {0,3}>[ \t]?/gm, '')                  // block quotes
+    .replace(/^ {0,3}(?:[-*+]|\d+\.)[ \t]+/gm, '')    // list markers
+    .replace(/`{1,3}([^`]*)`{1,3}/g, '$1')            // inline code / fences
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/(^|[^\w])\*([^*\n]+)\*(?!\w)/g, '$1$2')
+    .replace(/~~([^~]+)~~/g, '$1')
+    .replace(/<[^>]+>/g, ' ')                         // inline HTML
+    .replace(/^\s*\|?[-\s:|]{3,}\|?\s*$/gm, ' ')      // table rules
+    .replace(/[ \t]+/g, ' ')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
 }

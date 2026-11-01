@@ -5,7 +5,10 @@
 .wall {
   user-select: none;
   -webkit-user-select: none;
+  /* `dvh` tracks the mobile URL bar; the `vh` line is the fallback and both
+     resolve to the same box on desktop. */
   height: calc(100vh - 90px);
+  height: calc(100dvh - 90px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,7 +109,7 @@ mjx-container {
 /* post */
 .post-info {
   font-size: 16px;
-  color: $grey;
+  color: $black-extra-lighter;
   margin: 4px 0;
 }
 

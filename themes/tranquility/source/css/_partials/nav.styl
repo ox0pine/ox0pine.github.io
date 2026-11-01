@@ -77,9 +77,24 @@ if (hexo-config('search.enable')) {
     left: 0;
     right: 0;
     height: 60px;
-    background: rgba(255, 255, 255, 0.9);
     z-index: 99;
     justify-content: center;
+
+    /* Frosted strip via a pseudo element: backdrop-filter on .nav itself
+       would make it a containing block for the fixed menu panel, collapsing
+       the panel to the bar's height. */
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px) saturate(1.4);
+    }
   }
 
   .head--sticky {
@@ -102,7 +117,7 @@ if (hexo-config('search.enable')) {
     left: 0;
     right: 0;
     z-index: 4;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.96);
     overflow: hidden;
     flex-direction: column;
     align-items: flex-start;

@@ -38,6 +38,7 @@ pre.mermaid {
 figure.highlight {
   margin: 20px 0;
   overflow: auto;
+  overscroll-behavior-x: contain;
   position: relative;
   padding-top: 32px;
   border-radius: 5px;
@@ -48,6 +49,12 @@ figure.highlight {
     width: auto;
     border: 0;
     margin: 0;
+  }
+
+  /* Narrow screens: a smaller monospace size fits a realistic command on
+     screen before the block has to scroll sideways. */
+  @media screen and (max-width: 760px) {
+    font-size: 14px;
   }
 }
 

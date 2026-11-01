@@ -4,7 +4,10 @@ html {
   font-family: $font-family-base;
   font-size: $font-size-base;
   color: $text-color;
-  text-align: justify;
+  /* Chinese prose can be justified, but mixed CJK/Latin UI text (excerpts,
+     card titles, tag lists) opens rivers around every English word. Only
+     article paragraphs justify; see .post-content__body p in post.styl. */
+  text-align: left;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
@@ -95,12 +98,6 @@ p, figure {
     display: block;
     margin: 0 auto;
     max-width: 100%;
-  }
-}
-
-@media screen and (max-width: 1023px) {
-  html {
-    text-align: left;
   }
 }
 
