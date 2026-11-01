@@ -6,8 +6,10 @@
  * 读者端不再依赖 x.com 可达，也没有几百 KB 的第三方脚本；
  * 代价是内容有一天的延迟，这一点在页面上如实标出来了。
  *
- * 数据源是 syndication.twitter.com —— 官方嵌入组件用的同一个免密钥接口，
- * 因此不需要任何 token。抓不到时保持上一次的快照不动，只打警告。
+ * 数据源是 api.fxtwitter.com（FixTweet / FxEmbed）的公开时间线接口：
+ * 免密钥、免登录。官方那个 syndication.twitter.com 接口已经对机房 IP
+ * 全面返回 429（本地和 GitHub Actions 都试过），所以不再使用。
+ * 抓不到时保持上一次的快照不动，只打警告。
  *
  * 放在 tools/ 而不是 scripts/：Hexo 会把 scripts/ 下每个文件都 require 一遍，
  * 那样构建时会顺手把这个脚本跑起来。
@@ -28,110 +30,69 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 async function request(url) {
   const res = await fetch(url, {
-    headers: { 'user-agent': UA, 'accept-language': 'zh-CN,zh;q=0.9' },
+    headers: { 'user-agent': UA, accept: 'application/json' },
     signal: AbortSignal.timeout(20000)
   });
 
   if (!res.ok) throw new Error(`${res.status} ${res.statusText} - ${url.split('?')[0]}`);
-  return res;
+
+  const payload = await res.json();
+  if (payload.code !== 200) throw new Error(`接口返回 ${payload.code} ${payload.message || ''}`.trim());
+
+  return payload;
 }
 
 /* ------------------------------------------------------------------ *
  * 抓取
  * ------------------------------------------------------------------ */
 
-// 接口返回的是一整页 HTML，推文藏在 __NEXT_DATA__ 的 JSON 里。
 async function fetchTimeline(username) {
-  const url = `https://syndication.twitter.com/srv/timeline-profile/screen-name/${username}` +
-    '?dnt=true&showReplies=false&lang=zh-cn';
-  const html = await (await request(url)).text();
-  const match = html.match(/<script id="__NEXT_DATA__" type="application\/json">([\s\S]*?)<\/script>/);
+  const payload = await request(`https://api.fxtwitter.com/2/profile/${username}/statuses`);
 
-  if (!match) throw new Error('页面里没有 __NEXT_DATA__');
-
-  return collectTweets(JSON.parse(match[1]), username);
+  return (payload.results || [])
+    // reposted_by 非空的是转推：作者是别人，不能挂在这个人的名下展示
+    .filter(item => item && item.type === 'status' && !item.reposted_by && item.id)
+    .map(normalize)
+    .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
+    .slice(0, LIMIT);
 }
 
 /* ------------------------------------------------------------------ *
  * 归一化
  * ------------------------------------------------------------------ */
 
-function looksLikeTweet(node) {
-  const id = node.id_str || node.rest_id || node.id;
-  const text = node.full_text ?? node.text;
-
-  return Boolean(id && typeof text === 'string' && node.created_at);
-}
-
-// 推文对象嵌套在 timeline 里，层级随页面改版会变，所以全树扫描；
-// 引用推文和转推原文（quoted_*/retweeted_status）属于附属内容，不单独列出来。
-function collectTweets(root, username) {
-  const found = [];
-
-  (function walk(node, parentKey) {
-    if (!node || typeof node !== 'object') return;
-    if (/^quoted[._]/.test(parentKey || '') || parentKey === 'retweeted_status') return;
-
-    if (Array.isArray(node)) {
-      for (const item of node) walk(item, parentKey);
-      return;
-    }
-
-    if (looksLikeTweet(node)) found.push(normalize(node, username));
-
-    for (const [key, value] of Object.entries(node)) walk(value, key);
-  })(root, '');
-
-  const seen = new Set();
-
-  return found
-    .filter(tweet => {
-      if (seen.has(tweet.id)) return false;
-      seen.add(tweet.id);
-      return true;
-    })
-    .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
-    .slice(0, LIMIT);
-}
-
-function normalize(node, username) {
-  const id = String(node.id_str || node.rest_id || node.id);
-  const author = (node.user && node.user.screen_name) || username;
-
+function normalize(item) {
   return {
-    id,
-    url: `https://x.com/${author}/status/${id}`,
-    text: unwrapTco(String(node.full_text ?? node.text), node).trim(),
-    createdAt: new Date(node.created_at).toISOString(),
-    media: media(node)
+    id: String(item.id),
+    url: item.url || `https://x.com/${item.author.screen_name}/status/${item.id}`,
+    text: text(item),
+    createdAt: new Date(item.created_at).toISOString(),
+    media: media(item)
   };
 }
 
-// 正文里的链接都是 t.co 短链，用 entities 里的展开结果换回去。
-function unwrapTco(text, node) {
-  const urls = (node.entities && node.entities.urls) || [];
-  let result = text;
+function text(item) {
+  const body = String(item.text || '').trim();
+  if (body) return body;
 
-  for (const entry of urls) {
-    if (!entry.url || !entry.expanded_url) continue;
-    result = result.split(entry.url).join(entry.expanded_url);
-  }
+  // 纯图片推文没有正文：raw_text 里只剩一条指向图片的 t.co，剥掉它
+  const raw = (item.raw_text && item.raw_text.text) || '';
+  const mediaLinks = ((item.raw_text && item.raw_text.facets) || [])
+    .filter(facet => facet.type === 'media' && facet.original)
+    .map(facet => facet.original);
 
-  return result;
+  return mediaLinks.reduce((acc, link) => acc.split(link).join(''), raw).trim();
 }
 
-function media(node) {
-  const extended = node.extended_entities && node.extended_entities.media;
-  const source = extended && extended.length > 0
-    ? extended
-    : (node.entities && node.entities.media) || [];
+function media(item) {
+  const all = (item.media && item.media.all) || [];
 
-  return source
-    .filter(item => item.type === 'photo' && (item.media_url_https || item.media_url))
-    .map(item => ({
+  return all
+    .filter(entry => entry.type === 'photo' && entry.url)
+    .map(entry => ({
       type: 'photo',
-      url: item.media_url_https || item.media_url,
-      alt: item.ext_alt_text || ''
+      url: entry.url,
+      alt: entry.altText || ''
     }))
     .slice(0, 4);
 }
@@ -159,7 +120,7 @@ async function fetchWithRetry(username) {
       console.warn(`${error.message}（第 ${round} 次）`);
     }
 
-    if (round < 3) await sleep(round * 10000);
+    if (round < 3) await sleep(round * 5000);
   }
 
   return [];

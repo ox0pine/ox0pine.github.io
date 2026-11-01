@@ -187,7 +187,7 @@ subpage:
 TWITTER_USERNAME=ox0pine node tools/fetch-twitter.js
 ```
 
-数据源是 `syndication.twitter.com` —— X 官方嵌入组件用的同一个免密钥接口，因此不需要任何 token 或 secret。抓取失败时保留上一次的快照，页面不会变空。
+数据源是 `api.fxtwitter.com`（FixTweet / FxEmbed）的公开时间线接口，免密钥、免登录。X 官方那个 `syndication.twitter.com` 现在对机房 IP 一律返回 429（本地和 GitHub Actions 都验证过），所以不用它。抓取失败时保留上一次的快照，页面不会变空；只收原创和回复，转推作者是别人，不会挂在这个人的名下。
 
 没有 `type` 声明的子页仍然按分类聚合文章（`type` 缺省等于 `category`）。
 

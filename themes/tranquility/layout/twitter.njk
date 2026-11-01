@@ -33,7 +33,7 @@
                target="_blank"
                rel="noopener">查看原文</a>
           </div>
-          <div class="tweet__body">{{ tweet_text(tweet.text) }}</div>
+          {% if tweet.text %}<div class="tweet__body">{{ tweet_text(tweet.text) }}</div>{% endif %}
           {% if tweet.media.length %}
             <div class="tweet__media tweet__media--{{ tweet.media.length }}">
               {% for item in tweet.media %}

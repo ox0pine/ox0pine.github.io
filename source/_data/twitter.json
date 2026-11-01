@@ -1,5 +1,187 @@
 {
   "username": "ox0pine",
-  "updated": "",
-  "tweets": []
+  "updated": "2026-11-01T03:27:53.527Z",
+  "tweets": [
+    {
+      "id": "2114363214008062342",
+      "url": "https://x.com/ox0pine/status/2114363214008062342",
+      "text": "被印度人pr攻击了 发现他主页fork了5k个仓库😅😅😂",
+      "createdAt": "2026-10-25T14:27:27.000Z",
+      "media": [
+        {
+          "type": "photo",
+          "url": "https://pbs.twimg.com/media/HVe57vGaIAEQmDP.jpg?name=orig",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "id": "2113662318735479274",
+      "url": "https://x.com/ox0pine/status/2113662318735479274",
+      "text": "除了跑一些小模型还能干什么",
+      "createdAt": "2026-10-23T16:02:21.000Z",
+      "media": [
+        {
+          "type": "photo",
+          "url": "https://pbs.twimg.com/media/HVU8qXLaoAIopyN.jpg?name=orig",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "id": "2113502290837705065",
+      "url": "https://x.com/ox0pine/status/2113502290837705065",
+      "text": "感觉网心云快倒闭了，最近一年也不更新了，已经把去年买的oect盒子刷成了armbian￼",
+      "createdAt": "2026-10-23T05:26:27.000Z",
+      "media": []
+    },
+    {
+      "id": "2109874128081834029",
+      "url": "https://x.com/ox0pine/status/2109874128081834029",
+      "text": "",
+      "createdAt": "2026-10-13T05:09:26.000Z",
+      "media": [
+        {
+          "type": "photo",
+          "url": "https://pbs.twimg.com/media/HUfHUu8bsAA-IPP.jpg?name=orig",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "id": "2106695215876866271",
+      "url": "https://x.com/ox0pine/status/2106695215876866271",
+      "text": "神了 审稿意见补指标的来了",
+      "createdAt": "2026-10-04T10:37:34.000Z",
+      "media": []
+    },
+    {
+      "id": "2106319118525927689",
+      "url": "https://x.com/ox0pine/status/2106319118525927689",
+      "text": "fedora+niri简直神了 第一次在Linux上面体验到和Macos一样的丝滑。",
+      "createdAt": "2026-10-03T09:43:06.000Z",
+      "media": []
+    },
+    {
+      "id": "2104258785749700816",
+      "url": "https://x.com/ox0pine/status/2104258785749700816",
+      "text": "我可能是一个讨好型人格，明明身体不舒服，这两天还不好意思拒绝亲戚朋友在西安的邀约，虽然是提前订下的，但是我真的好难受，一直出冷汗，刚才上完厕所之后还把晚上吃的吐了出来，胃里好像翻江倒海。\n以后还是怎么舒服怎么来吧，免得哪一天死了。。",
+      "createdAt": "2026-09-27T17:16:04.000Z",
+      "media": [
+        {
+          "type": "photo",
+          "url": "https://pbs.twimg.com/media/HTPUNUSbQAAIx7K.jpg?name=orig",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "id": "2103128733624521161",
+      "url": "https://x.com/ox0pine/status/2103128733624521161",
+      "text": "我要笑死了 你们都商量好了是吧",
+      "createdAt": "2026-09-24T14:25:38.000Z",
+      "media": [
+        {
+          "type": "photo",
+          "url": "https://pbs.twimg.com/media/HS_QbTNaAAA_9md.jpg?name=orig",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "id": "2100601773509706139",
+      "url": "https://x.com/ox0pine/status/2100601773509706139",
+      "text": "上个月27号终于投出去了 不知道什么时候一审才能回来 投出去以后发现发论文的难度也能克服 如果这学期还能做完一篇 可以考虑读个博了",
+      "createdAt": "2026-09-17T15:04:24.000Z",
+      "media": []
+    },
+    {
+      "id": "2100601126219620552",
+      "url": "https://x.com/ox0pine/status/2100601126219620552",
+      "text": "前几天打得一把 笑死我了",
+      "createdAt": "2026-09-17T15:01:50.000Z",
+      "media": [
+        {
+          "type": "photo",
+          "url": "https://pbs.twimg.com/media/HSbVlbdaAAESTHS.jpg?name=orig",
+          "alt": ""
+        },
+        {
+          "type": "photo",
+          "url": "https://pbs.twimg.com/media/HSbVlbgbcAABSSx.jpg?name=orig",
+          "alt": ""
+        },
+        {
+          "type": "photo",
+          "url": "https://pbs.twimg.com/media/HSbVldmbsAAPXTx.jpg?name=orig",
+          "alt": ""
+        },
+        {
+          "type": "photo",
+          "url": "https://pbs.twimg.com/media/HSbVldSbsAAPImU.jpg?name=orig",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "id": "2100600733846687960",
+      "url": "https://x.com/ox0pine/status/2100600733846687960",
+      "text": "怎么在路上都能听到使用Apple store美区账号绑定visa、万事达卡购买gpt会员。\n感觉都魔怔了，我已经不想在下班时间听到ai相关的内容了，只想好好生活🥲",
+      "createdAt": "2026-09-17T15:00:16.000Z",
+      "media": []
+    },
+    {
+      "id": "2091804675570069519",
+      "url": "https://x.com/ox0pine/status/2091804675570069519",
+      "text": "滚滚长江东逝水",
+      "createdAt": "2026-08-24T08:27:53.000Z",
+      "media": []
+    },
+    {
+      "id": "2091442641909268811",
+      "url": "https://x.com/ox0pine/status/2091442641909268811",
+      "text": "衡水北站",
+      "createdAt": "2026-08-23T08:29:17.000Z",
+      "media": [
+        {
+          "type": "photo",
+          "url": "https://pbs.twimg.com/media/HQZL-gwaEAAIZu7.jpg?name=orig",
+          "alt": ""
+        },
+        {
+          "type": "photo",
+          "url": "https://pbs.twimg.com/media/HQZL-g5b0AA8SIC.jpg?name=orig",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "id": "2090581779573010892",
+      "url": "https://x.com/ox0pine/status/2090581779573010892",
+      "text": "确实，最近辅助写论文也发现了，5.6总是擅长防御性写作和自证式写作的去修改、纠正某些段落。",
+      "createdAt": "2026-08-20T23:28:32.000Z",
+      "media": []
+    },
+    {
+      "id": "2089512893872255188",
+      "url": "https://x.com/ox0pine/status/2089512893872255188",
+      "text": "决定放弃Claude code，转而使用omp",
+      "createdAt": "2026-08-18T00:41:09.000Z",
+      "media": []
+    },
+    {
+      "id": "2088875190289825816",
+      "url": "https://x.com/ox0pine/status/2088875190289825816",
+      "text": "ai审稿每次都会给出特别多的审稿意见，即便按照修改这个意见以后第二次ai审稿还会出现别的意见，那到底修正到什么时候可以不修正了呢？应该是ai指出的问题你可以和他正面battle以后。",
+      "createdAt": "2026-08-16T06:27:09.000Z",
+      "media": []
+    },
+    {
+      "id": "2080676986880696805",
+      "url": "https://x.com/ox0pine/status/2080676986880696805",
+      "text": "导师一直用gpt审稿我的论文，导致我的论文受到了极大的阻力，即使一些通用的实验设计，导师也会质问我为什么这么做，原因是gpt审稿给出的意见并没有很好的对齐通用的实验方法。\n尽管使用gpt审核一些已经发表过的论文，得到的结果依旧是大修或者拒稿，我们的教育确实有问题！",
+      "createdAt": "2026-07-24T15:30:25.000Z",
+      "media": []
+    }
+  ]
 }
