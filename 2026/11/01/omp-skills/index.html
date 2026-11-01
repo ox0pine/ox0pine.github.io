@@ -1,0 +1,472 @@
+<!DOCTYPE html><html lang="zh-CN">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#ffffff"/>
+
+    <title>我把 15 个 skill 装进了 OMP | 秋风飘起黄叶落のblog</title>
+    <link rel="canonical" href="https://ox0pine.github.io/2026/11/01/omp-skills/"/>
+    
+      <link rel="alternate"
+            type="application/atom+xml"
+            title="秋风飘起黄叶落のblog"
+            href="/atom.xml"/>
+      <link rel="alternate"
+            type="application/rss+xml"
+            title="秋风飘起黄叶落のblog"
+            href="/rss2.xml"/>
+    
+    <meta name="description" content="这 15 个 skill 都不是我写的，是我一个个挑出来装进 omp 的。它们平时躺在 ~/.omp/agent/skills/ 里，什么时候被叫起来，看我那天在干什么。 skill 是怎么起作用的 一个 skill 就是一个文件夹，入口是一份 SKILL.md 。开头写着名字和一段 description，正文是给..."/>
+    <meta name="keywords" content="个人博客,技术博客,大模型,AI开发,全栈开发,编程学习,生活随笔,Hexo博客,ox0pine"/>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article"/>
+    <meta property="og:site_name" content="秋风飘起黄叶落のblog"/>
+    <meta property="og:locale" content="zh_CN"/>
+    <meta property="og:title" content="我把 15 个 skill 装进了 OMP | 秋风飘起黄叶落のblog"/>
+    <meta property="og:description" content="这 15 个 skill 都不是我写的，是我一个个挑出来装进 omp 的。它们平时躺在 ~/.omp/agent/skills/ 里，什么时候被叫起来，看我那天在干什么。 skill 是怎么起作用的 一个 skill 就是一个文件夹，入口是一份 SKILL.md 。开头写着名字和一段 description，正文是给..."/>
+    <meta property="og:url" content="https://ox0pine.github.io/2026/11/01/omp-skills/"/>
+    <meta property="og:image" content="https://ox0pine.github.io/images/logo.svg"/>
+    <meta property="article:published_time" content="2026-11-01T00:00:00+00:00"/>
+    <meta property="article:modified_time" content="2026-11-01T11:32:06+00:00"/>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="我把 15 个 skill 装进了 OMP | 秋风飘起黄叶落のblog"/>
+    <meta name="twitter:description" content="这 15 个 skill 都不是我写的，是我一个个挑出来装进 omp 的。它们平时躺在 ~/.omp/agent/skills/ 里，什么时候被叫起来，看我那天在干什么。 skill 是怎么起作用的 一个 skill 就是一个文件夹，入口是一份 SKILL.md 。开头写着名字和一段 description，正文是给..."/>
+    <meta name="twitter:url" content="https://ox0pine.github.io/2026/11/01/omp-skills/"/>
+    <meta name="twitter:image" content="https://ox0pine.github.io/images/logo.svg"/>
+
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon" href="/images/logo.svg"/>
+    
+
+    
+      
+
+  <link rel="preload"
+        href="/font/normal.woff2"
+        as="font"
+        type="font/woff2"
+        crossorigin/>
+
+
+  <style>
+    @font-face {
+      font-family: LXGWWenKai;
+      src: url('/font/normal.woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: optional;
+    }
+  </style>
+
+  <style>
+    @font-face {
+      font-family: LXGWWenKai;
+      src: url('/font/bold.woff2');
+      font-weight: bold;
+      font-style: normal;
+      font-display: optional;
+    }
+  </style>
+
+
+    
+
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+
+    
+      <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"我把 15 个 skill 装进了 OMP","image":["https://ox0pine.github.io/images/logo.svg"],"datePublished":"2026-11-01T00:00:00+00:00","dateModified":"2026-11-01T11:32:06+00:00","author":{"@type":"Person","name":"ox0pine"},"publisher":{"@type":"Organization","name":"秋风飘起黄叶落のblog","logo":{"@type":"ImageObject","url":"https://ox0pine.github.io/images/logo.svg"}},"description":"这 15 个 skill 都不是我写的，是我一个个挑出来装进 omp 的。它们平时躺在 ~/.omp/agent/skills/ 里，什么时候被叫起来，看我那天在干什么。 skill 是怎么起作用的 一个 skill 就是一个文件夹，入口是一份 SKILL.md 。开头写着名字和一段 description，正文是给...","mainEntityOfPage":{"@type":"WebPage","@id":"https://ox0pine.github.io/2026/11/01/omp-skills/"}}</script>
+    
+      <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://ox0pine.github.io/"},{"@type":"ListItem","position":2,"name":"tech","item":"https://ox0pine.github.io/categories/tech/"},{"@type":"ListItem","position":3,"name":"我把 15 个 skill 装进了 OMP","item":"https://ox0pine.github.io/2026/11/01/omp-skills/"}]}</script>
+    
+
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+
+  <meta name="generator" content="Hexo 8.1.2"></head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+    
+      <div id="search-mask" role="dialog" aria-modal="true" aria-label="站内搜索">
+  <div class="search-main" id="search-main">
+    <div class="search__head">
+      <div class="search-form">
+        <svg t="1706347533072"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             width="20"
+             height="20"
+             aria-hidden="true">
+          <path d="M685.6 660.336l155.152 155.168a16 16 0 0 1 0 22.624l-11.312 11.328a16 16 0 0 1-22.624 0l-158.528-158.544a289.792 289.792 0 0 1-165.152 51.36C322.336 742.256 192 611.904 192 451.12 192 290.336 322.336 160 483.136 160c160.784 0 291.12 130.336 291.12 291.136 0 82.112-33.984 156.272-88.672 209.2z m-202.464 33.92c134.272 0 243.12-108.848 243.12-243.12C726.256 316.848 617.408 208 483.136 208 348.848 208 240 316.848 240 451.136c0 134.272 108.848 243.12 243.136 243.12z" fill="currentColor"></path>
+        </svg>
+        <input id="search-input"
+               type="search"
+               placeholder="搜索文章"
+               aria-label="搜索文章"
+               autocomplete="off"/>
+        <svg t="1706361500528"
+             id="search-clear"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             width="20"
+             height="20"
+             role="button"
+             tabindex="0"
+             aria-label="清空搜索">
+          <path d="M512 562.688l-264.2944 264.2944-50.688-50.688L461.312 512 197.0176 247.7056l50.688-50.688L512 461.312l264.2944-264.2944 50.688 50.688L562.688 512l264.2944 264.2944-50.688 50.688L512 562.688z" fill="currentColor"></path>
+        </svg>
+      </div>
+    </div>
+    <div class="search__body" id="search-result" aria-live="polite"></div>
+    <div class="search__foot"></div>
+  </div>
+</div>
+
+    
+    <div class="head">
+      <div class="nav">
+        <a href="/" class="nav-logo" aria-label="秋风飘起黄叶落のblog 首页">
+          <img alt=""
+               width="60"
+               height="60"
+               loading="eager"
+               fetchpriority="high"
+               src="/images/logo.svg"/>
+        </a>
+        <input id="navBtn" type="checkbox" aria-hidden="true" tabindex="-1"/>
+        <div class="nav-right">
+          
+            <div class="search-outer"><div class="search"
+     id="search-btn"
+     role="button"
+     tabindex="0"
+     aria-label="打开搜索"
+     aria-keyshortcuts="Control+K Meta+K">
+  <svg t="1706347533072"
+       class="icon"
+       viewBox="0 0 1024 1024"
+       version="1.1"
+       xmlns="http://www.w3.org/2000/svg"
+       width="20"
+       height="20"
+       aria-hidden="true">
+    <path d="M685.6 660.336l155.152 155.168a16 16 0 0 1 0 22.624l-11.312 11.328a16 16 0 0 1-22.624 0l-158.528-158.544a289.792 289.792 0 0 1-165.152 51.36C322.336 742.256 192 611.904 192 451.12 192 290.336 322.336 160 483.136 160c160.784 0 291.12 130.336 291.12 291.136 0 82.112-33.984 156.272-88.672 209.2z m-202.464 33.92c134.272 0 243.12-108.848 243.12-243.12C726.256 316.848 617.408 208 483.136 208 348.848 208 240 316.848 240 451.136c0 134.272 108.848 243.12 243.136 243.12z" fill="currentColor"></path>
+  </svg>
+  <span class="search-label">搜索</span>
+  <span class="search-shortcut-key">Ctrl K</span>
+</div>
+</div>
+          
+          <div class="nav-menu">
+            
+              
+                
+                <a class="nav-menu-item"
+                   href="/tech/">技术杂谈</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/life/">生活随笔</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/apps/">开源作品</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/moments/">动态随笔</a>
+              
+            
+            
+          </div>
+        </div>
+        <label class="nav-btn" for="navBtn" aria-label="打开导航菜单"></label>
+      </div>
+    </div>
+    <main class="body" id="main-content">
+      
+  <article class="post-content">
+    <div class="post-inner post-inner--toc">
+      <div class="post-content__head">
+        <h1 class="post-title">我把 15 个 skill 装进了 OMP</h1>
+        <div class="post-info">
+          
+  <a href="/tags/OMP/" class="post-tag">#OMP</a><a href="/tags/Skill/" class="post-tag">#Skill</a><a href="/tags/AI-Agent/" class="post-tag">#AI Agent</a><a href="/tags/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/" class="post-tag">#效率工具</a>
+
+
+          <time class="post-date" datetime="2026-11-01">2026-11-01</time>
+          
+            <span class="post-category">分类:
+              
+                <a href="/categories/tech/">tech</a>
+              
+            </span>
+          
+        </div>
+        
+        
+      </div>
+      
+        <aside class="toc-outer" aria-label="文章目录">
+          <div class="toc-title">目录</div>
+          <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#skill-%E6%98%AF%E6%80%8E%E4%B9%88%E8%B5%B7%E4%BD%9C%E7%94%A8%E7%9A%84"><span class="post-toc-text">skill 是怎么起作用的</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%BC%80%E5%B7%A5%E4%B9%8B%E5%89%8D%EF%BC%9A%E5%85%88%E6%8A%8A%E6%96%B9%E6%A1%88%E9%97%AE%E6%B8%85%E6%A5%9A"><span class="post-toc-text">开工之前：先把方案问清楚</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%81%9A%E7%95%8C%E9%9D%A2%EF%BC%9A%E4%BB%8E%E6%96%B9%E5%90%91%E5%88%B0%E9%80%89%E5%9E%8B"><span class="post-toc-text">做界面：从方向到选型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%95%8C%E9%9D%A2%E5%81%9A%E5%AE%8C%EF%BC%8C%E4%B8%93%E9%97%A8%E6%89%BE%E5%AE%83%E5%9D%8F%E5%9C%A8%E5%93%AA"><span class="post-toc-text">界面做完，专门找它坏在哪</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%86%99%E4%B8%9C%E8%A5%BF%E7%9A%84%E6%97%B6%E5%80%99"><span class="post-toc-text">写东西的时候</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Swift-%E5%92%8C%E6%96%87%E6%A1%A3"><span class="post-toc-text">Swift 和文档</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%80%8E%E4%B9%88%E8%A3%85"><span class="post-toc-text">怎么装</span></a></li></ol>
+          <a href="#main-content" class="toc-top">回到顶部</a>
+        </aside>
+      
+      <div class="post-content__body">
+        
+        <blockquote>
+<p>这 15 个 skill 都不是我写的，是我一个个挑出来装进 omp 的。它们平时躺在 <code>~/.omp/agent/skills/</code> 里，什么时候被叫起来，看我那天在干什么。</p>
+</blockquote>
+<h2 id="skill-是怎么起作用的"><a href="#skill-是怎么起作用的" class="headerlink" title="skill 是怎么起作用的"></a>skill 是怎么起作用的</h2><p>一个 skill 就是一个文件夹，入口是一份 <code>SKILL.md</code>。开头写着名字和一段 description，正文是给模型看的规则，复杂的再挂一层 <code>references/</code>，用到才读。</p>
+<p>模型每次只看到名字和那一行 description，判断这活儿归谁管，再整篇读进来干活。所以装 skill 的思路不是给它加功能，是把“遇到这类事情该怎么办”写成文件放在手边，省掉每次重新交代。</p>
+<h2 id="开工之前：先把方案问清楚"><a href="#开工之前：先把方案问清楚" class="headerlink" title="开工之前：先把方案问清楚"></a>开工之前：先把方案问清楚</h2><p>想法还很粗的时候，我一般先叫 <a target="_blank" rel="noopener" href="https://github.com/tw93/Waza/tree/main/skills/think">think</a>。它会把问题往回问：这事值不值得做，先后顺序怎么排，做到什么程度算完。方案没定下来之前它不写代码，也不搭脚手架。</p>
+<p>碰到完全不熟的领域，用 <a target="_blank" rel="noopener" href="https://github.com/tw93/Waza/tree/main/skills/learn">learn</a>，从找材料、读懂、列提纲、填内容一路走到成稿，六个阶段走一遍，最后自己再复核。两个 skill 都适合“我心里只有一个大概”的时候。</p>
+<h2 id="做界面：从方向到选型"><a href="#做界面：从方向到选型" class="headerlink" title="做界面：从方向到选型"></a>做界面：从方向到选型</h2><p>真要动手做页面，先叫 <a target="_blank" rel="noopener" href="https://github.com/tw93/Waza/tree/main/skills/ui">ui</a>，它出组件和排版，要求是得有明确方向，默认提示词能生成的那种长相它自己就不认。判断标准来自 <a target="_blank" rel="noopener" href="https://github.com/emilkowalski/skills/tree/main/skills/emil-design-eng">emil-design-eng</a>，这组的总纲，讲那些说不清但一眼能看出差别的细节，也是我装的里面最长的一份。</p>
+<p>界面做出来像 AI 拉的，用 <a target="_blank" rel="noopener" href="https://github.com/heydamir/unslop/tree/main/skills/unslop">unslop</a> 收拾，紫色渐变、光晕、emoji 标签、<code>New ✨</code> 徽章、间距不匀，它按顺序一项项过。方向拿不准的时候用 <a target="_blank" rel="noopener" href="https://github.com/emilkowalski/skills/tree/main/skills/prototype">prototype</a>，同一块界面出几版，摆在选择器里翻着看，挑中哪个留哪个。需要选库就交给 <a target="_blank" rel="noopener" href="https://github.com/emilkowalski/skills/tree/main/skills/pick-ui-library">pick-ui-library</a>，数字输入、OTP、图表、命令菜单、虚拟化、拖拽、toast 都有指定答案，省得让模型自己手搓一个再装个没人维护的包。</p>
+<h2 id="界面做完，专门找它坏在哪"><a href="#界面做完，专门找它坏在哪" class="headerlink" title="界面做完，专门找它坏在哪"></a>界面做完，专门找它坏在哪</h2><p><a target="_blank" rel="noopener" href="https://github.com/emilkowalski/skills/tree/main/skills/break-ui">break-ui</a> 是拿来撞的：超长名字、不能断行的邮箱、零条数据、超大计数、非拉丁文字全塞进去，撞坏的地方连同修法一起列出来。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/emilkowalski/skills/tree/main/skills/mobile-native">mobile-native</a> 只修“电脑上能用、手机上不对劲”那类毛病，点击高亮闪一下、100vh 在地址栏收起后错位、输入框获得焦点把页面放大、内容钻到刘海底下。还有一个只盯 toast 的 <a target="_blank" rel="noopener" href="https://github.com/emilkowalski/skills/tree/main/skills/ask-sonner">ask-sonner</a>，弹不出来、弹两遍、样式丢了、被弹窗盖住、不跟随深色模式，它都能查。</p>
+<p>桌面 App 就是另一件事了，<a target="_blank" rel="noopener" href="https://github.com/yetone/native-feel-skill">native-feel-cross-platform-desktop</a> 管 macOS 和 Windows 同时保持原生手感这类架构选择，内容来自 Raycast 2.0 的技术复盘，八条原则、四层架构、75 项上线检查。</p>
+<h2 id="写东西的时候"><a href="#写东西的时候" class="headerlink" title="写东西的时候"></a>写东西的时候</h2><p>中文英文的稿子都归 <a target="_blank" rel="noopener" href="https://github.com/tw93/Waza/tree/main/skills/write">write</a>，改稿、去 AI 味、发布说明、公开回复、多语言文案，标点也管，交稿前会跑一遍检查脚本。这篇也是按它的规则写的。</p>
+<h2 id="Swift-和文档"><a href="#Swift-和文档" class="headerlink" title="Swift 和文档"></a>Swift 和文档</h2><p>写 SwiftUI 的时候有 <a target="_blank" rel="noopener" href="https://github.com/twostraws/SwiftUI-Agent-Skill/tree/main/swiftui-pro">swiftui-pro</a> 做代码审查，看 API 用法、性能、无障碍、废弃接口。<a target="_blank" rel="noopener" href="https://github.com/emilkowalski/skills/tree/main/skills/write-swift">write-swift</a> 讲现代 Swift 怎么写，值类型、Swift 6 并发、泛型、Swift Testing。要出 PDF 就换 <a target="_blank" rel="noopener" href="https://github.com/tw93/Kami/tree/main/skills/kami">kami</a>，简历、一页纸、白皮书、PPT 都是它排的。</p>
+<h2 id="怎么装"><a href="#怎么装" class="headerlink" title="怎么装"></a>怎么装</h2><p>六个仓库，命令都能直接抄：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npx skills@latest add emilkowalski/skills                     <span class="comment"># 我用的 7 个在这</span></span><br><span class="line">npx skills add tw93/Waza -a claude-code codex cursor -g -y     <span class="comment"># 4 个</span></span><br><span class="line">npx skills add tw93/kami -a claude-code codex cursor -g -y     <span class="comment"># kami</span></span><br><span class="line">npx skills add twostraws/swiftui-agent-skill --skill swiftui-pro</span><br><span class="line">npx skills add yetone/native-feel-skill -g</span><br></pre></td></tr></table></figure>
+
+<p><code>unslop</code> 的 README 给的是 Codex 的装法，<code>$skill-installer install</code> 后面跟 <a target="_blank" rel="noopener" href="https://github.com/heydamir/unslop/tree/main/skills/unslop">skills&#x2F;unslop</a> 这个目录，手动装就是把它拷进 skills 目录。它做 story video 时还要 Playwright 和 ffmpeg，不做就不用管。</p>
+<p>15 个分别来自上面这六个仓库，想抄哪个直接点名字。装完在目录里就是一堆 Markdown，个别自带脚本，比如 <code>kami</code> 靠 Python 生成文档。</p>
+
+      </div>
+    </div>
+  </article>
+  <div class="post__foot post__foot--toc">
+    <div class="post-nav">
+  
+    <div class="post-nav-item-left"></div>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2026/04/13/github-actions-content-editor/">
+      <span class="post-nav-label">
+        下一篇
+        <svg class="post-nav-icon"
+             viewBox="0 0 24 24"
+             width="14"
+             height="14"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             aria-hidden="true">
+          <polyline points="9 5 16 12 9 19"/>
+        </svg>
+      </span>
+      <span class="post-nav-title">我是怎么把 GitHub Actions 用成个人主页内容编辑器的</span>
+    </a>
+  
+</div>
+
+  </div>
+
+    </main>
+    <footer class="foot">
+  <div class="foot-inner">
+    <div class="foot__head">
+      
+        <div class="foot-line">
+          <div class="matts">秋</div><div class="matts">风</div><div class="matts">飘</div><div class="matts">起</div><div class="matts">黄</div><div class="matts">叶</div><div class="matts">落</div>
+        </div>
+      
+        <div class="foot-line">
+          <div class="matts">岁</div><div class="matts">月</div><div class="matts">静</div><div class="matts">好</div><div class="matts">心</div><div class="matts">安</div><div class="matts">然</div>
+        </div>
+      
+    </div>
+    <div class="foot__body">
+      
+        <div class="foot-item">
+          <div class="foot-item__head">朋友</div>
+          <div class="foot-item__body">
+            
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-link.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/ox0pine">My GitHub</a>
+          </div>
+        
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-link+.svg"/>
+            <a class="foot-link" href="mailto:ox0pine@gmail.com?subject=申请https://ox0pine.github.io的友链">申请友链</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+      
+        <div class="foot-item">
+          <div class="foot-item__head">账号</div>
+          <div class="foot-item__body">
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/logo-github.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/ox0pine">@ox0pine</a>
+          </div>
+        
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/logo-twitter.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://x.com/ox0pine">@ox0pine</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+      
+        <div class="foot-item">
+          <div class="foot-item__head">联系</div>
+          <div class="foot-item__body">
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-email.svg"/>
+            <a class="foot-link" href="mailto:ox0pine@gmail.com">ox0pine@gmail.com</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+    </div>
+    <div class="copyright">
+      <a href="/">秋风飘起黄叶落のblog</a> &nbsp;|&nbsp;记录我的生活
+      
+        &nbsp;|&nbsp;<a href="/atom.xml">RSS 订阅</a>
+      
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+      <script src="/js/search.js" defer></script>
+      <script>
+        window.addEventListener('DOMContentLoaded', function () {
+          searchInitialize("/search.json")
+        })
+      </script>
+    
+    
+      <script src="/js/copy-code.js" defer></script>
+    
+    
+  <script src="/js/toc.js" defer></script>
+
+  </body>
+</html>

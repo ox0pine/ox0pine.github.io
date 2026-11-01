@@ -1,0 +1,763 @@
+<!DOCTYPE html><html lang="zh-CN">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#ffffff"/>
+
+    <title>动态随笔 | 秋风飘起黄叶落のblog</title>
+    <link rel="canonical" href="https://ox0pine.github.io/moments"/>
+    
+      <link rel="alternate"
+            type="application/atom+xml"
+            title="秋风飘起黄叶落のblog"
+            href="/atom.xml"/>
+      <link rel="alternate"
+            type="application/rss+xml"
+            title="秋风飘起黄叶落のblog"
+            href="/rss2.xml"/>
+    
+    <meta name="description" content="同步自 X 的碎片化动态"/>
+    <meta name="keywords" content="个人博客,技术博客,大模型,AI开发,全栈开发,编程学习,生活随笔,Hexo博客,ox0pine"/>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="秋风飘起黄叶落のblog"/>
+    <meta property="og:locale" content="zh_CN"/>
+    <meta property="og:title" content="动态随笔 | 秋风飘起黄叶落のblog"/>
+    <meta property="og:description" content="同步自 X 的碎片化动态"/>
+    <meta property="og:url" content="https://ox0pine.github.io/moments"/>
+    <meta property="og:image" content="https://ox0pine.github.io/images/logo.svg"/>
+    
+    
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="动态随笔 | 秋风飘起黄叶落のblog"/>
+    <meta name="twitter:description" content="同步自 X 的碎片化动态"/>
+    <meta name="twitter:url" content="https://ox0pine.github.io/moments"/>
+    <meta name="twitter:image" content="https://ox0pine.github.io/images/logo.svg"/>
+
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon" href="/images/logo.svg"/>
+    
+
+    
+      
+
+  <link rel="preload"
+        href="/font/normal.woff2"
+        as="font"
+        type="font/woff2"
+        crossorigin/>
+
+
+  <style>
+    @font-face {
+      font-family: LXGWWenKai;
+      src: url('/font/normal.woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: optional;
+    }
+  </style>
+
+  <style>
+    @font-face {
+      font-family: LXGWWenKai;
+      src: url('/font/bold.woff2');
+      font-weight: bold;
+      font-style: normal;
+      font-display: optional;
+    }
+  </style>
+
+
+    
+
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+
+    
+
+    
+  
+  <link rel="stylesheet" type="text/css" href="/css/category.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/twitter.css"/>
+
+  <meta name="generator" content="Hexo 8.1.2"></head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+    
+      <div id="search-mask" role="dialog" aria-modal="true" aria-label="站内搜索">
+  <div class="search-main" id="search-main">
+    <div class="search__head">
+      <div class="search-form">
+        <svg t="1706347533072"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             width="20"
+             height="20"
+             aria-hidden="true">
+          <path d="M685.6 660.336l155.152 155.168a16 16 0 0 1 0 22.624l-11.312 11.328a16 16 0 0 1-22.624 0l-158.528-158.544a289.792 289.792 0 0 1-165.152 51.36C322.336 742.256 192 611.904 192 451.12 192 290.336 322.336 160 483.136 160c160.784 0 291.12 130.336 291.12 291.136 0 82.112-33.984 156.272-88.672 209.2z m-202.464 33.92c134.272 0 243.12-108.848 243.12-243.12C726.256 316.848 617.408 208 483.136 208 348.848 208 240 316.848 240 451.136c0 134.272 108.848 243.12 243.136 243.12z" fill="currentColor"></path>
+        </svg>
+        <input id="search-input"
+               type="search"
+               placeholder="搜索文章"
+               aria-label="搜索文章"
+               autocomplete="off"/>
+        <svg t="1706361500528"
+             id="search-clear"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             width="20"
+             height="20"
+             role="button"
+             tabindex="0"
+             aria-label="清空搜索">
+          <path d="M512 562.688l-264.2944 264.2944-50.688-50.688L461.312 512 197.0176 247.7056l50.688-50.688L512 461.312l264.2944-264.2944 50.688 50.688L562.688 512l264.2944 264.2944-50.688 50.688L512 562.688z" fill="currentColor"></path>
+        </svg>
+      </div>
+    </div>
+    <div class="search__body" id="search-result" aria-live="polite"></div>
+    <div class="search__foot"></div>
+  </div>
+</div>
+
+    
+    <div class="head">
+      <div class="nav">
+        <a href="/" class="nav-logo" aria-label="秋风飘起黄叶落のblog 首页">
+          <img alt=""
+               width="60"
+               height="60"
+               loading="eager"
+               fetchpriority="high"
+               src="/images/logo.svg"/>
+        </a>
+        <input id="navBtn" type="checkbox" aria-hidden="true" tabindex="-1"/>
+        <div class="nav-right">
+          
+            <div class="search-outer"><div class="search"
+     id="search-btn"
+     role="button"
+     tabindex="0"
+     aria-label="打开搜索"
+     aria-keyshortcuts="Control+K Meta+K">
+  <svg t="1706347533072"
+       class="icon"
+       viewBox="0 0 1024 1024"
+       version="1.1"
+       xmlns="http://www.w3.org/2000/svg"
+       width="20"
+       height="20"
+       aria-hidden="true">
+    <path d="M685.6 660.336l155.152 155.168a16 16 0 0 1 0 22.624l-11.312 11.328a16 16 0 0 1-22.624 0l-158.528-158.544a289.792 289.792 0 0 1-165.152 51.36C322.336 742.256 192 611.904 192 451.12 192 290.336 322.336 160 483.136 160c160.784 0 291.12 130.336 291.12 291.136 0 82.112-33.984 156.272-88.672 209.2z m-202.464 33.92c134.272 0 243.12-108.848 243.12-243.12C726.256 316.848 617.408 208 483.136 208 348.848 208 240 316.848 240 451.136c0 134.272 108.848 243.12 243.136 243.12z" fill="currentColor"></path>
+  </svg>
+  <span class="search-label">搜索</span>
+  <span class="search-shortcut-key">Ctrl K</span>
+</div>
+</div>
+          
+          <div class="nav-menu">
+            
+              
+                
+                <a class="nav-menu-item"
+                   href="/tech/">技术杂谈</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/life/">生活随笔</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/apps/">开源作品</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/moments/" aria-current="page">动态随笔</a>
+              
+            
+            
+          </div>
+        </div>
+        <label class="nav-btn" for="navBtn" aria-label="打开导航菜单"></label>
+      </div>
+    </div>
+    <main class="body" id="main-content">
+      
+  
+  <div class="wall wall-category wall-category--plain">
+    <div class="wall-main">
+      <div class="wall-category-title">
+        <div class="title-icon"
+             style="background-image: url(/images/icon/icon-twitter.svg)"></div>
+        动态随笔
+      </div>
+      <div class="wall-category-description">同步自 X 的碎片化动态</div>
+    </div>
+  </div>
+  <div class="tweets">
+    
+      
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@ox0pine</span>
+            <time class="tweet__time" datetime="2026-10-25T14:27:27.000Z">2026-10-25 22:27</time>
+            <a class="tweet__permalink"
+               href="https://x.com/ox0pine/status/2114363214008062342"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          <div class="tweet__body">被印度人pr攻击了 发现他主页fork了5k个仓库😅😅😂</div>
+          
+            <div class="tweet__media tweet__media--1">
+              
+                <a class="tweet__photo"
+                   href="https://x.com/ox0pine/status/2114363214008062342"
+                   target="_blank"
+                   rel="noopener">
+                  <img src="https://pbs.twimg.com/media/HVe57vGaIAEQmDP.jpg?name=orig"
+                       alt=""
+                       loading="lazy"
+                       decoding="async"/>
+                </a>
+              
+            </div>
+          
+        </article>
+      
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@ox0pine</span>
+            <time class="tweet__time" datetime="2026-10-23T16:02:21.000Z">2026-10-24 00:02</time>
+            <a class="tweet__permalink"
+               href="https://x.com/ox0pine/status/2113662318735479274"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          <div class="tweet__body">除了跑一些小模型还能干什么</div>
+          
+            <div class="tweet__media tweet__media--1">
+              
+                <a class="tweet__photo"
+                   href="https://x.com/ox0pine/status/2113662318735479274"
+                   target="_blank"
+                   rel="noopener">
+                  <img src="https://pbs.twimg.com/media/HVU8qXLaoAIopyN.jpg?name=orig"
+                       alt=""
+                       loading="lazy"
+                       decoding="async"/>
+                </a>
+              
+            </div>
+          
+        </article>
+      
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@ox0pine</span>
+            <time class="tweet__time" datetime="2026-10-23T05:26:27.000Z">2026-10-23 13:26</time>
+            <a class="tweet__permalink"
+               href="https://x.com/ox0pine/status/2113502290837705065"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          <div class="tweet__body">感觉网心云快倒闭了，最近一年也不更新了，已经把去年买的oect盒子刷成了armbian￼</div>
+          
+        </article>
+      
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@ox0pine</span>
+            <time class="tweet__time" datetime="2026-10-13T05:09:26.000Z">2026-10-13 13:09</time>
+            <a class="tweet__permalink"
+               href="https://x.com/ox0pine/status/2109874128081834029"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          
+          
+            <div class="tweet__media tweet__media--1">
+              
+                <a class="tweet__photo"
+                   href="https://x.com/ox0pine/status/2109874128081834029"
+                   target="_blank"
+                   rel="noopener">
+                  <img src="https://pbs.twimg.com/media/HUfHUu8bsAA-IPP.jpg?name=orig"
+                       alt=""
+                       loading="lazy"
+                       decoding="async"/>
+                </a>
+              
+            </div>
+          
+        </article>
+      
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@ox0pine</span>
+            <time class="tweet__time" datetime="2026-10-04T10:37:34.000Z">2026-10-04 18:37</time>
+            <a class="tweet__permalink"
+               href="https://x.com/ox0pine/status/2106695215876866271"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          <div class="tweet__body">神了 审稿意见补指标的来了</div>
+          
+        </article>
+      
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@ox0pine</span>
+            <time class="tweet__time" datetime="2026-10-03T09:43:06.000Z">2026-10-03 17:43</time>
+            <a class="tweet__permalink"
+               href="https://x.com/ox0pine/status/2106319118525927689"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          <div class="tweet__body">fedora+niri简直神了 第一次在Linux上面体验到和Macos一样的丝滑。</div>
+          
+        </article>
+      
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@ox0pine</span>
+            <time class="tweet__time" datetime="2026-09-27T17:16:04.000Z">2026-09-28 01:16</time>
+            <a class="tweet__permalink"
+               href="https://x.com/ox0pine/status/2104258785749700816"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          <div class="tweet__body">我可能是一个讨好型人格，明明身体不舒服，这两天还不好意思拒绝亲戚朋友在西安的邀约，虽然是提前订下的，但是我真的好难受，一直出冷汗，刚才上完厕所之后还把晚上吃的吐了出来，胃里好像翻江倒海。<br/>以后还是怎么舒服怎么来吧，免得哪一天死了。。</div>
+          
+            <div class="tweet__media tweet__media--1">
+              
+                <a class="tweet__photo"
+                   href="https://x.com/ox0pine/status/2104258785749700816"
+                   target="_blank"
+                   rel="noopener">
+                  <img src="https://pbs.twimg.com/media/HTPUNUSbQAAIx7K.jpg?name=orig"
+                       alt=""
+                       loading="lazy"
+                       decoding="async"/>
+                </a>
+              
+            </div>
+          
+        </article>
+      
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@ox0pine</span>
+            <time class="tweet__time" datetime="2026-09-24T14:25:38.000Z">2026-09-24 22:25</time>
+            <a class="tweet__permalink"
+               href="https://x.com/ox0pine/status/2103128733624521161"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          <div class="tweet__body">我要笑死了 你们都商量好了是吧</div>
+          
+            <div class="tweet__media tweet__media--1">
+              
+                <a class="tweet__photo"
+                   href="https://x.com/ox0pine/status/2103128733624521161"
+                   target="_blank"
+                   rel="noopener">
+                  <img src="https://pbs.twimg.com/media/HS_QbTNaAAA_9md.jpg?name=orig"
+                       alt=""
+                       loading="lazy"
+                       decoding="async"/>
+                </a>
+              
+            </div>
+          
+        </article>
+      
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@ox0pine</span>
+            <time class="tweet__time" datetime="2026-09-17T15:04:24.000Z">2026-09-17 23:04</time>
+            <a class="tweet__permalink"
+               href="https://x.com/ox0pine/status/2100601773509706139"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          <div class="tweet__body">上个月27号终于投出去了 不知道什么时候一审才能回来 投出去以后发现发论文的难度也能克服 如果这学期还能做完一篇 可以考虑读个博了</div>
+          
+        </article>
+      
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@ox0pine</span>
+            <time class="tweet__time" datetime="2026-09-17T15:01:50.000Z">2026-09-17 23:01</time>
+            <a class="tweet__permalink"
+               href="https://x.com/ox0pine/status/2100601126219620552"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          <div class="tweet__body">前几天打得一把 笑死我了</div>
+          
+            <div class="tweet__media tweet__media--4">
+              
+                <a class="tweet__photo"
+                   href="https://x.com/ox0pine/status/2100601126219620552"
+                   target="_blank"
+                   rel="noopener">
+                  <img src="https://pbs.twimg.com/media/HSbVlbdaAAESTHS.jpg?name=orig"
+                       alt=""
+                       loading="lazy"
+                       decoding="async"/>
+                </a>
+              
+                <a class="tweet__photo"
+                   href="https://x.com/ox0pine/status/2100601126219620552"
+                   target="_blank"
+                   rel="noopener">
+                  <img src="https://pbs.twimg.com/media/HSbVlbgbcAABSSx.jpg?name=orig"
+                       alt=""
+                       loading="lazy"
+                       decoding="async"/>
+                </a>
+              
+                <a class="tweet__photo"
+                   href="https://x.com/ox0pine/status/2100601126219620552"
+                   target="_blank"
+                   rel="noopener">
+                  <img src="https://pbs.twimg.com/media/HSbVldmbsAAPXTx.jpg?name=orig"
+                       alt=""
+                       loading="lazy"
+                       decoding="async"/>
+                </a>
+              
+                <a class="tweet__photo"
+                   href="https://x.com/ox0pine/status/2100601126219620552"
+                   target="_blank"
+                   rel="noopener">
+                  <img src="https://pbs.twimg.com/media/HSbVldSbsAAPImU.jpg?name=orig"
+                       alt=""
+                       loading="lazy"
+                       decoding="async"/>
+                </a>
+              
+            </div>
+          
+        </article>
+      
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@ox0pine</span>
+            <time class="tweet__time" datetime="2026-09-17T15:00:16.000Z">2026-09-17 23:00</time>
+            <a class="tweet__permalink"
+               href="https://x.com/ox0pine/status/2100600733846687960"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          <div class="tweet__body">怎么在路上都能听到使用Apple store美区账号绑定visa、万事达卡购买gpt会员。<br/>感觉都魔怔了，我已经不想在下班时间听到ai相关的内容了，只想好好生活🥲</div>
+          
+        </article>
+      
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@ox0pine</span>
+            <time class="tweet__time" datetime="2026-08-24T08:27:53.000Z">2026-08-24 16:27</time>
+            <a class="tweet__permalink"
+               href="https://x.com/ox0pine/status/2091804675570069519"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          <div class="tweet__body">滚滚长江东逝水</div>
+          
+        </article>
+      
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@ox0pine</span>
+            <time class="tweet__time" datetime="2026-08-23T08:29:17.000Z">2026-08-23 16:29</time>
+            <a class="tweet__permalink"
+               href="https://x.com/ox0pine/status/2091442641909268811"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          <div class="tweet__body">衡水北站</div>
+          
+            <div class="tweet__media tweet__media--2">
+              
+                <a class="tweet__photo"
+                   href="https://x.com/ox0pine/status/2091442641909268811"
+                   target="_blank"
+                   rel="noopener">
+                  <img src="https://pbs.twimg.com/media/HQZL-gwaEAAIZu7.jpg?name=orig"
+                       alt=""
+                       loading="lazy"
+                       decoding="async"/>
+                </a>
+              
+                <a class="tweet__photo"
+                   href="https://x.com/ox0pine/status/2091442641909268811"
+                   target="_blank"
+                   rel="noopener">
+                  <img src="https://pbs.twimg.com/media/HQZL-g5b0AA8SIC.jpg?name=orig"
+                       alt=""
+                       loading="lazy"
+                       decoding="async"/>
+                </a>
+              
+            </div>
+          
+        </article>
+      
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@ox0pine</span>
+            <time class="tweet__time" datetime="2026-08-20T23:28:32.000Z">2026-08-21 07:28</time>
+            <a class="tweet__permalink"
+               href="https://x.com/ox0pine/status/2090581779573010892"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          <div class="tweet__body">确实，最近辅助写论文也发现了，5.6总是擅长防御性写作和自证式写作的去修改、纠正某些段落。</div>
+          
+        </article>
+      
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@ox0pine</span>
+            <time class="tweet__time" datetime="2026-08-18T00:41:09.000Z">2026-08-18 08:41</time>
+            <a class="tweet__permalink"
+               href="https://x.com/ox0pine/status/2089512893872255188"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          <div class="tweet__body">决定放弃Claude code，转而使用omp</div>
+          
+        </article>
+      
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@ox0pine</span>
+            <time class="tweet__time" datetime="2026-08-16T06:27:09.000Z">2026-08-16 14:27</time>
+            <a class="tweet__permalink"
+               href="https://x.com/ox0pine/status/2088875190289825816"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          <div class="tweet__body">ai审稿每次都会给出特别多的审稿意见，即便按照修改这个意见以后第二次ai审稿还会出现别的意见，那到底修正到什么时候可以不修正了呢？应该是ai指出的问题你可以和他正面battle以后。</div>
+          
+        </article>
+      
+        <article class="tweet">
+          <div class="tweet__head">
+            <span class="tweet__author">@ox0pine</span>
+            <time class="tweet__time" datetime="2026-07-24T15:30:25.000Z">2026-07-24 23:30</time>
+            <a class="tweet__permalink"
+               href="https://x.com/ox0pine/status/2080676986880696805"
+               target="_blank"
+               rel="noopener">查看原文</a>
+          </div>
+          <div class="tweet__body">导师一直用gpt审稿我的论文，导致我的论文受到了极大的阻力，即使一些通用的实验设计，导师也会质问我为什么这么做，原因是gpt审稿给出的意见并没有很好的对齐通用的实验方法。<br/>尽管使用gpt审核一些已经发表过的论文，得到的结果依旧是大修或者拒稿，我们的教育确实有问题！</div>
+          
+        </article>
+      
+      <p class="tweets-foot">
+        <a href="https://x.com/ox0pine" target="_blank" rel="noopener">在 X 上查看全部动态</a>
+        <span class="tweets-updated">同步于 2026-11-01 11:27</span>
+      </p>
+    
+  </div>
+
+    </main>
+    <footer class="foot">
+  <div class="foot-inner">
+    <div class="foot__head">
+      
+        <div class="foot-line">
+          <div class="matts">秋</div><div class="matts">风</div><div class="matts">飘</div><div class="matts">起</div><div class="matts">黄</div><div class="matts">叶</div><div class="matts">落</div>
+        </div>
+      
+        <div class="foot-line">
+          <div class="matts">岁</div><div class="matts">月</div><div class="matts">静</div><div class="matts">好</div><div class="matts">心</div><div class="matts">安</div><div class="matts">然</div>
+        </div>
+      
+    </div>
+    <div class="foot__body">
+      
+        <div class="foot-item">
+          <div class="foot-item__head">朋友</div>
+          <div class="foot-item__body">
+            
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-link.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/ox0pine">My GitHub</a>
+          </div>
+        
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-link+.svg"/>
+            <a class="foot-link" href="mailto:ox0pine@gmail.com?subject=申请https://ox0pine.github.io的友链">申请友链</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+      
+        <div class="foot-item">
+          <div class="foot-item__head">账号</div>
+          <div class="foot-item__body">
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/logo-github.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/ox0pine">@ox0pine</a>
+          </div>
+        
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/logo-twitter.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://x.com/ox0pine">@ox0pine</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+      
+        <div class="foot-item">
+          <div class="foot-item__head">联系</div>
+          <div class="foot-item__body">
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-email.svg"/>
+            <a class="foot-link" href="mailto:ox0pine@gmail.com">ox0pine@gmail.com</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+    </div>
+    <div class="copyright">
+      <a href="/">秋风飘起黄叶落のblog</a> &nbsp;|&nbsp;记录我的生活
+      
+        &nbsp;|&nbsp;<a href="/atom.xml">RSS 订阅</a>
+      
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+      <script src="/js/search.js" defer></script>
+      <script>
+        window.addEventListener('DOMContentLoaded', function () {
+          searchInitialize("/search.json")
+        })
+      </script>
+    
+    
+    
+  </body>
+</html>

@@ -1,0 +1,519 @@
+<!DOCTYPE html><html lang="zh-CN">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#ffffff"/>
+
+    <title>开源作品 | 秋风飘起黄叶落のblog</title>
+    <link rel="canonical" href="https://ox0pine.github.io/apps/"/>
+    
+      <link rel="alternate"
+            type="application/atom+xml"
+            title="秋风飘起黄叶落のblog"
+            href="/atom.xml"/>
+      <link rel="alternate"
+            type="application/rss+xml"
+            title="秋风飘起黄叶落のblog"
+            href="/rss2.xml"/>
+    
+    <meta name="description" content="最近开发的项目，点击直达仓库"/>
+    <meta name="keywords" content="个人博客,技术博客,大模型,AI开发,全栈开发,编程学习,生活随笔,Hexo博客,ox0pine"/>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="秋风飘起黄叶落のblog"/>
+    <meta property="og:locale" content="zh_CN"/>
+    <meta property="og:title" content="开源作品 | 秋风飘起黄叶落のblog"/>
+    <meta property="og:description" content="最近开发的项目，点击直达仓库"/>
+    <meta property="og:url" content="https://ox0pine.github.io/apps/"/>
+    <meta property="og:image" content="https://ox0pine.github.io/images/logo.svg"/>
+    
+    
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="开源作品 | 秋风飘起黄叶落のblog"/>
+    <meta name="twitter:description" content="最近开发的项目，点击直达仓库"/>
+    <meta name="twitter:url" content="https://ox0pine.github.io/apps/"/>
+    <meta name="twitter:image" content="https://ox0pine.github.io/images/logo.svg"/>
+
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon" href="/images/logo.svg"/>
+    
+
+    
+      
+
+  <link rel="preload"
+        href="/font/normal.woff2"
+        as="font"
+        type="font/woff2"
+        crossorigin/>
+
+
+  <style>
+    @font-face {
+      font-family: LXGWWenKai;
+      src: url('/font/normal.woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: optional;
+    }
+  </style>
+
+  <style>
+    @font-face {
+      font-family: LXGWWenKai;
+      src: url('/font/bold.woff2');
+      font-weight: bold;
+      font-style: normal;
+      font-display: optional;
+    }
+  </style>
+
+
+    
+
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+
+    
+
+    
+  <link rel="stylesheet" type="text/css" href="/css/category.css"/>
+
+  <meta name="generator" content="Hexo 8.1.2"></head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+    
+      <div id="search-mask" role="dialog" aria-modal="true" aria-label="站内搜索">
+  <div class="search-main" id="search-main">
+    <div class="search__head">
+      <div class="search-form">
+        <svg t="1706347533072"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             width="20"
+             height="20"
+             aria-hidden="true">
+          <path d="M685.6 660.336l155.152 155.168a16 16 0 0 1 0 22.624l-11.312 11.328a16 16 0 0 1-22.624 0l-158.528-158.544a289.792 289.792 0 0 1-165.152 51.36C322.336 742.256 192 611.904 192 451.12 192 290.336 322.336 160 483.136 160c160.784 0 291.12 130.336 291.12 291.136 0 82.112-33.984 156.272-88.672 209.2z m-202.464 33.92c134.272 0 243.12-108.848 243.12-243.12C726.256 316.848 617.408 208 483.136 208 348.848 208 240 316.848 240 451.136c0 134.272 108.848 243.12 243.136 243.12z" fill="currentColor"></path>
+        </svg>
+        <input id="search-input"
+               type="search"
+               placeholder="搜索文章"
+               aria-label="搜索文章"
+               autocomplete="off"/>
+        <svg t="1706361500528"
+             id="search-clear"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             width="20"
+             height="20"
+             role="button"
+             tabindex="0"
+             aria-label="清空搜索">
+          <path d="M512 562.688l-264.2944 264.2944-50.688-50.688L461.312 512 197.0176 247.7056l50.688-50.688L512 461.312l264.2944-264.2944 50.688 50.688L562.688 512l264.2944 264.2944-50.688 50.688L512 562.688z" fill="currentColor"></path>
+        </svg>
+      </div>
+    </div>
+    <div class="search__body" id="search-result" aria-live="polite"></div>
+    <div class="search__foot"></div>
+  </div>
+</div>
+
+    
+    <div class="head">
+      <div class="nav">
+        <a href="/" class="nav-logo" aria-label="秋风飘起黄叶落のblog 首页">
+          <img alt=""
+               width="60"
+               height="60"
+               loading="eager"
+               fetchpriority="high"
+               src="/images/logo.svg"/>
+        </a>
+        <input id="navBtn" type="checkbox" aria-hidden="true" tabindex="-1"/>
+        <div class="nav-right">
+          
+            <div class="search-outer"><div class="search"
+     id="search-btn"
+     role="button"
+     tabindex="0"
+     aria-label="打开搜索"
+     aria-keyshortcuts="Control+K Meta+K">
+  <svg t="1706347533072"
+       class="icon"
+       viewBox="0 0 1024 1024"
+       version="1.1"
+       xmlns="http://www.w3.org/2000/svg"
+       width="20"
+       height="20"
+       aria-hidden="true">
+    <path d="M685.6 660.336l155.152 155.168a16 16 0 0 1 0 22.624l-11.312 11.328a16 16 0 0 1-22.624 0l-158.528-158.544a289.792 289.792 0 0 1-165.152 51.36C322.336 742.256 192 611.904 192 451.12 192 290.336 322.336 160 483.136 160c160.784 0 291.12 130.336 291.12 291.136 0 82.112-33.984 156.272-88.672 209.2z m-202.464 33.92c134.272 0 243.12-108.848 243.12-243.12C726.256 316.848 617.408 208 483.136 208 348.848 208 240 316.848 240 451.136c0 134.272 108.848 243.12 243.136 243.12z" fill="currentColor"></path>
+  </svg>
+  <span class="search-label">搜索</span>
+  <span class="search-shortcut-key">Ctrl K</span>
+</div>
+</div>
+          
+          <div class="nav-menu">
+            
+              
+                
+                <a class="nav-menu-item"
+                   href="/tech/">技术杂谈</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/life/">生活随笔</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/apps/" aria-current="page">开源作品</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/moments/">动态随笔</a>
+              
+            
+            
+          </div>
+        </div>
+        <label class="nav-btn" for="navBtn" aria-label="打开导航菜单"></label>
+      </div>
+    </div>
+    <main class="body" id="main-content">
+      
+  
+  <div class="wall wall-category wall-category--plain">
+    <div class="wall-main">
+      <div class="wall-category-title">
+        <div class="title-icon"
+             style="background-image: url(/images/icon/icon-app.svg)"></div>
+        开源作品
+      </div>
+      <div class="wall-category-description">最近开发的项目，点击直达仓库</div>
+    </div>
+  </div>
+  <ul class="projects">
+    
+      <li class="project">
+        <a class="project__link"
+           href="https://github.com/ox0pine/RepoPilot"
+           target="_blank"
+           rel="noopener">
+          <span class="project__name">RepoPilot<span class="project__arrow" aria-hidden="true">↗</span></span>
+          <span class="project__desc">自托管的 AI 编码工作台：固定仓库与 Issue，先出方案、人工批准后再进 Docker 执行，最后交付可审阅的 diff。</span>
+          <span class="project__meta">Python · FastAPI · Vue 3 · Docker</span>
+        </a>
+        
+      </li>
+    
+      <li class="project">
+        <a class="project__link"
+           href="https://github.com/webmonitor/WebMonitor-Agent"
+           target="_blank"
+           rel="noopener">
+          <span class="project__name">WebMonitor-Agent<span class="project__arrow" aria-hidden="true">↗</span></span>
+          <span class="project__desc">用一句话创建监控。助手打开页面真实采样一次，你确认规则后才开始定时检查，条件满足时发邮件。</span>
+          <span class="project__meta">Python · Postgres · MinIO · Docker</span>
+        </a>
+        
+      </li>
+    
+      <li class="project">
+        <a class="project__link"
+           href="https://github.com/webmonitor/WebMonitor"
+           target="_blank"
+           rel="noopener">
+          <span class="project__name">WebMonitor<span class="project__arrow" aria-hidden="true">↗</span></span>
+          <span class="project__desc">盯住页面里的一块（URL + XPath），文本变化时发邮件；单个 compose 容器即可自托管，不需要模型 key。</span>
+          <span class="project__meta">Python · FastAPI · React · Selenium</span>
+        </a>
+        
+          <a class="project__demo"
+             href="https://webmonitor.qfpqhyl.top/"
+             target="_blank"
+             rel="noopener">在线演示 ↗</a>
+        
+      </li>
+    
+      <li class="project">
+        <a class="project__link"
+           href="https://github.com/ox0pine/qfpqhyl.top"
+           target="_blank"
+           rel="noopener">
+          <span class="project__name">qfpqhyl.top<span class="project__arrow" aria-hidden="true">↗</span></span>
+          <span class="project__desc">React + Vite 的个人主页，构建前抓取博客时间线与 GitHub 仓库，Actions 定时刷新。</span>
+          <span class="project__meta">React · Vite · TypeScript · Base UI</span>
+        </a>
+        
+          <a class="project__demo"
+             href="https://qfpqhyl.top"
+             target="_blank"
+             rel="noopener">在线演示 ↗</a>
+        
+      </li>
+    
+      <li class="project">
+        <a class="project__link"
+           href="https://github.com/ox0pine/campus-connect-ddns"
+           target="_blank"
+           rel="noopener">
+          <span class="project__name">campus-connect-ddns<span class="project__arrow" aria-hidden="true">↗</span></span>
+          <span class="project__desc">校园网 SRun 自动认证与断线保活，可选把出口 IP 更新到 Cloudflare DDNS，systemd 托管。</span>
+          <span class="project__meta">Python · Cloudflare · systemd</span>
+        </a>
+        
+      </li>
+    
+      <li class="project">
+        <a class="project__link"
+           href="https://github.com/ox0pine/MindFlow"
+           target="_blank"
+           rel="noopener">
+          <span class="project__name">MindFlow<span class="project__arrow" aria-hidden="true">↗</span></span>
+          <span class="project__desc">把 AI 对话整理成结构化文档，再从文档建任务、到期发邮件提醒。</span>
+          <span class="project__meta">FastAPI · React 18 · MUI</span>
+        </a>
+        
+      </li>
+    
+      <li class="project">
+        <a class="project__link"
+           href="https://github.com/ox0pine/agent_devtools"
+           target="_blank"
+           rel="noopener">
+          <span class="project__name">agent_devtools<span class="project__arrow" aria-hidden="true">↗</span></span>
+          <span class="project__desc">面向 Claude Code 的 skills 与 MCP 工具包，首个技能覆盖 Base UI 的 34+ 组件与无障碍指南。</span>
+          <span class="project__meta">Python · Claude Code · MCP</span>
+        </a>
+        
+      </li>
+    
+      <li class="project">
+        <a class="project__link"
+           href="https://github.com/ox0pine/server-scripts"
+           target="_blank"
+           rel="noopener">
+          <span class="project__name">server-scripts<span class="project__arrow" aria-hidden="true">↗</span></span>
+          <span class="project__desc">新服务器从裸机到能用：换源、代理、Docker、Python 环境与性能调优，五个可单独执行的脚本。</span>
+          <span class="project__meta">Bash · Linux · Docker</span>
+        </a>
+        
+      </li>
+    
+      <li class="project">
+        <a class="project__link"
+           href="https://github.com/ox0pine/CodeRunner"
+           target="_blank"
+           rel="noopener">
+          <span class="project__name">CodeRunner<span class="project__arrow" aria-hidden="true">↗</span></span>
+          <span class="project__desc">自托管的 Python 代码执行平台：分级配额、执行隔离、AI 生成、代码库与社区。</span>
+          <span class="project__meta">FastAPI · React · Docker</span>
+        </a>
+        
+          <a class="project__demo"
+             href="https://code.qfpqhyl.cloudns.org/"
+             target="_blank"
+             rel="noopener">在线演示 ↗</a>
+        
+      </li>
+    
+  </ul>
+
+    </main>
+    <footer class="foot">
+  <div class="foot-inner">
+    <div class="foot__head">
+      
+        <div class="foot-line">
+          <div class="matts">秋</div><div class="matts">风</div><div class="matts">飘</div><div class="matts">起</div><div class="matts">黄</div><div class="matts">叶</div><div class="matts">落</div>
+        </div>
+      
+        <div class="foot-line">
+          <div class="matts">岁</div><div class="matts">月</div><div class="matts">静</div><div class="matts">好</div><div class="matts">心</div><div class="matts">安</div><div class="matts">然</div>
+        </div>
+      
+    </div>
+    <div class="foot__body">
+      
+        <div class="foot-item">
+          <div class="foot-item__head">朋友</div>
+          <div class="foot-item__body">
+            
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-link.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/ox0pine">My GitHub</a>
+          </div>
+        
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-link+.svg"/>
+            <a class="foot-link" href="mailto:ox0pine@gmail.com?subject=申请https://ox0pine.github.io的友链">申请友链</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+      
+        <div class="foot-item">
+          <div class="foot-item__head">账号</div>
+          <div class="foot-item__body">
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/logo-github.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/ox0pine">@ox0pine</a>
+          </div>
+        
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/logo-twitter.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://x.com/ox0pine">@ox0pine</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+      
+        <div class="foot-item">
+          <div class="foot-item__head">联系</div>
+          <div class="foot-item__body">
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-email.svg"/>
+            <a class="foot-link" href="mailto:ox0pine@gmail.com">ox0pine@gmail.com</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+    </div>
+    <div class="copyright">
+      <a href="/">秋风飘起黄叶落のblog</a> &nbsp;|&nbsp;记录我的生活
+      
+        &nbsp;|&nbsp;<a href="/atom.xml">RSS 订阅</a>
+      
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+      <script src="/js/search.js" defer></script>
+      <script>
+        window.addEventListener('DOMContentLoaded', function () {
+          searchInitialize("/search.json")
+        })
+      </script>
+    
+    
+    
+  </body>
+</html>

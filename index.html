@@ -1,0 +1,548 @@
+<!DOCTYPE html><html lang="zh-CN">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#ffffff"/>
+
+    <title>秋风飘起黄叶落のblog</title>
+    <link rel="canonical" href="https://ox0pine.github.io/"/>
+    
+      <link rel="alternate"
+            type="application/atom+xml"
+            title="秋风飘起黄叶落のblog"
+            href="/atom.xml"/>
+      <link rel="alternate"
+            type="application/rss+xml"
+            title="秋风飘起黄叶落のblog"
+            href="/rss2.xml"/>
+    
+    <meta name="description" content="ox0pine的个人技术博客，分享大模型应用开发、全栈开发经验、编程学习心得和生活感悟"/>
+    <meta name="keywords" content="个人博客,技术博客,大模型,AI开发,全栈开发,编程学习,生活随笔,Hexo博客,ox0pine"/>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="秋风飘起黄叶落のblog"/>
+    <meta property="og:locale" content="zh_CN"/>
+    <meta property="og:title" content="秋风飘起黄叶落のblog"/>
+    <meta property="og:description" content="ox0pine的个人技术博客，分享大模型应用开发、全栈开发经验、编程学习心得和生活感悟"/>
+    <meta property="og:url" content="https://ox0pine.github.io/"/>
+    <meta property="og:image" content="https://ox0pine.github.io/images/logo.svg"/>
+    
+    
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="秋风飘起黄叶落のblog"/>
+    <meta name="twitter:description" content="ox0pine的个人技术博客，分享大模型应用开发、全栈开发经验、编程学习心得和生活感悟"/>
+    <meta name="twitter:url" content="https://ox0pine.github.io/"/>
+    <meta name="twitter:image" content="https://ox0pine.github.io/images/logo.svg"/>
+
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon" href="/images/logo.svg"/>
+    
+
+    
+      
+
+  <link rel="preload"
+        href="/font/normal.woff2"
+        as="font"
+        type="font/woff2"
+        crossorigin/>
+
+
+  <style>
+    @font-face {
+      font-family: LXGWWenKai;
+      src: url('/font/normal.woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: optional;
+    }
+  </style>
+
+  <style>
+    @font-face {
+      font-family: LXGWWenKai;
+      src: url('/font/bold.woff2');
+      font-weight: bold;
+      font-style: normal;
+      font-display: optional;
+    }
+  </style>
+
+
+    
+
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+
+    
+      <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"秋风飘起黄叶落のblog","description":"ox0pine的个人技术博客，分享大模型应用开发、全栈开发经验、编程学习心得和生活感悟","url":"https://ox0pine.github.io/","inLanguage":"zh-CN"}</script>
+    
+
+    
+  <link rel="stylesheet" type="text/css" href="/css/index.css"/>
+
+  <meta name="generator" content="Hexo 8.1.2"></head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+    
+      <div id="search-mask" role="dialog" aria-modal="true" aria-label="站内搜索">
+  <div class="search-main" id="search-main">
+    <div class="search__head">
+      <div class="search-form">
+        <svg t="1706347533072"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             width="20"
+             height="20"
+             aria-hidden="true">
+          <path d="M685.6 660.336l155.152 155.168a16 16 0 0 1 0 22.624l-11.312 11.328a16 16 0 0 1-22.624 0l-158.528-158.544a289.792 289.792 0 0 1-165.152 51.36C322.336 742.256 192 611.904 192 451.12 192 290.336 322.336 160 483.136 160c160.784 0 291.12 130.336 291.12 291.136 0 82.112-33.984 156.272-88.672 209.2z m-202.464 33.92c134.272 0 243.12-108.848 243.12-243.12C726.256 316.848 617.408 208 483.136 208 348.848 208 240 316.848 240 451.136c0 134.272 108.848 243.12 243.136 243.12z" fill="currentColor"></path>
+        </svg>
+        <input id="search-input"
+               type="search"
+               placeholder="搜索文章"
+               aria-label="搜索文章"
+               autocomplete="off"/>
+        <svg t="1706361500528"
+             id="search-clear"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             width="20"
+             height="20"
+             role="button"
+             tabindex="0"
+             aria-label="清空搜索">
+          <path d="M512 562.688l-264.2944 264.2944-50.688-50.688L461.312 512 197.0176 247.7056l50.688-50.688L512 461.312l264.2944-264.2944 50.688 50.688L562.688 512l264.2944 264.2944-50.688 50.688L512 562.688z" fill="currentColor"></path>
+        </svg>
+      </div>
+    </div>
+    <div class="search__body" id="search-result" aria-live="polite"></div>
+    <div class="search__foot"></div>
+  </div>
+</div>
+
+    
+    <div class="head">
+      <div class="nav">
+        <a href="/" class="nav-logo" aria-label="秋风飘起黄叶落のblog 首页">
+          <img alt=""
+               width="60"
+               height="60"
+               loading="eager"
+               fetchpriority="high"
+               src="/images/logo.svg"/>
+        </a>
+        <input id="navBtn" type="checkbox" aria-hidden="true" tabindex="-1"/>
+        <div class="nav-right">
+          
+            <div class="search-outer"><div class="search"
+     id="search-btn"
+     role="button"
+     tabindex="0"
+     aria-label="打开搜索"
+     aria-keyshortcuts="Control+K Meta+K">
+  <svg t="1706347533072"
+       class="icon"
+       viewBox="0 0 1024 1024"
+       version="1.1"
+       xmlns="http://www.w3.org/2000/svg"
+       width="20"
+       height="20"
+       aria-hidden="true">
+    <path d="M685.6 660.336l155.152 155.168a16 16 0 0 1 0 22.624l-11.312 11.328a16 16 0 0 1-22.624 0l-158.528-158.544a289.792 289.792 0 0 1-165.152 51.36C322.336 742.256 192 611.904 192 451.12 192 290.336 322.336 160 483.136 160c160.784 0 291.12 130.336 291.12 291.136 0 82.112-33.984 156.272-88.672 209.2z m-202.464 33.92c134.272 0 243.12-108.848 243.12-243.12C726.256 316.848 617.408 208 483.136 208 348.848 208 240 316.848 240 451.136c0 134.272 108.848 243.12 243.136 243.12z" fill="currentColor"></path>
+  </svg>
+  <span class="search-label">搜索</span>
+  <span class="search-shortcut-key">Ctrl K</span>
+</div>
+</div>
+          
+          <div class="nav-menu">
+            
+              
+                
+                <a class="nav-menu-item"
+                   href="/tech/">技术杂谈</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/life/">生活随笔</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/apps/">开源作品</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/moments/">动态随笔</a>
+              
+            
+            
+          </div>
+        </div>
+        <label class="nav-btn" for="navBtn" aria-label="打开导航菜单"></label>
+      </div>
+    </div>
+    <main class="body" id="main-content">
+      
+  <div class="wall wall-index">
+    <div class="wall-main" id="wall-main">
+      <h1 class="wall-title">秋风飘起黄叶落のBLOG</h1>
+      <p class="wall-subtitle">每个人都值得被记录</p>
+      
+    </div>
+    <div class="wall-bg">
+      <div class="wall-bg-index">
+        <canvas id="leaf-field" aria-hidden="true"></canvas>
+        
+          <div class="poem" aria-hidden="true">
+            <span class="poem__line">秋风飘起黄叶落</span><span class="poem__line">岁月静好心安然</span>
+          </div>
+        
+        <div class="motto" aria-hidden="true">记录生活，分享美好</div>
+      </div>
+    </div>
+  </div>
+  <section class="about">
+    <h2 class="about-title">
+      
+        <span class="matts">关</span>
+      
+        <span class="matts">于</span>
+      
+        <span class="matts">我</span>
+      
+    </h2>
+    <div class="about-body">
+      
+        <p class="about-body-p">你好，我是 ox0pine。</p>
+      
+        <p class="about-body-p">大多数时候，我的生活都围着电脑转。白天待在实验室，读论文、跑实验，和那些不太听话的模型较劲。晚上回到自己的桌前，又开始写代码、折腾服务器。偶尔也会觉得，一整天似乎什么都没做，只是解决了一个昨天留下的问题，又遇见了几个新的问题。</p>
+      
+        <p class="about-body-p">不过，我还挺喜欢这样的日子。</p>
+      
+        <p class="about-body-p">比起单纯地使用一个工具，我总是更想知道它为什么能工作。遇到有意思的项目，就忍不住下载源码，拆开看看，再试着自己做点什么。慢慢地，便有了不少零零散散的东西：大模型应用、网站、自动化脚本，还有一些搭好之后就被遗忘在服务器角落里的小服务。</p>
+      
+        <p class="about-body-p">有些想法最后成了真正能用的工具，有些折腾了几个晚上，最终也没了下文。但我并不觉得这些时间是浪费。很多事情，只有亲手做过，才知道其中的门道。</p>
+      
+        <p class="about-body-p">这个博客也是这样一点点留下来的。</p>
+      
+        <p class="about-body-p">技术上的事情，我习惯记下来。可能是一次部署踩过的坑，一段折腾很久才跑通的代码，也可能只是某天发现了一个顺手的小工具。写这些东西，最初只是怕自己忘记，后来才发现，偶尔翻看过去的记录，也挺有意思。</p>
+      
+        <p class="about-body-p">除此之外，也写些与技术无关的日子。读过的书，参加过的比赛，某个睡不着的深夜，或者一段过了很久才想明白的心事。生活里总有一些微不足道的瞬间，当时觉得平常，过后却又舍不得忘。</p>
+      
+        <p class="about-body-p">说起来，这个博客也陪我折腾了好些年。从最初的 Hexo，到后来的 Hugo、WordPress，兜兜转转，最后还是回到了 Hexo。以前总想着把页面做得更漂亮、功能弄得更齐全，后来反倒觉得，能有个地方安安静静地写点东西，就已经很好。</p>
+      
+        <p class="about-body-p">日子还在往前走，手头的事情也总是做不完。</p>
+      
+        <p class="about-body-p">至于这里，就留给那些值得记住的过程吧。</p>
+      
+    </div>
+  </section>
+  
+    
+    
+  <section class="timeline">
+    <div class="timeline-head">
+      <h2 class="title">时间线</h2>
+      <div class="radio-wrapper">
+        
+          <div class="radio">
+            <input id="radio-article"
+                   type="checkbox"
+                   aria-label="article"
+                   checked/>
+            <label class="radio-skin--article" for="radio-article"></label>
+          </div>
+        
+          <div class="radio">
+            <input id="radio-event"
+                   type="checkbox"
+                   aria-label="event"
+                   checked/>
+            <label class="radio-skin--event" for="radio-event"></label>
+          </div>
+        
+      </div>
+    </div>
+    <div class="timeline-body">
+      <div class="timeline-item-first">
+        <div class="line-anchor line-anchor--now"></div>
+      </div>
+      <div class="timeline-list" id="timeline-list"></div>
+      <div class="timeline-item-last">
+        <div class="line-anchor line-anchor--end"></div>
+      </div>
+    </div>
+    
+      <a class="timeline-more" href="/timeline/">
+        查看全部<span class="timeline-more__count">9</span>条
+      </a>
+    
+  </section>
+
+  
+
+
+    </main>
+    <footer class="foot">
+  <div class="foot-inner">
+    <div class="foot__head">
+      
+        <div class="foot-line">
+          <div class="matts">秋</div><div class="matts">风</div><div class="matts">飘</div><div class="matts">起</div><div class="matts">黄</div><div class="matts">叶</div><div class="matts">落</div>
+        </div>
+      
+        <div class="foot-line">
+          <div class="matts">岁</div><div class="matts">月</div><div class="matts">静</div><div class="matts">好</div><div class="matts">心</div><div class="matts">安</div><div class="matts">然</div>
+        </div>
+      
+    </div>
+    <div class="foot__body">
+      
+        <div class="foot-item">
+          <div class="foot-item__head">朋友</div>
+          <div class="foot-item__body">
+            
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-link.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/ox0pine">My GitHub</a>
+          </div>
+        
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-link+.svg"/>
+            <a class="foot-link" href="mailto:ox0pine@gmail.com?subject=申请https://ox0pine.github.io的友链">申请友链</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+      
+        <div class="foot-item">
+          <div class="foot-item__head">账号</div>
+          <div class="foot-item__body">
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/logo-github.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/ox0pine">@ox0pine</a>
+          </div>
+        
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/logo-twitter.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://x.com/ox0pine">@ox0pine</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+      
+        <div class="foot-item">
+          <div class="foot-item__head">联系</div>
+          <div class="foot-item__body">
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-email.svg"/>
+            <a class="foot-link" href="mailto:ox0pine@gmail.com">ox0pine@gmail.com</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+    </div>
+    <div class="copyright">
+      <a href="/">秋风飘起黄叶落のblog</a> &nbsp;|&nbsp;记录我的生活
+      
+        &nbsp;|&nbsp;<a href="/atom.xml">RSS 订阅</a>
+      
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+      <script src="/js/search.js" defer></script>
+      <script>
+        window.addEventListener('DOMContentLoaded', function () {
+          searchInitialize("/search.json")
+        })
+      </script>
+    
+    
+    
+  <script src="/js/leaves.js" defer></script>
+  
+    
+    
+  <script type="text/javascript">
+    (function () {
+      const listEl = document.querySelector('#timeline-list')
+      if (!listEl) return
+
+      const { types = [], posts = [] } = {"types":["article","event"],"posts":[{"title":"我把 15 个 skill 装进了 OMP","path":"/2026/11/01/omp-skills/","icon":"/images/icon/icon-article.svg","type":"article","date":"2026-11-01"},{"title":"我是怎么把 GitHub Actions 用成个人主页内容编辑器的","path":"/2026/04/13/github-actions-content-editor/","icon":"/images/icon/icon-article.svg","type":"article","date":"2026-04-13"},{"title":"如何使用Cloudflare Tunnel","path":"/2026/01/24/cloudflare-tunnel-guide/","icon":"/images/icon/icon-article.svg","type":"article","date":"2026-01-24"},{"title":"2025年「且行且歌」","path":"/2025/12/31/2025-year-in-review/","icon":"/images/icon/icon-event.svg","type":"event","date":"2025-12-31"},{"title":"周记第三篇：考试？不要复习了哇","path":"/2025/12/14/weekly-03-exams/","icon":"/images/icon/icon-event.svg","type":"event","date":"2025-12-14"},{"title":"周记第二篇：再见了横向，我要学习！","path":"/2025/11/26/weekly-02-goodbye-project/","icon":"/images/icon/icon-event.svg","type":"event","date":"2025-11-26"},{"title":"周记第一篇：重新出发","path":"/2025/11/17/weekly-01-restart/","icon":"/images/icon/icon-event.svg","type":"event","date":"2025-11-17"},{"title":"读研后悔吗？","path":"/2025/11/16/graduate-school-regret/","icon":"/images/icon/icon-event.svg","type":"event","date":"2025-11-16"}]} || {}
+      const radios = types.map(type => document.querySelector('#radio-' + type))
+      const rows = posts.map(post => ({ type: post.type, el: createRow(post) }))
+
+      listEl.append(...rows.map(row => row.el))
+
+      types.forEach((type, i) => {
+        const radio = radios[i]
+        if (!radio) return
+        radio.addEventListener('change', e => updateList(type, e.target.checked))
+        updateList(type, radio.checked)
+      })
+
+      function updateList(type, visible) {
+        rows.forEach(row => {
+          if (row.type !== type) return
+          row.el.classList.toggle('timeline-item--hidden', !visible)
+        })
+      }
+
+      function createRow(post) {
+        const row = document.createElement('div')
+        row.className = 'timeline-item timeline-item-' + post.type + ' timeline-item--hidden'
+
+        const date = document.createElement('div')
+        date.className = 'line-date'
+        const dateTag = document.createElement('div')
+        dateTag.className = 'line-date-tag'
+        dateTag.textContent = post.date
+        date.append(dateTag)
+
+        const anchor = document.createElement('div')
+        anchor.className = 'line-anchor'
+
+        const title = document.createElement('div')
+        title.className = 'line-title'
+        const icon = document.createElement('img')
+        icon.className = 'text-icon'
+        icon.src = post.icon
+        icon.alt = ''
+        icon.width = 20
+        icon.height = 20
+        icon.loading = 'lazy'
+        const link = document.createElement('a')
+        link.className = 'timeline-post'
+        link.href = post.path
+        link.textContent = post.title
+        title.append(icon, link)
+
+        row.append(date, anchor, title)
+        return row
+      }
+    })()
+  </script>
+
+  
+
+  </body>
+</html>

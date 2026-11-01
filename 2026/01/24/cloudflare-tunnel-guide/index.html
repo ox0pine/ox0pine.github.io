@@ -1,0 +1,672 @@
+<!DOCTYPE html><html lang="zh-CN">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#ffffff"/>
+
+    <title>如何使用Cloudflare Tunnel | 秋风飘起黄叶落のblog</title>
+    <link rel="canonical" href="https://ox0pine.github.io/2026/01/24/cloudflare-tunnel-guide/"/>
+    
+      <link rel="alternate"
+            type="application/atom+xml"
+            title="秋风飘起黄叶落のblog"
+            href="/atom.xml"/>
+      <link rel="alternate"
+            type="application/rss+xml"
+            title="秋风飘起黄叶落のblog"
+            href="/rss2.xml"/>
+    
+    <meta name="description" content="最低成本上线在线服务，避免购买公网IP服务器。 什么是 Cloudflare Tunnel Cloudflare Tunnel（原名 Argo Tunnel）是 Cloudflare 提供的一项免费服务，可以让你在不需要公网 IP 的情况下，将本地服务安全地暴露到互联网上。它通过在你的服务器和 Cloudflare..."/>
+    <meta name="keywords" content="个人博客,技术博客,大模型,AI开发,全栈开发,编程学习,生活随笔,Hexo博客,ox0pine"/>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article"/>
+    <meta property="og:site_name" content="秋风飘起黄叶落のblog"/>
+    <meta property="og:locale" content="zh_CN"/>
+    <meta property="og:title" content="如何使用Cloudflare Tunnel | 秋风飘起黄叶落のblog"/>
+    <meta property="og:description" content="最低成本上线在线服务，避免购买公网IP服务器。 什么是 Cloudflare Tunnel Cloudflare Tunnel（原名 Argo Tunnel）是 Cloudflare 提供的一项免费服务，可以让你在不需要公网 IP 的情况下，将本地服务安全地暴露到互联网上。它通过在你的服务器和 Cloudflare..."/>
+    <meta property="og:url" content="https://ox0pine.github.io/2026/01/24/cloudflare-tunnel-guide/"/>
+    <meta property="og:image" content="https://ox0pine.github.io/images/logo.svg"/>
+    <meta property="article:published_time" content="2026-01-24T00:00:00+00:00"/>
+    <meta property="article:modified_time" content="2026-10-30T07:47:59+00:00"/>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="如何使用Cloudflare Tunnel | 秋风飘起黄叶落のblog"/>
+    <meta name="twitter:description" content="最低成本上线在线服务，避免购买公网IP服务器。 什么是 Cloudflare Tunnel Cloudflare Tunnel（原名 Argo Tunnel）是 Cloudflare 提供的一项免费服务，可以让你在不需要公网 IP 的情况下，将本地服务安全地暴露到互联网上。它通过在你的服务器和 Cloudflare..."/>
+    <meta name="twitter:url" content="https://ox0pine.github.io/2026/01/24/cloudflare-tunnel-guide/"/>
+    <meta name="twitter:image" content="https://ox0pine.github.io/images/logo.svg"/>
+
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon" href="/images/logo.svg"/>
+    
+
+    
+      
+
+  <link rel="preload"
+        href="/font/normal.woff2"
+        as="font"
+        type="font/woff2"
+        crossorigin/>
+
+
+  <style>
+    @font-face {
+      font-family: LXGWWenKai;
+      src: url('/font/normal.woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: optional;
+    }
+  </style>
+
+  <style>
+    @font-face {
+      font-family: LXGWWenKai;
+      src: url('/font/bold.woff2');
+      font-weight: bold;
+      font-style: normal;
+      font-display: optional;
+    }
+  </style>
+
+
+    
+
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+
+    
+      <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"如何使用Cloudflare Tunnel","image":["https://ox0pine.github.io/images/logo.svg"],"datePublished":"2026-01-24T00:00:00+00:00","dateModified":"2026-10-30T07:47:59+00:00","author":{"@type":"Person","name":"ox0pine"},"publisher":{"@type":"Organization","name":"秋风飘起黄叶落のblog","logo":{"@type":"ImageObject","url":"https://ox0pine.github.io/images/logo.svg"}},"description":"最低成本上线在线服务，避免购买公网IP服务器。 什么是 Cloudflare Tunnel Cloudflare Tunnel（原名 Argo Tunnel）是 Cloudflare 提供的一项免费服务，可以让你在不需要公网 IP 的情况下，将本地服务安全地暴露到互联网上。它通过在你的服务器和 Cloudflare...","mainEntityOfPage":{"@type":"WebPage","@id":"https://ox0pine.github.io/2026/01/24/cloudflare-tunnel-guide/"}}</script>
+    
+      <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://ox0pine.github.io/"},{"@type":"ListItem","position":2,"name":"tech","item":"https://ox0pine.github.io/categories/tech/"},{"@type":"ListItem","position":3,"name":"如何使用Cloudflare Tunnel","item":"https://ox0pine.github.io/2026/01/24/cloudflare-tunnel-guide/"}]}</script>
+    
+
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+
+  <meta name="generator" content="Hexo 8.1.2"></head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+    
+      <div id="search-mask" role="dialog" aria-modal="true" aria-label="站内搜索">
+  <div class="search-main" id="search-main">
+    <div class="search__head">
+      <div class="search-form">
+        <svg t="1706347533072"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             width="20"
+             height="20"
+             aria-hidden="true">
+          <path d="M685.6 660.336l155.152 155.168a16 16 0 0 1 0 22.624l-11.312 11.328a16 16 0 0 1-22.624 0l-158.528-158.544a289.792 289.792 0 0 1-165.152 51.36C322.336 742.256 192 611.904 192 451.12 192 290.336 322.336 160 483.136 160c160.784 0 291.12 130.336 291.12 291.136 0 82.112-33.984 156.272-88.672 209.2z m-202.464 33.92c134.272 0 243.12-108.848 243.12-243.12C726.256 316.848 617.408 208 483.136 208 348.848 208 240 316.848 240 451.136c0 134.272 108.848 243.12 243.136 243.12z" fill="currentColor"></path>
+        </svg>
+        <input id="search-input"
+               type="search"
+               placeholder="搜索文章"
+               aria-label="搜索文章"
+               autocomplete="off"/>
+        <svg t="1706361500528"
+             id="search-clear"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             width="20"
+             height="20"
+             role="button"
+             tabindex="0"
+             aria-label="清空搜索">
+          <path d="M512 562.688l-264.2944 264.2944-50.688-50.688L461.312 512 197.0176 247.7056l50.688-50.688L512 461.312l264.2944-264.2944 50.688 50.688L562.688 512l264.2944 264.2944-50.688 50.688L512 562.688z" fill="currentColor"></path>
+        </svg>
+      </div>
+    </div>
+    <div class="search__body" id="search-result" aria-live="polite"></div>
+    <div class="search__foot"></div>
+  </div>
+</div>
+
+    
+    <div class="head">
+      <div class="nav">
+        <a href="/" class="nav-logo" aria-label="秋风飘起黄叶落のblog 首页">
+          <img alt=""
+               width="60"
+               height="60"
+               loading="eager"
+               fetchpriority="high"
+               src="/images/logo.svg"/>
+        </a>
+        <input id="navBtn" type="checkbox" aria-hidden="true" tabindex="-1"/>
+        <div class="nav-right">
+          
+            <div class="search-outer"><div class="search"
+     id="search-btn"
+     role="button"
+     tabindex="0"
+     aria-label="打开搜索"
+     aria-keyshortcuts="Control+K Meta+K">
+  <svg t="1706347533072"
+       class="icon"
+       viewBox="0 0 1024 1024"
+       version="1.1"
+       xmlns="http://www.w3.org/2000/svg"
+       width="20"
+       height="20"
+       aria-hidden="true">
+    <path d="M685.6 660.336l155.152 155.168a16 16 0 0 1 0 22.624l-11.312 11.328a16 16 0 0 1-22.624 0l-158.528-158.544a289.792 289.792 0 0 1-165.152 51.36C322.336 742.256 192 611.904 192 451.12 192 290.336 322.336 160 483.136 160c160.784 0 291.12 130.336 291.12 291.136 0 82.112-33.984 156.272-88.672 209.2z m-202.464 33.92c134.272 0 243.12-108.848 243.12-243.12C726.256 316.848 617.408 208 483.136 208 348.848 208 240 316.848 240 451.136c0 134.272 108.848 243.12 243.136 243.12z" fill="currentColor"></path>
+  </svg>
+  <span class="search-label">搜索</span>
+  <span class="search-shortcut-key">Ctrl K</span>
+</div>
+</div>
+          
+          <div class="nav-menu">
+            
+              
+                
+                <a class="nav-menu-item"
+                   href="/tech/">技术杂谈</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/life/">生活随笔</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/apps/">开源作品</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/moments/">动态随笔</a>
+              
+            
+            
+          </div>
+        </div>
+        <label class="nav-btn" for="navBtn" aria-label="打开导航菜单"></label>
+      </div>
+    </div>
+    <main class="body" id="main-content">
+      
+  <article class="post-content">
+    <div class="post-inner post-inner--toc">
+      <div class="post-content__head">
+        <h1 class="post-title">如何使用Cloudflare Tunnel</h1>
+        <div class="post-info">
+          
+  <a href="/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7/" class="post-tag">#网络工具</a><a href="/tags/Cloudflare/" class="post-tag">#Cloudflare</a>
+
+
+          <time class="post-date" datetime="2026-01-24">2026-01-24</time>
+          
+            <span class="post-category">分类:
+              
+                <a href="/categories/tech/">tech</a>
+              
+            </span>
+          
+        </div>
+        
+        
+      </div>
+      
+        <aside class="toc-outer" aria-label="文章目录">
+          <div class="toc-title">目录</div>
+          <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Cloudflare-Tunnel"><span class="post-toc-text">什么是 Cloudflare Tunnel</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%BB%E8%A6%81%E4%BC%98%E5%8A%BF"><span class="post-toc-text">主要优势</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%89%8D%E7%BD%AE%E5%87%86%E5%A4%87"><span class="post-toc-text">前置准备</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%AE%89%E8%A3%85-cloudflared"><span class="post-toc-text">安装 cloudflared</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Windows"><span class="post-toc-text">Windows</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#macOS"><span class="post-toc-text">macOS</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Linux"><span class="post-toc-text">Linux</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B%EF%BC%9A%E4%B8%B4%E6%97%B6%E9%9A%A7%E9%81%93"><span class="post-toc-text">快速开始：临时隧道</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%88%9B%E5%BB%BA%E6%B0%B8%E4%B9%85%E9%9A%A7%E9%81%93"><span class="post-toc-text">创建永久隧道</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80%EF%BC%9A%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%88%9B%E5%BB%BA%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="post-toc-text">方式一：命令行创建（推荐）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-%E7%99%BB%E5%BD%95-Cloudflare"><span class="post-toc-text">1. 登录 Cloudflare</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-%E5%88%9B%E5%BB%BA%E9%9A%A7%E9%81%93"><span class="post-toc-text">2. 创建隧道</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-%E9%85%8D%E7%BD%AE%E9%9A%A7%E9%81%93"><span class="post-toc-text">3. 配置隧道</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-%E9%85%8D%E7%BD%AE-DNS"><span class="post-toc-text">4. 配置 DNS</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-%E8%BF%90%E8%A1%8C%E9%9A%A7%E9%81%93"><span class="post-toc-text">5. 运行隧道</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9ADashboard-%E5%88%9B%E5%BB%BA%EF%BC%88%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%EF%BC%89"><span class="post-toc-text">方式二：Dashboard 创建（图形界面）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-%E8%BF%9B%E5%85%A5-Cloudflare-Zero-Trust"><span class="post-toc-text">1. 进入 Cloudflare Zero Trust</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-%E9%80%89%E6%8B%A9%E8%BF%9E%E6%8E%A5%E5%99%A8%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">2. 选择连接器类型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-%E5%91%BD%E5%90%8D%E5%B9%B6%E5%AE%89%E8%A3%85"><span class="post-toc-text">3. 命名并安装</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-%E9%85%8D%E7%BD%AE%E8%B7%AF%E7%94%B1"><span class="post-toc-text">4. 配置路由</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-%E9%AA%8C%E8%AF%81%E7%8A%B6%E6%80%81"><span class="post-toc-text">5. 验证状态</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%AF%B9%E6%AF%94"><span class="post-toc-text">两种方式对比</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%85%8D%E7%BD%AE%E4%B8%BA%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1"><span class="post-toc-text">配置为系统服务</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Linux-systemd"><span class="post-toc-text">Linux (systemd)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Windows-1"><span class="post-toc-text">Windows</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#macOS-1"><span class="post-toc-text">macOS</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE"><span class="post-toc-text">高级配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%A4%9A%E4%B8%AA%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE"><span class="post-toc-text">多个服务配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="post-toc-text">访问控制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE"><span class="post-toc-text">日志配置</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="post-toc-text">常用命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5"><span class="post-toc-text">故障排查</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-%E9%9A%A7%E9%81%93%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5"><span class="post-toc-text">1. 隧道无法连接</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-502-Bad-Gateway"><span class="post-toc-text">2. 502 Bad Gateway</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-DNS-%E8%A7%A3%E6%9E%90%E9%97%AE%E9%A2%98"><span class="post-toc-text">3. DNS 解析问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-%E8%AF%81%E4%B9%A6%E9%97%AE%E9%A2%98"><span class="post-toc-text">4. 证书问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="post-toc-text">实际应用场景</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2"><span class="post-toc-text">1. 个人博客部署</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%88%86%E4%BA%AB"><span class="post-toc-text">2. 开发环境分享</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-%E5%AE%B6%E5%BA%AD%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="post-toc-text">3. 家庭服务器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-IoT-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86"><span class="post-toc-text">4. IoT 设备管理</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%AE"><span class="post-toc-text">安全建议</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="post-toc-text">性能优化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%80%BB%E7%BB%93"><span class="post-toc-text">总结</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="post-toc-text">参考资料</span></a></li></ol>
+          <a href="#main-content" class="toc-top">回到顶部</a>
+        </aside>
+      
+      <div class="post-content__body">
+        
+        <blockquote>
+<p>最低成本上线在线服务，避免购买公网IP服务器。</p>
+</blockquote>
+<h2 id="什么是-Cloudflare-Tunnel"><a href="#什么是-Cloudflare-Tunnel" class="headerlink" title="什么是 Cloudflare Tunnel"></a>什么是 Cloudflare Tunnel</h2><p>Cloudflare Tunnel（原名 Argo Tunnel）是 Cloudflare 提供的一项免费服务，可以让你在不需要公网 IP 的情况下，将本地服务安全地暴露到互联网上。它通过在你的服务器和 Cloudflare 网络之间建立加密隧道来工作。</p>
+<h3 id="主要优势"><a href="#主要优势" class="headerlink" title="主要优势"></a>主要优势</h3><ul>
+<li><strong>无需公网 IP</strong>：不需要购买昂贵的公网 IP 或 VPS</li>
+<li><strong>免费使用</strong>：Cloudflare 免费计划即可使用</li>
+<li><strong>自动 HTTPS</strong>：自动配置 SSL 证书</li>
+<li><strong>DDoS 防护</strong>：享受 Cloudflare 的安全防护</li>
+<li><strong>隐藏源站</strong>：真实服务器 IP 不会暴露</li>
+</ul>
+<h2 id="前置准备"><a href="#前置准备" class="headerlink" title="前置准备"></a>前置准备</h2><ol>
+<li>一个 Cloudflare 账号（<a target="_blank" rel="noopener" href="https://dash.cloudflare.com/sign-up">注册地址</a>）</li>
+<li>一个已添加到 Cloudflare 的域名</li>
+<li>一台可以运行服务的机器（本地电脑、内网服务器等）</li>
+</ol>
+<h2 id="安装-cloudflared"><a href="#安装-cloudflared" class="headerlink" title="安装 cloudflared"></a>安装 cloudflared</h2><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>下载并安装 cloudflared：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载最新版本</span></span><br><span class="line"><span class="comment"># 访问 https://github.com/cloudflare/cloudflared/releases</span></span><br><span class="line"><span class="comment"># 下载 cloudflared-windows-amd64.exe</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重命名为 cloudflared.exe 并添加到系统 PATH</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="macOS"><a href="#macOS" class="headerlink" title="macOS"></a>macOS</h3><p>使用 Homebrew 安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install cloudflare/cloudflare/cloudflared</span><br></pre></td></tr></table></figure>
+
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Debian/Ubuntu</span></span><br><span class="line">wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb</span><br><span class="line"><span class="built_in">sudo</span> dpkg -i cloudflared-linux-amd64.deb</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS/RHEL</span></span><br><span class="line">wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-x86_64.rpm</span><br><span class="line"><span class="built_in">sudo</span> rpm -i cloudflared-linux-x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<p>验证安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cloudflared --version</span><br></pre></td></tr></table></figure>
+
+<h2 id="快速开始：临时隧道"><a href="#快速开始：临时隧道" class="headerlink" title="快速开始：临时隧道"></a>快速开始：临时隧道</h2><p>如果只是想快速测试，可以使用临时隧道（不需要域名）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将本地 8080 端口暴露到公网</span></span><br><span class="line">cloudflared tunnel --url http://localhost:8080</span><br></pre></td></tr></table></figure>
+
+<p>运行后会生成一个临时的 <code>*.trycloudflare.com</code> 域名，可以直接访问。</p>
+<h2 id="创建永久隧道"><a href="#创建永久隧道" class="headerlink" title="创建永久隧道"></a>创建永久隧道</h2><p>Cloudflare Tunnel 提供两种创建方式：<strong>命令行方式（CLI）</strong> 和 <strong>Dashboard 方式（Web 界面）</strong>。你可以根据自己的喜好选择。</p>
+<h3 id="方式一：命令行创建（推荐）"><a href="#方式一：命令行创建（推荐）" class="headerlink" title="方式一：命令行创建（推荐）"></a>方式一：命令行创建（推荐）</h3><p>适合喜欢命令行操作的开发者，配置更灵活。</p>
+<h4 id="1-登录-Cloudflare"><a href="#1-登录-Cloudflare" class="headerlink" title="1. 登录 Cloudflare"></a>1. 登录 Cloudflare</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cloudflared tunnel login</span><br></pre></td></tr></table></figure>
+
+<p>这会打开浏览器，选择你要使用的域名并授权。授权成功后会在本地生成证书文件。</p>
+<h4 id="2-创建隧道"><a href="#2-创建隧道" class="headerlink" title="2. 创建隧道"></a>2. 创建隧道</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cloudflared tunnel create my-tunnel</span><br></pre></td></tr></table></figure>
+
+<p>这会创建一个名为 <code>my-tunnel</code> 的隧道，并生成一个 UUID 和凭证文件。记下这个 UUID，后面会用到。</p>
+<h4 id="3-配置隧道"><a href="#3-配置隧道" class="headerlink" title="3. 配置隧道"></a>3. 配置隧道</h4><p>创建配置文件 <code>~/.cloudflared/config.yml</code>（Windows 在 <code>%USERPROFILE%\.cloudflared\config.yml</code>）：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tunnel:</span> <span class="string">&lt;你的隧道UUID&gt;</span></span><br><span class="line"><span class="attr">credentials-file:</span> <span class="string">/path/to/.cloudflared/&lt;UUID&gt;.json</span></span><br><span class="line"></span><br><span class="line"><span class="attr">ingress:</span></span><br><span class="line">  <span class="comment"># 将 blog.example.com 路由到本地 4000 端口（Hexo 默认端口）</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">hostname:</span> <span class="string">blog.example.com</span></span><br><span class="line">    <span class="attr">service:</span> <span class="string">http://localhost:4000</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 将 api.example.com 路由到本地 3000 端口</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">hostname:</span> <span class="string">api.example.com</span></span><br><span class="line">    <span class="attr">service:</span> <span class="string">http://localhost:3000</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 捕获所有其他请求（必需）</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">service:</span> <span class="string">http_status:404</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-配置-DNS"><a href="#4-配置-DNS" class="headerlink" title="4. 配置 DNS"></a>4. 配置 DNS</h4><p>将域名指向隧道：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cloudflared tunnel route dns my-tunnel blog.example.com</span><br><span class="line">cloudflared tunnel route dns my-tunnel api.example.com</span><br></pre></td></tr></table></figure>
+
+<p>这会自动在 Cloudflare DNS 中创建 CNAME 记录。</p>
+<h4 id="5-运行隧道"><a href="#5-运行隧道" class="headerlink" title="5. 运行隧道"></a>5. 运行隧道</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cloudflared tunnel run my-tunnel</span><br></pre></td></tr></table></figure>
+
+<p>现在访问 <code>https://blog.example.com</code> 就能访问到你的本地服务了！</p>
+<h3 id="方式二：Dashboard-创建（图形界面）"><a href="#方式二：Dashboard-创建（图形界面）" class="headerlink" title="方式二：Dashboard 创建（图形界面）"></a>方式二：Dashboard 创建（图形界面）</h3><p>适合不熟悉命令行的用户，操作更直观。</p>
+<h4 id="1-进入-Cloudflare-Zero-Trust"><a href="#1-进入-Cloudflare-Zero-Trust" class="headerlink" title="1. 进入 Cloudflare Zero Trust"></a>1. 进入 Cloudflare Zero Trust</h4><ol>
+<li>登录 <a target="_blank" rel="noopener" href="https://dash.cloudflare.com/">Cloudflare Dashboard</a></li>
+<li>选择你的账号</li>
+<li>进入 <strong>Zero Trust</strong> → <strong>Networks</strong> → <strong>Tunnels</strong></li>
+<li>点击 <strong>Create a tunnel</strong></li>
+</ol>
+<h4 id="2-选择连接器类型"><a href="#2-选择连接器类型" class="headerlink" title="2. 选择连接器类型"></a>2. 选择连接器类型</h4><p>选择 <strong>Cloudflared</strong> 作为连接器类型，点击 <strong>Next</strong>。</p>
+<h4 id="3-命名并安装"><a href="#3-命名并安装" class="headerlink" title="3. 命名并安装"></a>3. 命名并安装</h4><ol>
+<li>为隧道命名（如 <code>my-blog-tunnel</code>）</li>
+<li>点击 <strong>Save tunnel</strong></li>
+<li>根据你的操作系统选择对应的安装命令</li>
+<li>在服务器上运行显示的命令（包含 token）</li>
+</ol>
+<p>示例命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Linux/macOS</span></span><br><span class="line"><span class="built_in">sudo</span> cloudflared service install &lt;your-token&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows（以管理员身份运行）</span></span><br><span class="line">cloudflared.exe service install &lt;your-token&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>安装完成后，连接器会显示为 <strong>Connected</strong></li>
+<li>点击 <strong>Next</strong></li>
+</ol>
+<h4 id="4-配置路由"><a href="#4-配置路由" class="headerlink" title="4. 配置路由"></a>4. 配置路由</h4><p>有两种配置方式：</p>
+<p><strong>A. 发布公开应用（Public Hostname）</strong></p>
+<ol>
+<li>在 <strong>Public Hostname</strong> 标签下</li>
+<li>填写配置：<ul>
+<li><strong>Subdomain</strong>: 输入子域名（如 <code>blog</code>）</li>
+<li><strong>Domain</strong>: 选择你的域名（如 <code>example.com</code>）</li>
+<li><strong>Type</strong>: 选择 <code>HTTP</code></li>
+<li><strong>URL</strong>: 输入本地服务地址（如 <code>localhost:4000</code>）</li>
+</ul>
+</li>
+<li>点击 <strong>Save tunnel</strong></li>
+</ol>
+<p><strong>B. 连接私有网络（Private Network）</strong></p>
+<ol>
+<li>切换到 <strong>Private Network</strong> 标签</li>
+<li>输入私有 IP 或 CIDR 范围（如 <code>192.168.1.0/24</code>）</li>
+<li>点击 <strong>Save tunnel</strong></li>
+</ol>
+<h4 id="5-验证状态"><a href="#5-验证状态" class="headerlink" title="5. 验证状态"></a>5. 验证状态</h4><p>配置完成后，返回 <strong>Tunnels</strong> 页面，你的隧道应该显示为 <strong>Healthy</strong> 状态。现在就可以通过配置的域名访问你的服务了！</p>
+<h3 id="两种方式对比"><a href="#两种方式对比" class="headerlink" title="两种方式对比"></a>两种方式对比</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>命令行方式</th>
+<th>Dashboard 方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>适用人群</td>
+<td>开发者、运维人员</td>
+<td>所有用户</td>
+</tr>
+<tr>
+<td>配置灵活性</td>
+<td>高（可精细配置）</td>
+<td>中（图形界面限制）</td>
+</tr>
+<tr>
+<td>批量操作</td>
+<td>容易</td>
+<td>较难</td>
+</tr>
+<tr>
+<td>学习曲线</td>
+<td>需要熟悉命令行</td>
+<td>简单直观</td>
+</tr>
+<tr>
+<td>配置文件</td>
+<td>本地 YAML 文件</td>
+<td>云端存储</td>
+</tr>
+<tr>
+<td>适合场景</td>
+<td>自动化部署、多隧道管理</td>
+<td>快速上手、单个隧道</td>
+</tr>
+</tbody></table>
+<p><strong>建议</strong>：</p>
+<ul>
+<li>如果你是开发者或需要管理多个隧道，推荐使用命令行方式</li>
+<li>如果你只需要快速部署一个服务，Dashboard 方式更简单</li>
+</ul>
+<p>现在访问 <code>https://blog.example.com</code> 就能访问到你的本地服务了！</p>
+<h2 id="配置为系统服务"><a href="#配置为系统服务" class="headerlink" title="配置为系统服务"></a>配置为系统服务</h2><h3 id="Linux-systemd"><a href="#Linux-systemd" class="headerlink" title="Linux (systemd)"></a>Linux (systemd)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装服务</span></span><br><span class="line"><span class="built_in">sudo</span> cloudflared service install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl start cloudflared</span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> cloudflared</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看状态</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl status cloudflared</span><br></pre></td></tr></table></figure>
+
+<h3 id="Windows-1"><a href="#Windows-1" class="headerlink" title="Windows"></a>Windows</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以管理员身份运行</span></span><br><span class="line">cloudflared service install</span><br></pre></td></tr></table></figure>
+
+<h3 id="macOS-1"><a href="#macOS-1" class="headerlink" title="macOS"></a>macOS</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装服务</span></span><br><span class="line"><span class="built_in">sudo</span> cloudflared service install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line"><span class="built_in">sudo</span> launchctl start com.cloudflare.cloudflared</span><br></pre></td></tr></table></figure>
+
+<h2 id="高级配置"><a href="#高级配置" class="headerlink" title="高级配置"></a>高级配置</h2><h3 id="多个服务配置"><a href="#多个服务配置" class="headerlink" title="多个服务配置"></a>多个服务配置</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tunnel:</span> <span class="string">&lt;UUID&gt;</span></span><br><span class="line"><span class="attr">credentials-file:</span> <span class="string">/path/to/credentials.json</span></span><br><span class="line"></span><br><span class="line"><span class="attr">ingress:</span></span><br><span class="line">  <span class="comment"># Web 服务</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">hostname:</span> <span class="string">www.example.com</span></span><br><span class="line">    <span class="attr">service:</span> <span class="string">http://localhost:80</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># SSH 服务</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">hostname:</span> <span class="string">ssh.example.com</span></span><br><span class="line">    <span class="attr">service:</span> <span class="string">ssh://localhost:22</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># WebSocket 服务</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">hostname:</span> <span class="string">ws.example.com</span></span><br><span class="line">    <span class="attr">service:</span> <span class="string">http://localhost:8080</span></span><br><span class="line">    <span class="attr">originRequest:</span></span><br><span class="line">      <span class="attr">noTLSVerify:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 默认规则</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">service:</span> <span class="string">http_status:404</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h3><p>在 Cloudflare Dashboard 中可以配置 Access 策略，限制谁可以访问你的服务：</p>
+<ol>
+<li>进入 Cloudflare Dashboard</li>
+<li>选择你的域名</li>
+<li>进入 <strong>Access</strong> → <strong>Applications</strong></li>
+<li>创建新的应用程序并配置访问规则</li>
+</ol>
+<h3 id="日志配置"><a href="#日志配置" class="headerlink" title="日志配置"></a>日志配置</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tunnel:</span> <span class="string">&lt;UUID&gt;</span></span><br><span class="line"><span class="attr">credentials-file:</span> <span class="string">/path/to/credentials.json</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志级别：debug, info, warn, error</span></span><br><span class="line"><span class="attr">loglevel:</span> <span class="string">info</span></span><br><span class="line"></span><br><span class="line"><span class="attr">ingress:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">hostname:</span> <span class="string">example.com</span></span><br><span class="line">    <span class="attr">service:</span> <span class="string">http://localhost:8080</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">service:</span> <span class="string">http_status:404</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出所有隧道</span></span><br><span class="line">cloudflared tunnel list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看隧道信息</span></span><br><span class="line">cloudflared tunnel info my-tunnel</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除隧道</span></span><br><span class="line">cloudflared tunnel delete my-tunnel</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理未使用的连接</span></span><br><span class="line">cloudflared tunnel cleanup my-tunnel</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试配置文件</span></span><br><span class="line">cloudflared tunnel ingress validate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试特定 URL 的路由</span></span><br><span class="line">cloudflared tunnel ingress rule https://blog.example.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="故障排查"><a href="#故障排查" class="headerlink" title="故障排查"></a>故障排查</h2><h3 id="1-隧道无法连接"><a href="#1-隧道无法连接" class="headerlink" title="1. 隧道无法连接"></a>1. 隧道无法连接</h3><p>检查服务状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Linux</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl status cloudflared</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看日志</span></span><br><span class="line"><span class="built_in">sudo</span> journalctl -u cloudflared -f</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-502-Bad-Gateway"><a href="#2-502-Bad-Gateway" class="headerlink" title="2. 502 Bad Gateway"></a>2. 502 Bad Gateway</h3><ul>
+<li>确认本地服务正在运行</li>
+<li>检查配置文件中的端口是否正确</li>
+<li>确认防火墙没有阻止本地连接</li>
+</ul>
+<h3 id="3-DNS-解析问题"><a href="#3-DNS-解析问题" class="headerlink" title="3. DNS 解析问题"></a>3. DNS 解析问题</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查 DNS 记录</span></span><br><span class="line">nslookup blog.example.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新配置 DNS</span></span><br><span class="line">cloudflared tunnel route dns my-tunnel blog.example.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-证书问题"><a href="#4-证书问题" class="headerlink" title="4. 证书问题"></a>4. 证书问题</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重新登录</span></span><br><span class="line">cloudflared tunnel login</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查证书文件是否存在</span></span><br><span class="line"><span class="built_in">ls</span> ~/.cloudflared/</span><br></pre></td></tr></table></figure>
+
+<h2 id="实际应用场景"><a href="#实际应用场景" class="headerlink" title="实际应用场景"></a>实际应用场景</h2><h3 id="1-个人博客部署"><a href="#1-个人博客部署" class="headerlink" title="1. 个人博客部署"></a>1. 个人博客部署</h3><p>将本地运行的 Hexo 博客暴露到公网：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ingress:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">hostname:</span> <span class="string">blog.example.com</span></span><br><span class="line">    <span class="attr">service:</span> <span class="string">http://localhost:4000</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">service:</span> <span class="string">http_status:404</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-开发环境分享"><a href="#2-开发环境分享" class="headerlink" title="2. 开发环境分享"></a>2. 开发环境分享</h3><p>快速分享本地开发环境给团队成员：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cloudflared tunnel --url http://localhost:3000</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-家庭服务器"><a href="#3-家庭服务器" class="headerlink" title="3. 家庭服务器"></a>3. 家庭服务器</h3><p>将家里的 NAS、媒体服务器等暴露到公网：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ingress:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">hostname:</span> <span class="string">nas.example.com</span></span><br><span class="line">    <span class="attr">service:</span> <span class="string">http://192.168.1.100:5000</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">hostname:</span> <span class="string">media.example.com</span></span><br><span class="line">    <span class="attr">service:</span> <span class="string">http://192.168.1.101:8096</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">service:</span> <span class="string">http_status:404</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-IoT-设备管理"><a href="#4-IoT-设备管理" class="headerlink" title="4. IoT 设备管理"></a>4. IoT 设备管理</h3><p>安全地访问内网的 IoT 设备管理界面。</p>
+<h2 id="安全建议"><a href="#安全建议" class="headerlink" title="安全建议"></a>安全建议</h2><ol>
+<li><strong>启用 Cloudflare Access</strong>：为敏感服务添加身份验证</li>
+<li><strong>使用强密码</strong>：为本地服务设置强密码</li>
+<li><strong>定期更新</strong>：保持 cloudflared 版本最新</li>
+<li><strong>最小权限原则</strong>：只暴露必要的服务</li>
+<li><strong>监控日志</strong>：定期检查访问日志</li>
+</ol>
+<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><ol>
+<li><strong>选择合适的数据中心</strong>：cloudflared 会自动选择最近的 Cloudflare 数据中心</li>
+<li><strong>启用压缩</strong>：Cloudflare 会自动压缩内容</li>
+<li><strong>使用缓存</strong>：配置适当的缓存规则</li>
+<li><strong>HTTP&#x2F;2 支持</strong>：Cloudflare Tunnel 原生支持 HTTP&#x2F;2</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Cloudflare Tunnel 是一个强大且免费的工具，特别适合：</p>
+<ul>
+<li>个人开发者快速部署项目</li>
+<li>没有公网 IP 的家庭服务器</li>
+<li>需要临时分享本地服务</li>
+<li>需要安全访问内网资源</li>
+</ul>
+<p>通过本教程，你应该已经掌握了 Cloudflare Tunnel 的基本使用方法。现在就可以开始使用它来部署你的服务了！</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/">Cloudflare Tunnel 官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/cloudflare/cloudflared">cloudflared GitHub 仓库</a></li>
+<li><a target="_blank" rel="noopener" href="https://dash.cloudflare.com/">Cloudflare Dashboard</a></li>
+</ul>
+
+      </div>
+    </div>
+  </article>
+  <div class="post__foot post__foot--toc">
+    <div class="post-nav">
+  
+    <a class="post-nav-item-left" href="/2026/04/13/github-actions-content-editor/">
+      <span class="post-nav-label">
+        <svg class="post-nav-icon"
+             viewBox="0 0 24 24"
+             width="14"
+             height="14"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             aria-hidden="true">
+          <polyline points="15 5 8 12 15 19"/>
+        </svg>
+        上一篇
+      </span>
+      <span class="post-nav-title">我是怎么把 GitHub Actions 用成个人主页内容编辑器的</span>
+    </a>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2025/12/31/2025-year-in-review/">
+      <span class="post-nav-label">
+        下一篇
+        <svg class="post-nav-icon"
+             viewBox="0 0 24 24"
+             width="14"
+             height="14"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             aria-hidden="true">
+          <polyline points="9 5 16 12 9 19"/>
+        </svg>
+      </span>
+      <span class="post-nav-title">2025年「且行且歌」</span>
+    </a>
+  
+</div>
+
+  </div>
+
+    </main>
+    <footer class="foot">
+  <div class="foot-inner">
+    <div class="foot__head">
+      
+        <div class="foot-line">
+          <div class="matts">秋</div><div class="matts">风</div><div class="matts">飘</div><div class="matts">起</div><div class="matts">黄</div><div class="matts">叶</div><div class="matts">落</div>
+        </div>
+      
+        <div class="foot-line">
+          <div class="matts">岁</div><div class="matts">月</div><div class="matts">静</div><div class="matts">好</div><div class="matts">心</div><div class="matts">安</div><div class="matts">然</div>
+        </div>
+      
+    </div>
+    <div class="foot__body">
+      
+        <div class="foot-item">
+          <div class="foot-item__head">朋友</div>
+          <div class="foot-item__body">
+            
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-link.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/ox0pine">My GitHub</a>
+          </div>
+        
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-link+.svg"/>
+            <a class="foot-link" href="mailto:ox0pine@gmail.com?subject=申请https://ox0pine.github.io的友链">申请友链</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+      
+        <div class="foot-item">
+          <div class="foot-item__head">账号</div>
+          <div class="foot-item__body">
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/logo-github.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/ox0pine">@ox0pine</a>
+          </div>
+        
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/logo-twitter.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://x.com/ox0pine">@ox0pine</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+      
+        <div class="foot-item">
+          <div class="foot-item__head">联系</div>
+          <div class="foot-item__body">
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-email.svg"/>
+            <a class="foot-link" href="mailto:ox0pine@gmail.com">ox0pine@gmail.com</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+    </div>
+    <div class="copyright">
+      <a href="/">秋风飘起黄叶落のblog</a> &nbsp;|&nbsp;记录我的生活
+      
+        &nbsp;|&nbsp;<a href="/atom.xml">RSS 订阅</a>
+      
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+      <script src="/js/search.js" defer></script>
+      <script>
+        window.addEventListener('DOMContentLoaded', function () {
+          searchInitialize("/search.json")
+        })
+      </script>
+    
+    
+      <script src="/js/copy-code.js" defer></script>
+    
+    
+  <script src="/js/toc.js" defer></script>
+
+  </body>
+</html>

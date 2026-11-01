@@ -1,0 +1,582 @@
+<!DOCTYPE html><html lang="zh-CN">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#ffffff"/>
+
+    <title>我是怎么把 GitHub Actions 用成个人主页内容编辑器的 | 秋风飘起黄叶落のblog</title>
+    <link rel="canonical" href="https://ox0pine.github.io/2026/04/13/github-actions-content-editor/"/>
+    
+      <link rel="alternate"
+            type="application/atom+xml"
+            title="秋风飘起黄叶落のblog"
+            href="/atom.xml"/>
+      <link rel="alternate"
+            type="application/rss+xml"
+            title="秋风飘起黄叶落のblog"
+            href="/rss2.xml"/>
+    
+    <meta name="description" content="这次重新搭建个人主页，我原本只是想换一个更顺手的前端方案，最后却意外把 GitHub Actions 用成了网站背后的“内容编辑器”。 重新搭建主页时，我在想什么 前段时间，我把自己的个人主页重新搭了一遍。 一开始的目标其实很简单：页面干净一点，结构清楚一点，部署轻一点。于是我用 React、Vite 和 Base..."/>
+    <meta name="keywords" content="个人博客,技术博客,大模型,AI开发,全栈开发,编程学习,生活随笔,Hexo博客,ox0pine"/>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article"/>
+    <meta property="og:site_name" content="秋风飘起黄叶落のblog"/>
+    <meta property="og:locale" content="zh_CN"/>
+    <meta property="og:title" content="我是怎么把 GitHub Actions 用成个人主页内容编辑器的 | 秋风飘起黄叶落のblog"/>
+    <meta property="og:description" content="这次重新搭建个人主页，我原本只是想换一个更顺手的前端方案，最后却意外把 GitHub Actions 用成了网站背后的“内容编辑器”。 重新搭建主页时，我在想什么 前段时间，我把自己的个人主页重新搭了一遍。 一开始的目标其实很简单：页面干净一点，结构清楚一点，部署轻一点。于是我用 React、Vite 和 Base..."/>
+    <meta property="og:url" content="https://ox0pine.github.io/2026/04/13/github-actions-content-editor/"/>
+    <meta property="og:image" content="https://ox0pine.github.io/images/logo.svg"/>
+    <meta property="article:published_time" content="2026-04-13T00:00:00+00:00"/>
+    <meta property="article:modified_time" content="2026-10-30T08:02:47+00:00"/>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="我是怎么把 GitHub Actions 用成个人主页内容编辑器的 | 秋风飘起黄叶落のblog"/>
+    <meta name="twitter:description" content="这次重新搭建个人主页，我原本只是想换一个更顺手的前端方案，最后却意外把 GitHub Actions 用成了网站背后的“内容编辑器”。 重新搭建主页时，我在想什么 前段时间，我把自己的个人主页重新搭了一遍。 一开始的目标其实很简单：页面干净一点，结构清楚一点，部署轻一点。于是我用 React、Vite 和 Base..."/>
+    <meta name="twitter:url" content="https://ox0pine.github.io/2026/04/13/github-actions-content-editor/"/>
+    <meta name="twitter:image" content="https://ox0pine.github.io/images/logo.svg"/>
+
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon" href="/images/logo.svg"/>
+    
+
+    
+      
+
+  <link rel="preload"
+        href="/font/normal.woff2"
+        as="font"
+        type="font/woff2"
+        crossorigin/>
+
+
+  <style>
+    @font-face {
+      font-family: LXGWWenKai;
+      src: url('/font/normal.woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: optional;
+    }
+  </style>
+
+  <style>
+    @font-face {
+      font-family: LXGWWenKai;
+      src: url('/font/bold.woff2');
+      font-weight: bold;
+      font-style: normal;
+      font-display: optional;
+    }
+  </style>
+
+
+    
+
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+
+    
+      <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"我是怎么把 GitHub Actions 用成个人主页内容编辑器的","image":["https://ox0pine.github.io/images/logo.svg"],"datePublished":"2026-04-13T00:00:00+00:00","dateModified":"2026-10-30T08:02:47+00:00","author":{"@type":"Person","name":"ox0pine"},"publisher":{"@type":"Organization","name":"秋风飘起黄叶落のblog","logo":{"@type":"ImageObject","url":"https://ox0pine.github.io/images/logo.svg"}},"description":"这次重新搭建个人主页，我原本只是想换一个更顺手的前端方案，最后却意外把 GitHub Actions 用成了网站背后的“内容编辑器”。 重新搭建主页时，我在想什么 前段时间，我把自己的个人主页重新搭了一遍。 一开始的目标其实很简单：页面干净一点，结构清楚一点，部署轻一点。于是我用 React、Vite 和 Base...","mainEntityOfPage":{"@type":"WebPage","@id":"https://ox0pine.github.io/2026/04/13/github-actions-content-editor/"}}</script>
+    
+      <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://ox0pine.github.io/"},{"@type":"ListItem","position":2,"name":"tech","item":"https://ox0pine.github.io/categories/tech/"},{"@type":"ListItem","position":3,"name":"我是怎么把 GitHub Actions 用成个人主页内容编辑器的","item":"https://ox0pine.github.io/2026/04/13/github-actions-content-editor/"}]}</script>
+    
+
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+
+  <meta name="generator" content="Hexo 8.1.2"></head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+    
+      <div id="search-mask" role="dialog" aria-modal="true" aria-label="站内搜索">
+  <div class="search-main" id="search-main">
+    <div class="search__head">
+      <div class="search-form">
+        <svg t="1706347533072"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             width="20"
+             height="20"
+             aria-hidden="true">
+          <path d="M685.6 660.336l155.152 155.168a16 16 0 0 1 0 22.624l-11.312 11.328a16 16 0 0 1-22.624 0l-158.528-158.544a289.792 289.792 0 0 1-165.152 51.36C322.336 742.256 192 611.904 192 451.12 192 290.336 322.336 160 483.136 160c160.784 0 291.12 130.336 291.12 291.136 0 82.112-33.984 156.272-88.672 209.2z m-202.464 33.92c134.272 0 243.12-108.848 243.12-243.12C726.256 316.848 617.408 208 483.136 208 348.848 208 240 316.848 240 451.136c0 134.272 108.848 243.12 243.136 243.12z" fill="currentColor"></path>
+        </svg>
+        <input id="search-input"
+               type="search"
+               placeholder="搜索文章"
+               aria-label="搜索文章"
+               autocomplete="off"/>
+        <svg t="1706361500528"
+             id="search-clear"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             width="20"
+             height="20"
+             role="button"
+             tabindex="0"
+             aria-label="清空搜索">
+          <path d="M512 562.688l-264.2944 264.2944-50.688-50.688L461.312 512 197.0176 247.7056l50.688-50.688L512 461.312l264.2944-264.2944 50.688 50.688L562.688 512l264.2944 264.2944-50.688 50.688L512 562.688z" fill="currentColor"></path>
+        </svg>
+      </div>
+    </div>
+    <div class="search__body" id="search-result" aria-live="polite"></div>
+    <div class="search__foot"></div>
+  </div>
+</div>
+
+    
+    <div class="head">
+      <div class="nav">
+        <a href="/" class="nav-logo" aria-label="秋风飘起黄叶落のblog 首页">
+          <img alt=""
+               width="60"
+               height="60"
+               loading="eager"
+               fetchpriority="high"
+               src="/images/logo.svg"/>
+        </a>
+        <input id="navBtn" type="checkbox" aria-hidden="true" tabindex="-1"/>
+        <div class="nav-right">
+          
+            <div class="search-outer"><div class="search"
+     id="search-btn"
+     role="button"
+     tabindex="0"
+     aria-label="打开搜索"
+     aria-keyshortcuts="Control+K Meta+K">
+  <svg t="1706347533072"
+       class="icon"
+       viewBox="0 0 1024 1024"
+       version="1.1"
+       xmlns="http://www.w3.org/2000/svg"
+       width="20"
+       height="20"
+       aria-hidden="true">
+    <path d="M685.6 660.336l155.152 155.168a16 16 0 0 1 0 22.624l-11.312 11.328a16 16 0 0 1-22.624 0l-158.528-158.544a289.792 289.792 0 0 1-165.152 51.36C322.336 742.256 192 611.904 192 451.12 192 290.336 322.336 160 483.136 160c160.784 0 291.12 130.336 291.12 291.136 0 82.112-33.984 156.272-88.672 209.2z m-202.464 33.92c134.272 0 243.12-108.848 243.12-243.12C726.256 316.848 617.408 208 483.136 208 348.848 208 240 316.848 240 451.136c0 134.272 108.848 243.12 243.136 243.12z" fill="currentColor"></path>
+  </svg>
+  <span class="search-label">搜索</span>
+  <span class="search-shortcut-key">Ctrl K</span>
+</div>
+</div>
+          
+          <div class="nav-menu">
+            
+              
+                
+                <a class="nav-menu-item"
+                   href="/tech/">技术杂谈</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/life/">生活随笔</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/apps/">开源作品</a>
+              
+                
+                <a class="nav-menu-item"
+                   href="/moments/">动态随笔</a>
+              
+            
+            
+          </div>
+        </div>
+        <label class="nav-btn" for="navBtn" aria-label="打开导航菜单"></label>
+      </div>
+    </div>
+    <main class="body" id="main-content">
+      
+  <article class="post-content">
+    <div class="post-inner post-inner--toc">
+      <div class="post-content__head">
+        <h1 class="post-title">我是怎么把 GitHub Actions 用成个人主页内容编辑器的</h1>
+        <div class="post-info">
+          
+  <a href="/tags/GitHub-Actions/" class="post-tag">#GitHub Actions</a><a href="/tags/GitHub/" class="post-tag">#GitHub</a><a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" class="post-tag">#自动化</a><a href="/tags/Base-UI/" class="post-tag">#Base UI</a><a href="/tags/%E4%B8%AA%E4%BA%BA%E4%B8%BB%E9%A1%B5/" class="post-tag">#个人主页</a>
+
+
+          <time class="post-date" datetime="2026-04-13">2026-04-13</time>
+          
+            <span class="post-category">分类:
+              
+                <a href="/categories/tech/">tech</a>
+              
+            </span>
+          
+        </div>
+        
+        
+      </div>
+      
+        <aside class="toc-outer" aria-label="文章目录">
+          <div class="toc-title">目录</div>
+          <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%87%8D%E6%96%B0%E6%90%AD%E5%BB%BA%E4%B8%BB%E9%A1%B5%E6%97%B6%EF%BC%8C%E6%88%91%E5%9C%A8%E6%83%B3%E4%BB%80%E4%B9%88"><span class="post-toc-text">重新搭建主页时，我在想什么</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Base-UI-%E7%BB%99%E6%88%91%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%90%AF%E5%8F%91"><span class="post-toc-text">Base UI 给我的一个小启发</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%90%8E%E6%9D%A5%E6%88%91%E6%8A%8A%E4%B8%BB%E9%A1%B5%E6%8B%86%E6%88%90%E4%BA%86%E4%B8%A4%E9%83%A8%E5%88%86"><span class="post-toc-text">后来我把主页拆成了两部分</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#GitHub-Actions-%E5%9C%A8%E8%BF%99%E9%87%8C%EF%BC%8C%E5%83%8F%E4%B8%80%E4%B8%AA%E5%AE%89%E9%9D%99%E7%9A%84%E5%86%85%E5%AE%B9%E7%BC%96%E8%BE%91%E5%99%A8"><span class="post-toc-text">GitHub Actions 在这里，像一个安静的内容编辑器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E8%BF%99%E6%AC%A1%E9%87%8D%E6%90%AD%E4%B8%BB%E9%A1%B5%EF%BC%8C%E5%8F%8D%E8%80%8C%E8%AE%A9%E6%88%91%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86%E4%BA%86-GitHub-Actions"><span class="post-toc-text">这次重搭主页，反而让我重新认识了 GitHub Actions</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%99%A4%E4%BA%86%E5%88%B7%E6%96%B0%E4%B8%BB%E9%A1%B5%E5%86%85%E5%AE%B9%EF%BC%8CGitHub-Actions-%E5%85%B6%E5%AE%9E%E8%BF%98%E8%83%BD%E5%81%9A%E5%BE%88%E5%A4%9A%E4%BA%8B"><span class="post-toc-text">除了刷新主页内容，GitHub Actions 其实还能做很多事</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-%E5%AE%9A%E6%97%B6%E5%90%8C%E6%AD%A5%E5%86%85%E5%AE%B9"><span class="post-toc-text">1. 定时同步内容</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E4%BB%93%E5%BA%93%E9%87%8C%E7%9A%84%E5%B1%95%E7%A4%BA%E5%86%85%E5%AE%B9"><span class="post-toc-text">2. 自动生成仓库里的展示内容</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-%E5%81%9A%E4%B8%80%E4%BA%9B%E8%BD%BB%E9%87%8F%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E5%92%8C%E5%BD%92%E6%A1%A3"><span class="post-toc-text">3. 做一些轻量的数据备份和归档</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-%E8%AE%A9%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%8B%A5%E6%9C%89%E4%B8%80%E7%82%B9%E2%80%9C%E5%8A%A8%E6%80%81%E6%84%9F%E2%80%9D"><span class="post-toc-text">4. 让静态网站拥有一点“动态感”</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%86%99%E5%88%B0%E8%BF%99%E9%87%8C%EF%BC%8C%E6%88%91%E5%8F%8D%E8%80%8C%E8%A7%89%E5%BE%97%E8%BF%99%E5%83%8F%E6%98%AF%E4%B8%80%E7%A7%8D%E7%BD%91%E7%AB%99%E8%A7%82"><span class="post-toc-text">写到这里，我反而觉得这像是一种网站观</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%8F%82%E8%80%83"><span class="post-toc-text">参考</span></a></li></ol>
+          <a href="#main-content" class="toc-top">回到顶部</a>
+        </aside>
+      
+      <div class="post-content__body">
+        
+        <blockquote>
+<p>这次重新搭建个人主页，我原本只是想换一个更顺手的前端方案，最后却意外把 GitHub Actions 用成了网站背后的“内容编辑器”。</p>
+</blockquote>
+<h2 id="重新搭建主页时，我在想什么"><a href="#重新搭建主页时，我在想什么" class="headerlink" title="重新搭建主页时，我在想什么"></a>重新搭建主页时，我在想什么</h2><p>前段时间，我把自己的个人主页重新搭了一遍。</p>
+<p>一开始的目标其实很简单：页面干净一点，结构清楚一点，部署轻一点。于是我用 React、Vite 和 Base UI 重新把整个站点梳理了一遍，再挂到 Vercel 上，让它保持一个静态站点该有的轻盈。</p>
+<p>但真正开始做之后，我很快发现，主页最难的地方从来不是“搭出来”，而是“养起来”。</p>
+<p>页面本身可以很快上线，可一旦内容要靠手动维护，它就很容易停在某个时刻不再生长。写了新文章，要手动补最近文章；开了新仓库，要手动补项目展示。时间一长，主页就会变成一个样子还在、气息却慢慢淡下去的页面。</p>
+<p>所以这次重搭主页时，我想解决的其实不是样式，而是更新方式：<strong>能不能让它看起来是静态的，但内容是缓慢流动的。</strong></p>
+<h2 id="Base-UI-给我的一个小启发"><a href="#Base-UI-给我的一个小启发" class="headerlink" title="Base UI 给我的一个小启发"></a>Base UI 给我的一个小启发</h2><p>这次重搭还有一个让我印象很深的地方，是 Base UI 对 LLM 的友好度。</p>
+<p>它除了常规文档之外，还专门提供了 <a target="_blank" rel="noopener" href="https://base-ui.com/llms.txt"><code>llms.txt</code></a>，官方也明确提到，可以把文档的 Markdown 版本或者 <code>llms.txt</code> 直接提供给 AI 助手，帮助模型更准确地理解组件和 API。</p>
+<p><img loading="lazy" decoding="async" src="/2026/04/13/github-actions-content-editor/base-ui-llms.png" alt="Base UI 文档中的 Working with LLMs"></p>
+<p>这个细节让我很有感触。因为它其实在做一件很现代的事：不是只考虑“人怎么读文档”，而是连“模型怎么理解文档”也一起考虑进去了。</p>
+<p>某种程度上，我后来给主页做的内容链路，思路也是一样的：先把信息整理成稳定、结构化、容易消费的形式，再交给后面的系统去展示。</p>
+<h2 id="后来我把主页拆成了两部分"><a href="#后来我把主页拆成了两部分" class="headerlink" title="后来我把主页拆成了两部分"></a>后来我把主页拆成了两部分</h2><p>做到后面，我慢慢把整个主页理解成了两层：</p>
+<ol>
+<li><strong>前台页面</strong>：负责展示</li>
+<li><strong>后台内容流</strong>：负责更新</li>
+</ol>
+<p>前台页面就是 React + Vite + Base UI。</p>
+<p>后台内容流则是我后来补上的自动化链路：</p>
+<ul>
+<li>从博客里抓最近文章</li>
+<li>从 GitHub 抓最近公开仓库</li>
+<li>生成本地的 <code>data/content.ts</code></li>
+<li>提交回仓库</li>
+<li>让 Vercel 自动重新部署</li>
+</ul>
+<p>这样一来，前端运行时不需要再去现场请求博客或者 GitHub API，而是直接读取已经生成好的本地数据。</p>
+<p>我很喜欢这种方式。因为它保留了静态站点的简单，又让内容更新这件事变得不那么依赖人的勤快。</p>
+<h2 id="GitHub-Actions-在这里，像一个安静的内容编辑器"><a href="#GitHub-Actions-在这里，像一个安静的内容编辑器" class="headerlink" title="GitHub Actions 在这里，像一个安静的内容编辑器"></a>GitHub Actions 在这里，像一个安静的内容编辑器</h2><p>这个项目里，我最喜欢的部分其实是 <code>.github/workflows/refresh-content.yml</code>。</p>
+<p>它做的事情并不复杂：</p>
+<ol>
+<li>检出仓库</li>
+<li>安装 Node.js 22</li>
+<li>执行 <code>npm ci</code></li>
+<li>运行 <code>npm run generate:content</code></li>
+<li>只暂存 <code>data/content.ts</code></li>
+<li>如果有变化，就自动提交并推送</li>
+</ol>
+<p>它支持手动触发，也支持定时触发：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">workflow_dispatch:</span></span><br><span class="line">  <span class="attr">schedule:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">cron:</span> <span class="string">&#x27;0 0 * * *&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>对我来说，这个工作流最妙的地方在于，它并不像传统 CI 那样强调“测试通过、构建完成、发布成功”，而更像一个很安静的编辑器，在背后定时帮我整理内容。</p>
+<p>而 Vercel 又刚好接上了这一步：仓库一旦有新的提交，站点就自动重新部署。</p>
+<p>于是整条链路就很顺了：</p>
+<ul>
+<li>GitHub Actions 负责更新内容</li>
+<li>GitHub 仓库负责保存结果</li>
+<li>Vercel 负责把最新页面上线</li>
+</ul>
+<p>页面表面上很安静，但背后一直有一条自动化的水流在走。</p>
+<h2 id="这次重搭主页，反而让我重新认识了-GitHub-Actions"><a href="#这次重搭主页，反而让我重新认识了-GitHub-Actions" class="headerlink" title="这次重搭主页，反而让我重新认识了 GitHub Actions"></a>这次重搭主页，反而让我重新认识了 GitHub Actions</h2><p>以前我对 GitHub Actions 的理解比较朴素：跑测试、做构建、自动部署。</p>
+<p>当然这些都没错，但这次做完之后，我更强烈地感觉到，GitHub Actions 真正有趣的地方，不只是它能替你“发布代码”，而是它能替你“处理那些重复、稳定、适合被机器接手的事情”。</p>
+<p>把它放到个人项目里，这种感受会更明显。</p>
+<p>因为个人项目最容易卡住的地方，往往不是技术难度，而是维护意志。很多事情不是不会做，而是懒得重复做。GitHub Actions 恰好就适合接这种活。</p>
+<h2 id="除了刷新主页内容，GitHub-Actions-其实还能做很多事"><a href="#除了刷新主页内容，GitHub-Actions-其实还能做很多事" class="headerlink" title="除了刷新主页内容，GitHub Actions 其实还能做很多事"></a>除了刷新主页内容，GitHub Actions 其实还能做很多事</h2><p>这次做完主页之后，我反而开始觉得，GitHub Actions 在个人项目里的用法其实可以比 CI&#x2F;CD 更宽一些。</p>
+<h3 id="1-定时同步内容"><a href="#1-定时同步内容" class="headerlink" title="1. 定时同步内容"></a>1. 定时同步内容</h3><p>这是我这次实际用到的一类。</p>
+<p>只要某些数据来源是公开且稳定的，Actions 就很适合定时去抓取、清洗、生成本地数据，再交给静态站点渲染。</p>
+<p>比如：</p>
+<ul>
+<li>个人主页同步最近文章</li>
+<li>作品集同步最近项目</li>
+<li>导航页同步书签、工具或订阅内容</li>
+<li>静态页面定时生成榜单、清单、摘要</li>
+</ul>
+<p>这种用法的好处是，页面本身还是静态的，但内容不会完全停住。</p>
+<h3 id="2-自动生成仓库里的展示内容"><a href="#2-自动生成仓库里的展示内容" class="headerlink" title="2. 自动生成仓库里的展示内容"></a>2. 自动生成仓库里的展示内容</h3><p>很多仓库里的 README、项目首页、徽章信息，其实都可以自动维护。</p>
+<p>例如：</p>
+<ul>
+<li>自动刷新 README 中的项目状态</li>
+<li>自动生成最近更新记录</li>
+<li>自动汇总 issue &#x2F; release 信息</li>
+<li>自动整理博客、视频、文章索引</li>
+</ul>
+<p>这类事情人工也能做，但很容易拖。交给 Actions 之后，仓库会更像一个持续生长的对象，而不是写完就不再更新的代码堆。</p>
+<h3 id="3-做一些轻量的数据备份和归档"><a href="#3-做一些轻量的数据备份和归档" class="headerlink" title="3. 做一些轻量的数据备份和归档"></a>3. 做一些轻量的数据备份和归档</h3><p>个人项目里还有一类事情特别适合 Actions：周期性备份。</p>
+<p>比如：</p>
+<ul>
+<li>定时导出某些公开数据</li>
+<li>定时备份配置文件或生成产物</li>
+<li>定时把分散的信息汇总成一个仓库内可追踪的快照</li>
+</ul>
+<p>它不一定要很重，也不一定非得是企业级备份系统。有时候只是把零散的数据定期沉淀下来，就已经很有价值了。</p>
+<h3 id="4-让静态网站拥有一点“动态感”"><a href="#4-让静态网站拥有一点“动态感”" class="headerlink" title="4. 让静态网站拥有一点“动态感”"></a>4. 让静态网站拥有一点“动态感”</h3><p>我现在越来越喜欢的一种思路是：</p>
+<p><strong>不要急着把网站做成一个实时请求一堆接口的动态系统，而是先看看能不能用 Actions 把动态信息提前烘焙成静态内容。</strong></p>
+<p>这样做通常更简单，也更稳。</p>
+<p>对个人网站尤其如此：</p>
+<ul>
+<li>页面访问更快</li>
+<li>外部依赖更少</li>
+<li>部署更直接</li>
+<li>出问题时更容易定位</li>
+</ul>
+<p>很多看上去需要“动态”的需求，最后其实只要“每天更新一次”就够了。</p>
+<h2 id="写到这里，我反而觉得这像是一种网站观"><a href="#写到这里，我反而觉得这像是一种网站观" class="headerlink" title="写到这里，我反而觉得这像是一种网站观"></a>写到这里，我反而觉得这像是一种网站观</h2><p>这次重新搭主页，最后带给我的并不只是一个新的页面，而是一种更舒服的工作方式。</p>
+<p>前端负责把页面铺开，GitHub Actions 负责把内容整理好，Vercel 负责把结果送到线上。每一层都不重，但组合起来之后，网站就有了持续更新的能力。</p>
+<p>我越来越喜欢这种感觉：</p>
+<ul>
+<li>页面是静的</li>
+<li>内容是流动的</li>
+<li>人只负责决定方向</li>
+<li>机器负责处理重复劳动</li>
+</ul>
+<p>如果以后我再用一句话概括这次重搭主页的收获，大概会是：</p>
+<blockquote>
+<p>GitHub Actions 最有意思的地方，不只是帮我部署网站，而是帮我照看网站背后那条持续流动的内容线。</p>
+</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/ox0pine/ox0pine.top">ox0pine&#x2F;ox0pine.top</a></li>
+<li><a target="_blank" rel="noopener" href="https://base-ui.com/llms.txt">Base UI llms.txt</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions">GitHub Actions 工作流语法文档</a></li>
+</ul>
+
+      </div>
+    </div>
+  </article>
+  <div class="post__foot post__foot--toc">
+    <div class="post-nav">
+  
+    <a class="post-nav-item-left" href="/2026/11/01/omp-skills/">
+      <span class="post-nav-label">
+        <svg class="post-nav-icon"
+             viewBox="0 0 24 24"
+             width="14"
+             height="14"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             aria-hidden="true">
+          <polyline points="15 5 8 12 15 19"/>
+        </svg>
+        上一篇
+      </span>
+      <span class="post-nav-title">我把 15 个 skill 装进了 OMP</span>
+    </a>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2026/01/24/cloudflare-tunnel-guide/">
+      <span class="post-nav-label">
+        下一篇
+        <svg class="post-nav-icon"
+             viewBox="0 0 24 24"
+             width="14"
+             height="14"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             aria-hidden="true">
+          <polyline points="9 5 16 12 9 19"/>
+        </svg>
+      </span>
+      <span class="post-nav-title">如何使用Cloudflare Tunnel</span>
+    </a>
+  
+</div>
+
+  </div>
+
+    </main>
+    <footer class="foot">
+  <div class="foot-inner">
+    <div class="foot__head">
+      
+        <div class="foot-line">
+          <div class="matts">秋</div><div class="matts">风</div><div class="matts">飘</div><div class="matts">起</div><div class="matts">黄</div><div class="matts">叶</div><div class="matts">落</div>
+        </div>
+      
+        <div class="foot-line">
+          <div class="matts">岁</div><div class="matts">月</div><div class="matts">静</div><div class="matts">好</div><div class="matts">心</div><div class="matts">安</div><div class="matts">然</div>
+        </div>
+      
+    </div>
+    <div class="foot__body">
+      
+        <div class="foot-item">
+          <div class="foot-item__head">朋友</div>
+          <div class="foot-item__body">
+            
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-link.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/ox0pine">My GitHub</a>
+          </div>
+        
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-link+.svg"/>
+            <a class="foot-link" href="mailto:ox0pine@gmail.com?subject=申请https://ox0pine.github.io的友链">申请友链</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+      
+        <div class="foot-item">
+          <div class="foot-item__head">账号</div>
+          <div class="foot-item__body">
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/logo-github.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/ox0pine">@ox0pine</a>
+          </div>
+        
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/logo-twitter.svg"/>
+            <a class="foot-link" target="_blank" rel="noopener" href="https://x.com/ox0pine">@ox0pine</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+      
+        <div class="foot-item">
+          <div class="foot-item__head">联系</div>
+          <div class="foot-item__body">
+            
+
+
+  
+  
+    <div class="foot-link-group">
+      
+        
+        
+          <div class="text">
+            <img alt=""
+                 height="20"
+                 width="20"
+                 loading="lazy"
+                 src="/images/icon/icon-email.svg"/>
+            <a class="foot-link" href="mailto:ox0pine@gmail.com">ox0pine@gmail.com</a>
+          </div>
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+    </div>
+  
+
+
+          </div>
+        </div>
+      
+    </div>
+    <div class="copyright">
+      <a href="/">秋风飘起黄叶落のblog</a> &nbsp;|&nbsp;记录我的生活
+      
+        &nbsp;|&nbsp;<a href="/atom.xml">RSS 订阅</a>
+      
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+      <script src="/js/search.js" defer></script>
+      <script>
+        window.addEventListener('DOMContentLoaded', function () {
+          searchInitialize("/search.json")
+        })
+      </script>
+    
+    
+      <script src="/js/copy-code.js" defer></script>
+    
+    
+  <script src="/js/toc.js" defer></script>
+
+  </body>
+</html>
