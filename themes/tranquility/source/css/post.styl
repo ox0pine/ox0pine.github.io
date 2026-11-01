@@ -36,8 +36,8 @@
 .post-inner--toc {
   max-width: 1200px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 260px;
-  column-gap: 72px;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  column-gap: 64px;
   align-items: start;
 
   .post-content__head,
@@ -131,17 +131,17 @@
   /* Nested levels keep a #666 floor: #999 on white is 2.8:1, which fails
      WCAG AA at these sizes. Depth is carried by indent and size instead. */
   color: $black-light;
-  font-size: 13px;
+  font-size: 15px;
   scrollbar-width: thin;
 
   .toc-title {
     display: block;
     margin: 0;
-    padding: 6px 0 10px 14px;
+    padding: 6px 0 12px 16px;
     color: $black-lighter;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.18em;
     line-height: 1;
   }
 
@@ -154,10 +154,10 @@
   .post-toc-link {
     display: block;
     margin-left: -1px;
-    padding: 5px 10px 5px 13px;
+    padding: 6px 10px 6px 15px;
     border-left: 2px solid transparent;
     color: inherit;
-    line-height: 1.55;
+    line-height: 1.6;
     text-decoration: none;
     transition: color 150ms ease, border-color 150ms ease;
 
@@ -168,23 +168,23 @@
   }
 
   .post-toc-level-3 .post-toc-link {
-    margin-left: 13px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 12px;
+    margin-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 14px;
     color: $black-lighter;
-    font-size: 12px;
-    line-height: 1.45;
+    font-size: 14px;
+    line-height: 1.5;
   }
 
   .post-toc-level-4 .post-toc-link {
-    margin-left: 26px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 12px;
+    margin-left: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 14px;
     color: $black-lighter;
-    font-size: 12px;
-    line-height: 1.45;
+    font-size: 13px;
+    line-height: 1.5;
   }
 
   .post-toc-link.is-active {
@@ -194,10 +194,10 @@
 
   .toc-top {
     display: inline-block;
-    margin-top: 14px;
-    padding: 4px 0 4px 13px;
+    margin-top: 16px;
+    padding: 4px 0 4px 15px;
     color: $grey-dark;
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: 0.08em;
     text-decoration: none;
     transition: color 150ms ease;
@@ -217,7 +217,7 @@
    owns the right 332px of a 1200px shell. */
 .post__foot--toc {
   max-width: 1200px;
-  padding-right: 332px;
+  padding-right: 364px;
   box-sizing: border-box;
 }
 
@@ -326,11 +326,11 @@
 /* Tablet-landscape widths keep the TOC but give the article its room back. */
 @media screen and (max-width: 1199px) and (min-width: 1024px) {
   .post-inner--toc {
-    grid-template-columns: minmax(0, 1fr) 200px;
+    grid-template-columns: minmax(0, 1fr) 230px;
     column-gap: 40px;
   }
 
   .post__foot--toc {
-    padding-right: 240px;
+    padding-right: 270px;
   }
 }
