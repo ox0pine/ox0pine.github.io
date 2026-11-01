@@ -5,7 +5,7 @@
   <link rel="preload"
         href="{{ url_for('/font/' ~ theme.zh_font.style[0] ~ '.' ~ theme.zh_font.type) }}"
         as="font"
-        type="font/ttf"
+        type="font/woff2"
         crossorigin/>
 {% endif %}
 {% for subfont in theme.zh_font.style %}

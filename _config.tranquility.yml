@@ -94,7 +94,7 @@ contacts:
 zh_font:
   enable: true
   fontName: LXGWWenKai
-  type: ttf
+  type: woff2
   style:
     - normal
     - bold

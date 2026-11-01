@@ -388,7 +388,7 @@ mathjax: true # 加载 LateX 数学公式库
 
 主题使用 [LXGW WenKai（霞鹜文楷）](https://github.com/lxgw/LxgwWenkai) 作为全站字体，Normal 取 `LXGWWenKai-Regular`、Bold 取 `LXGWWenKai-Medium`，源文件放在 `_font/` 下（SIL OFL 1.1）。
 
-汉字字体包很大，因此构建时只提取页面实际用到的字形，生成 `public/font/<style>.ttf`，通过 `@font-face` 以 `font-display: swap` 加载。
+汉字字体包很大，因此构建时只提取页面（文章、页面、X 动态、配置文案）实际用到的字形，生成 `public/font/<style>.woff2`（约 370 KB / 字重，由 `wawoff2` 压缩），通过 `@font-face` 以 `font-display: optional` 加载：字体及时到位就用文楷，否则本次加载稳定停在楷体回退字体，不在阅读中途替换。
 
 通过 `zh_font` 配置项进行开启或关闭；`fontName` 必须与 `_variables.styl` 里 `$font-family-serif` 的字族名一致。
 

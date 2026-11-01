@@ -23,7 +23,7 @@ source/_posts/**/*.md          Markdown + frontmatter
 generators: hexo-generator-index, tag, feed, sitemap
             themes/.../search.js → search.json
             themes/.../subpage.js → /blog/, configured subpages
-            themes/.../font.js   → /font/<style>.ttf (opentype.js subset)
+            themes/.../font.js   → /font/<style>.woff2 (opentype.js subset, wawoff2 encoded)
             themes/.../cv.js, scripts/redirects.js
         ▼
 layout/*.njk (nunjucks) + source/css/*.styl → public/

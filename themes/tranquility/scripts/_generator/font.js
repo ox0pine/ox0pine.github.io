@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const opentype = require('opentype.js');
+const woff2 = require('wawoff2');
 
 const { getObjValues } = require('../_utils');
 
@@ -15,7 +16,7 @@ const notdefGlyph = new opentype.Glyph({
 });
 
 module.exports = hexo => {
-  hexo.extend.generator.register('subfont', () => {
+  hexo.extend.generator.register('subfont', async () => {
     const { zh_font: zhFont } = hexo.theme.config;
 
     if (!zhFont || !zhFont.enable) return [];
@@ -23,14 +24,30 @@ module.exports = hexo => {
     const text = getSubText(hexo);
     hexo.log.debug('Extract subfont:', text);
 
-    return zhFont.style.map(style => ({
-      path: path.posix.join('/font', `${style}.${zhFont.type}`),
-      data: compress(text, {
-        source: path.resolve(FONT_DIR, `${style}.${zhFont.type}`),
+    // WOFF2 is ~43% of the TTF, which is what lets the face arrive inside the
+    // `font-display: optional` block period on a normal connection.
+    const encode = async ttf => (zhFont.type === 'woff2'
+      ? Buffer.from(await woff2.compress(new Uint8Array(ttf)))
+      : ttf);
+
+    // Sequential on purpose: the wawoff2 module is a single WASM instance and
+    // two concurrent compressions corrupt each other's output (one file ends
+    // up without the wOF2 magic).
+    const routes = [];
+    for (const style of zhFont.style) {
+      const ttf = compress(text, {
+        source: path.resolve(FONT_DIR, `${style}.ttf`),
         name: zhFont.fontName,
         style
-      })
-    }));
+      });
+
+      routes.push({
+        path: path.posix.join('/font', `${style}.${zhFont.type}`),
+        data: await encode(ttf)
+      });
+    }
+
+    return routes;
   });
 };
 
