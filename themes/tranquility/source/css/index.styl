@@ -33,13 +33,18 @@ for item in hexo-config('timeline.items') {
   transition: background-color 150ms ease;
 }
 
+/* The backdrop is a watermark: nearly invisible at rest, legible while the
+   pointer is over the cover. Touch screens have no hover, so they keep a
+   slightly thinner veil instead and see the leaves drift. */
 @media (hover: hover) and (pointer: fine) {
   .wall-main:hover+.wall-bg::before {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.74);
   }
+}
 
-  .wall-main:hover+.wall-bg .cursor {
-    animation: spark 1s ease infinite;
+@media (hover: none) {
+  .wall-bg::before {
+    background-color: rgba(255, 255, 255, 0.9);
   }
 }
 
@@ -77,90 +82,62 @@ for item in hexo-config('timeline.items') {
   letter-spacing: 0.2em;
 }
 
-#heart-curve {
+#leaf-field {
   position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 400px;
-  height: 400px;
-}
-
-.hello-world {
-  position: absolute;
-  /* Decorations live in the page margins: the centred title owns the middle
-     band, so anything anchored to `50%` ends up behind the headline. */
-  top: calc(50% - 240px);
-  left: 6vw;
-  font-size: 26px;
-  display: flex;
-  align-items: flex-end;
-  width: 220px;
-}
-
-.hello-world .cursor {
-  height: 2px;
-  width: 20px;
-  background-color: $text-color;
-}
-
-@keyframes spark {
-  0% {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 0;
-  }
-
-  51% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-/* Stand-in formula on the left margin: scaled dot-product attention, the
-   single line everyone in this field recognises. Typeset as text rather than
-   an SVG so it follows the site serif and needs no glyph subsetting. */
-.normal-eqt {
-  position: absolute;
-  bottom: 22%;
-  left: 6vw;
-  color: $black-light;
-  font-family: $font-family-serif;
-  font-size: 22px;
-  line-height: 1.9;
-  white-space: nowrap;
-
-  i {
-    font-style: italic;
-  }
-
-  sup, sub {
-    font-size: 0.68em;
-  }
-}
-
-.motto {
-  font-size: 28px;
-  font-weight: bold;
-  left: 6vw;
-  bottom: 6%;
-  position: absolute;
-  opacity: 0.3;
-}
-
-.poem {
-  font-size: 18px;
-  position: absolute;
-  font-family: $font-family-serif;
+  top: 0;
   left: 0;
   right: 0;
-  text-align: center;
-  top: calc(50% + 120px);
-  opacity: 0.2;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* The couplet runs down the right margin as a vertical inscription, the way
+   it would sit on a scroll. Reading order stays right-to-left. It only has
+   room to clear the headline once the cover is wider than 1200px. */
+.poem {
+  position: absolute;
+  top: 50%;
+  right: 24px;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  font-family: $font-family-serif;
+  font-size: 21px;
+  letter-spacing: 0.32em;
+  line-height: 1.6;
+  color: $black-lighter;
+  opacity: 0.85;
+}
+
+@media screen and (max-width: 1279px) {
+  .poem {
+    display: none;
+  }
+}
+
+.poem__line {
+  display: block;
+}
+
+/* Bottom-left signature: a hairline, then the motto in wide tracking. */
+.motto {
+  position: absolute;
+  left: 6vw;
+  bottom: 12%;
+  font-family: $font-family-serif;
+  font-size: 14px;
+  letter-spacing: 0.34em;
+  color: $black-light;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 34px;
+    height: 1px;
+    margin-bottom: 12px;
+    background-color: $grey-light;
+  }
 }
 
 @keyframes flyIn {
@@ -451,27 +428,17 @@ for v, k in timeline_colors {
     min-height: 420px;
   }
 
-  /* Decorations are grid-positioned for wide screens; on a phone the curve
-     sits on top of the subtitle text and the formula becomes unreadable.
-     Keep the terminal line above the title and drop the rest to the bottom. */
-  .hello-world {
-    font-size: 20px;
-    left: 20px;
-    right: auto;
-    top: calc(50% - 200px);
-  }
-
-  .normal-eqt,
+  /* A vertical couplet needs side margin to breathe; at 390px it would sit
+     under the headline, so phones keep only the falling leaves. */
   .poem {
     display: none;
   }
 
-  #heart-curve {
-    top: auto;
-    bottom: 10px;
-    width: 240px;
-    height: 240px;
-    margin-top: 0;
+  .motto {
+    left: 20px;
+    bottom: 10%;
+    font-size: 13px;
+    letter-spacing: 0.28em;
   }
 
   .about {
