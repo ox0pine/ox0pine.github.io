@@ -35,3 +35,9 @@ $font-family-serif = sourceHanSerif, "Songti SC", "Noto Serif CJK SC", "Source H
 $font-family-base = $font-family-serif;
 $max-width = 1200px;
 $content-width = 900px;
+/* Custom easing curves. The built-in ease-* keywords are too weak to read as
+   intentional at UI durations: entering an element uses $ease-out so it
+   answers the pointer immediately, in-place movement uses $ease-in-out so the
+   element accelerates and settles instead of starting slow. */
+$ease-out = cubic-bezier(0.23, 1, 0.32, 1);
+$ease-in-out = cubic-bezier(0.77, 0, 0.175, 1);

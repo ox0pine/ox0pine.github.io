@@ -30,15 +30,17 @@ for item in hexo-config('timeline.items') {
   z-index: 2;
   content: ' ';
   background-color: rgba(255, 255, 255, 0.95);
-  transition: background-color 200ms ease-in;
+  transition: background-color 150ms ease;
 }
 
-.wall-main:hover+.wall-bg::before {
-  background-color: rgba(255, 255, 255, 0.8);
-}
+@media (hover: hover) and (pointer: fine) {
+  .wall-main:hover+.wall-bg::before {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
 
-.wall-main:hover+.wall-bg .cursor {
-  animation: spark 1s ease infinite;
+  .wall-main:hover+.wall-bg .cursor {
+    animation: spark 1s ease infinite;
+  }
 }
 
 .wall-main {
@@ -54,7 +56,7 @@ for item in hexo-config('timeline.items') {
   font-size: clamp(2.25rem, 7.2vw, 4.5rem);
   line-height: 1.15;
   overflow-wrap: anywhere;
-  animation: flyIn 500ms ease-out;
+  animation: flyIn 480ms $ease-out;
 }
 
 .wall-subtitle {
@@ -165,11 +167,13 @@ for item in hexo-config('timeline.items') {
   background-size: cover;
   background-repeat: no-repeat;
   margin: 0 10px;
-  transition: all 200ms ease-out;
+  transition: transform 220ms $ease-out, box-shadow 220ms ease;
 
-  &:hover {
-    box-shadow: 0 0 14px 0 $anchor-border;
-    transform: translateY(-4px);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      box-shadow: 0 0 14px 0 $anchor-border;
+      transform: translateY(-4px);
+    }
   }
 }
 
@@ -258,10 +262,10 @@ for item in hexo-config('timeline.items') {
   width: 2px;
   border-radius: 1px;
   background: #ccc;
-  transition: all 0.4s ease;
+  transition: background-color 180ms ease;
 
   &::after {
-    transition: all 0.4s ease;
+    transition: background-color 180ms ease, transform 180ms $ease-out;
     display: block;
     height: 20px;
     width: 20px;
@@ -291,7 +295,7 @@ for v, k in timeline_colors {
 
     &::after {
       background-color: convert(k);
-      top: -2px;
+      transform: translateY(-24px);
     }
   }
 
@@ -380,8 +384,7 @@ for v, k in timeline_colors {
   align-items: center;
   font-size: 18px;
   overflow: hidden;
-  transition: all 200ms ease-out;
-  transition-delay: 200ms;
+  transition: opacity 160ms ease-out, transform 180ms $ease-out, height 200ms $ease-out, padding 200ms $ease-out;
   height: 80px;
 
   &-first, &-last {
@@ -440,12 +443,6 @@ for v, k in timeline_colors {
   color: #fff;
   padding: 0 4px;
   border-radius: 3px;
-}
-
-@media (hover: none) {
-  .wall-bg .cursor {
-    animation: spark 1s ease infinite;
-  }
 }
 
 @media screen and (max-width: 1023px) {

@@ -5,14 +5,16 @@
   cursor: pointer;
   overflow: hidden;
   width: 20px;
-  transition: all ease-out 200ms;
+  transition: width 200ms $ease-out, transform 200ms $ease-out;
   position: absolute;
   right: 0;
 
   +desktop() {
-    &:hover {
-      width: 120px;
-      transform: translateX(50px);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        width: 120px;
+        transform: translateX(50px);
+      }
     }
 
     margin-right: 40px;

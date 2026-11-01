@@ -94,8 +94,13 @@ if (hexo-config('algolia.enable')) {
     position: fixed;
     top: 60px;
     bottom: 0;
-    height: 0;
-    transition: height 200ms ease-out;
+    height: 100%;
+    /* Reveal with a composited clip instead of animating `height`, which
+       relayouts every row on each frame. Closed panels ignore the pointer so
+       the invisible panel never swallows taps meant for the page. */
+    clip-path: inset(0 0 100% 0);
+    pointer-events: none;
+    transition: clip-path 240ms $ease-out;
     left: 0;
     right: 0;
     z-index: 4;
@@ -129,7 +134,7 @@ if (hexo-config('algolia.enable')) {
     width: 40px;
 
     &::before, &::after {
-      transition: transform 200ms ease-out;
+      transition: transform 220ms $ease-out;
       content: '';
       background: $black-dim;
       width: 30px;
@@ -148,7 +153,8 @@ if (hexo-config('algolia.enable')) {
   }
 
   #navBtn:checked ~ .nav-right .nav-menu {
-    height: 100%;
+    clip-path: inset(0 0 0 0);
+    pointer-events: auto;
   }
 
   #navBtn:checked ~ .nav-btn {

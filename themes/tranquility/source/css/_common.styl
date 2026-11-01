@@ -55,19 +55,26 @@ mjx-container {
   position: relative;
 }
 
+/* Underline grows with a composited scaleX instead of animating `width`, which
+   would relayout the link on every frame. Touch devices get no hover state and
+   therefore no underline to get stuck in. */
 .hover-line::after {
-  transition: width 200ms ease-out;
+  transition: transform 180ms $ease-out;
   content: '';
   position: absolute;
   height: 2px;
-  width: 0;
+  width: 100%;
   left: 0;
   bottom: -2px;
   background-color: #000;
+  transform: scaleX(0);
+  transform-origin: left;
 }
 
-.hover-line:hover::after {
-  width: 100%;
+@media (hover: hover) and (pointer: fine) {
+  .hover-line:hover::after {
+    transform: scaleX(1);
+  }
 }
 
 /* paginator */
@@ -94,12 +101,16 @@ mjx-container {
   border-radius: 50%;
   border: 1px solid $black-dim;
   margin: 0 8px;
-  transition: all 200ms ease-out;
+  transition: background-color 180ms ease, color 180ms ease, transform 140ms $ease-out;
 }
 
 .page-number:hover {
   background-color: $black-light;
   color: #fff;
+}
+
+.page-number:active:not(.current) {
+  transform: scale(0.94);
 }
 
 /* post */
@@ -119,7 +130,7 @@ mjx-container {
   color: #2c5fa5;
   display: inline-block;
   margin-right: 8px;
-  transition: color 200ms ease-out;
+  transition: color 150ms ease;
 }
 
 .post-tag:hover {
@@ -150,7 +161,7 @@ mjx-container {
 }
 
 #front-face, #back-face {
-  transition: transform 200ms ease-in;
+  transition: transform 220ms $ease-in-out;
   position: absolute;
   top: 0;
   right: 0;
@@ -167,8 +178,10 @@ mjx-container {
   filter: saturate(100%);
 }
 
+/* Celebration, not a permanent loop: three beats then rest. An element that
+   never stops moving is a constant draw on attention and battery. */
 #likeCode:checked~.like-btn svg {
-  animation: heartbeat 600ms ease-out infinite;
+  animation: heartbeat 600ms $ease-out 3;
 }
 
 #likeCode:checked~.author-face #back-face {
@@ -199,8 +212,12 @@ mjx-container {
   border: 1px solid #ee4242;
   filter: saturate(40%);
   padding: 6px 30px;
-  transition: all 300ms ease-in;
+  transition: filter 200ms ease, border-color 200ms ease, transform 120ms $ease-out;
   color: #ee4242;
+}
+
+.like-btn:active {
+  transform: scale(0.97);
 }
 
 .like-text {
@@ -210,13 +227,9 @@ mjx-container {
   color: $black-lighter;
 }
 
-.like-btn:hover svg {
-  animation: heartbeat 1s ease-out infinite;
-}
-
-@media (hover: none) {
-  .like-btn svg {
-    animation: heartbeat 1s ease-out infinite;
+@media (hover: hover) and (pointer: fine) {
+  .like-btn:hover svg {
+    animation: heartbeat 700ms $ease-out 1;
   }
 }
 
@@ -227,11 +240,13 @@ mjx-container {
   background: url(url_for('/images/matts.svg')) center center / contain no-repeat;
   align-items: center;
   padding: 8px;
-  transition: opacity 200ms ease-out;
+  transition: opacity 150ms ease;
 }
 
-.matts:hover {
-  opacity: 0.8;
+@media (hover: hover) and (pointer: fine) {
+  .matts:hover {
+    opacity: 0.8;
+  }
 }
 
 .matts-space {
@@ -253,7 +268,7 @@ mjx-container {
 
 @keyframes heartbeat {
   0% {
-    transform: scale(0.8);
+    transform: scale(1);
   }
 
   20% {
@@ -261,6 +276,6 @@ mjx-container {
   }
 
   100% {
-    transform: scale(0.8);
+    transform: scale(1);
   }
 }
