@@ -5,10 +5,12 @@
 .wall {
   user-select: none;
   -webkit-user-select: none;
-  /* `dvh` tracks the mobile URL bar; the `vh` line is the fallback and both
-     resolve to the same box on desktop. */
+  /* Cover band that fills most of the first screen. It is capped so the
+     "关于我" section starts right below the fold instead of a full viewport
+     of empty paper on tall monitors. */
   height: calc(100vh - 90px);
-  height: calc(100dvh - 90px);
+  height: min(calc(100dvh - 90px), 620px);
+  min-height: 440px;
   display: flex;
   justify-content: center;
   align-items: center;

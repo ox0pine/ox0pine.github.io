@@ -46,7 +46,6 @@ for item in hexo-config('timeline.items') {
 .wall-main {
   position: relative;
   text-align: center;
-  margin-top: -20vh;
   z-index: 3;
 }
 
@@ -75,10 +74,9 @@ for item in hexo-config('timeline.items') {
 #heart-curve {
   position: absolute;
   right: 0;
-  top: 50%;
+  bottom: 0;
   width: 400px;
   height: 400px;
-  margin-top: -200px;
 }
 
 .hello-world {
@@ -127,8 +125,8 @@ for item in hexo-config('timeline.items') {
 .motto {
   font-size: 28px;
   font-weight: bold;
-  right: 6vw;
-  bottom: 12%;
+  left: 6vw;
+  bottom: 6%;
   position: absolute;
   opacity: 0.3;
 }
@@ -160,7 +158,9 @@ for item in hexo-config('timeline.items') {
    改成窄栏居中的行文排版，靠字号与行距撑起留白，而不是靠一列占位。 */
 .about {
   max-width: 720px;
-  margin: 200px auto;
+  /* The hero already ends the first screen, so the section only needs a
+     breathing gap, not another 200px of blank paper. */
+  margin: 64px auto 160px;
   padding: 0 24px;
 }
 
@@ -192,7 +192,7 @@ for item in hexo-config('timeline.items') {
 
 .timeline {
   max-width: 1100px;
-  margin: 300px auto;
+  margin: 200px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -426,7 +426,8 @@ for v, k in timeline_colors {
 @media screen and (max-width: 1023px) {
   .wall {
     height: calc(100vh - 60px);
-    height: calc(100dvh - 60px);
+    height: min(calc(100dvh - 60px), 560px);
+    min-height: 420px;
   }
 
   /* Decorations are grid-positioned for wide screens; on a phone the curve
@@ -436,7 +437,7 @@ for v, k in timeline_colors {
     font-size: 20px;
     left: 20px;
     right: auto;
-    top: calc(50% - 260px);
+    top: calc(50% - 200px);
   }
 
   .normal-eqt,
@@ -446,14 +447,14 @@ for v, k in timeline_colors {
 
   #heart-curve {
     top: auto;
-    bottom: 32px;
-    width: 280px;
-    height: 280px;
+    bottom: 10px;
+    width: 240px;
+    height: 240px;
     margin-top: 0;
   }
 
   .about {
-    margin: 100px auto;
+    margin: 56px auto 120px;
   }
 
   .about-body-p {
@@ -463,7 +464,7 @@ for v, k in timeline_colors {
 
 @media screen and (max-width: 415px) {
   .timeline {
-    margin: 200px auto;
+    margin: 150px auto;
   }
 
   .timeline-list {
@@ -493,7 +494,7 @@ for v, k in timeline_colors {
   }
 
   .about {
-    margin: 60px auto;
+    margin: 40px auto 96px;
     padding: 0 18px;
   }
 
