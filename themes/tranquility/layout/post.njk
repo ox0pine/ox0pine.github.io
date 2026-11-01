@@ -23,8 +23,11 @@
             </span>
           {% endif %}
         </div>
-        {% if page.excerpt or page.description %}
-          <div class="post-excerpt">{{ page.excerpt or page.description }}</div>
+        {# Only an explicit `description` becomes the standfirst. Using
+           `page.excerpt` here repeated the pre-<!--more--> paragraph, which
+           is still part of the body. #}
+        {% if page.description %}
+          <div class="post-excerpt">{{ page.description }}</div>
         {% endif %}
       </div>
       {% if page.toc %}
