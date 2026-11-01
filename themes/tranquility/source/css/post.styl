@@ -36,8 +36,8 @@
 .post-inner--toc {
   max-width: 1030px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 200px;
-  column-gap: 30px;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  column-gap: 32px;
   align-items: start;
 
   .post-content__head,
@@ -85,30 +85,30 @@
   }
 }
 
+/* Sticky table of contents. A hairline rail carries the current-section
+   marker so the list stays monochrome and a single accent colour is enough.
+   Rail + text colour both change on the active entry, so the state survives
+   greyscale rendering. */
 .toc-outer {
   position: sticky;
-  top: 20px;
-  max-height: calc(100vh - 40px);
-  padding-left: 10px;
+  top: 32px;
+  max-height: calc(100vh - 64px);
   overflow-y: auto;
-  color: $black-lighter;
-  font-size: $font-size-small;
-
-  .toc-title, .toc-top {
-    display: inline-block;
-    padding: 8px 0;
-    color: $text-color;
-    font-size: $font-size-small;
-    height: 30px;
-    line-height: 30px;
-  }
+  padding-right: 4px;
+  border-left: 1px solid $gainsboro;
+  color: $black-extra-lighter;
+  font-size: 13px;
+  scrollbar-width: thin;
 
   .toc-title {
-    border-top: 2px solid $white-blue;
-  }
-
-  a {
-    text-decoration: none;
+    display: block;
+    margin: 0;
+    padding: 6px 0 10px 14px;
+    color: $grey-dark;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.22em;
+    line-height: 1;
   }
 
   ol, li {
@@ -117,25 +117,59 @@
     padding: 0;
   }
 
-  .post-toc {
-    width: 100%;
-    text-align: left;
-    margin: 0;
-    padding: 0;
+  .post-toc-link {
+    display: block;
+    margin-left: -1px;
+    padding: 5px 10px 5px 13px;
+    border-left: 2px solid transparent;
+    color: inherit;
+    line-height: 1.55;
+    text-decoration: none;
+    transition: color 150ms ease, border-color 150ms ease;
+
+    &:hover {
+      color: $black-deep;
+      border-left-color: $grey-light;
+    }
+  }
+
+  .post-toc-level-3 .post-toc-link {
+    margin-left: 13px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 12px;
+    color: $grey-dark;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .post-toc-level-4 .post-toc-link {
+    margin-left: 26px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 12px;
+    color: $grey;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .post-toc-link.is-active {
+    border-left-color: $blue-link;
+    color: $blue-link;
+  }
+
+  .toc-top {
     display: inline-block;
-    box-sizing: border-box;
-    line-height: 1.25em;
+    margin-top: 14px;
+    padding: 4px 0 4px 13px;
+    color: $grey-dark;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: color 150ms ease;
 
-    &-level {
-      &-2 {
-        font-size: 15px;
-        margin: 5px 0;
-      }
-
-      &-3 {
-        font-size: 14px;
-        padding-left: 10px;
-      }
+    &:hover {
+      color: $blue-link;
     }
   }
 }
@@ -154,13 +188,12 @@
 
   .vhr {
     position: absolute;
-    height: 50px;
-    top: 0;
+    top: 6px;
     right: 0;
     left: 0;
-    bottom: 0;
+    bottom: 6px;
     margin: auto;
-    background-color: $whitesmoke;
+    background-color: $gainsboro;
     width: 1px;
   }
 }
@@ -170,6 +203,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  color: $black-light;
+  transition: color 150ms ease;
 
   &-left {
     @extend .post-nav-item;
@@ -182,6 +217,44 @@
     align-items: flex-end;
     padding-left: 15px;
   }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .post-nav-item-left:hover,
+  .post-nav-item-right:hover {
+    color: $blue-link;
+  }
+}
+
+/* Direction label: small, muted, with the chevron doing the pointing so the
+   two sides read as "back" and "forward" without relying on a font glyph. */
+.post-nav-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: $grey-dark;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  transition: color 150ms ease;
+}
+
+.post-nav-icon {
+  display: block;
+  transition: transform 150ms ease;
+}
+
+.post-nav-item-left:hover .post-nav-icon {
+  transform: translateX(-2px);
+}
+
+.post-nav-item-right:hover .post-nav-icon {
+  transform: translateX(2px);
+}
+
+.post-nav-title {
+  margin-top: 6px;
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 @media screen and (max-width: 1023px) {

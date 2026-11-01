@@ -3,6 +3,10 @@
   <link rel="stylesheet" type="text/css" href="{{ url_for('/css/post.css') }}"/>
 {% endblock link %}
 
+{% block script %}
+  {% if page.toc %}<script src="{{ url_for('js/toc.js') }}" defer></script>{% endif %}
+{% endblock script %}
+
 {% block body %}
   <article class="post-content">
     <div class="post-inner{{ ' post-inner--toc' if page.toc else '' }}">
