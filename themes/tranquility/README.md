@@ -386,9 +386,11 @@ mathjax: true # 加载 LateX 数学公式库
 
 ### 自定义字体
 
-主题的部分区域为了设计感使用了第三方的汉字字体。但由于汉字字体包太大，因此本主题对用户使用的部分字体进行了提取打包成子字体。
+主题使用 [LXGW WenKai（霞鹜文楷）](https://github.com/lxgw/LxgwWenkai) 作为全站字体，Normal 取 `LXGWWenKai-Regular`、Bold 取 `LXGWWenKai-Medium`，源文件放在 `_font/` 下（SIL OFL 1.1）。
 
-通过 `zh_font` 配置项进行开启或关闭
+汉字字体包很大，因此构建时只提取页面实际用到的字形，生成 `public/font/<style>.ttf`，通过 `@font-face` 以 `font-display: swap` 加载。
+
+通过 `zh_font` 配置项进行开启或关闭；`fontName` 必须与 `_variables.styl` 里 `$font-family-serif` 的字族名一致。
 
 ### Mermaid 增强
 

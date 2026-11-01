@@ -46,7 +46,7 @@ Hook priority is the ordering contract between scripts. Keep the comments that s
 | `themes/tranquility/scripts/` | Theme hooks: `_generator/`, `_helper/`, `filters/` |
 | `themes/tranquility/layout/` | Nunjucks templates (`index`, `post`, `category`, `tag`, `twitter`, `cv`, `_partials/`) |
 | `themes/tranquility/source/` | Stylus CSS entries + client JS (`search.js`, `copy-code.js`, `heart-curve.js`) |
-| `themes/tranquility/_font/` | 27 MB TTF sources subset at build time (see `_generator/font.js`) |
+| `themes/tranquility/_font/` | LXGW WenKai sources (`normal.ttf` = Regular, `bold.ttf` = Medium, ~49 MB, SIL OFL); `_generator/font.js` subsets them to every glyph used by posts, pages, tweets and config |
 | `_config.yml` / `_config.tranquility.yml` | Hexo core config / theme config override |
 
 ## Development Commands

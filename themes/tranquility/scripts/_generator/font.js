@@ -65,7 +65,24 @@ function getSubText(hexo) {
     ...(config.cv ? getObjValues(config.cv) : [])
   ];
 
-  // Must be sorted with .notdef first:
+  // Copy is rendered with this family too, so a subset built only from config
+  // strings leaves most glyphs to the platform fallback and the page ends up
+  // with two typefaces. Every post and page body is part of the subset.
+  const bodies = [
+    ...hexo.locals.get('posts').toArray(),
+    ...hexo.locals.get('pages').toArray()
+  ].map(item => item._content || '');
+
+  // The moments page renders X posts from _data/twitter.json, which is not
+  // part of any post body.
+  const data = hexo.locals.get('data') || {};
+  const twitter = data.twitter;
+  const tweets = twitter && Array.isArray(twitter.tweets)
+    ? twitter.tweets.map(tweet => tweet.text || '')
+    : [];
+
+  // Array.from keeps surrogate pairs whole; a lone half would become a
+  // spurious glyph. Must also be sorted with .notdef first:
   // https://github.com/opentypejs/opentype.js/issues/94
-  return [...new Set(text.join('').split(''))].sort().join('');
+  return [...new Set(Array.from([...text, ...bodies, ...tweets].join('')))].sort().join('');
 }

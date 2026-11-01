@@ -129,10 +129,7 @@ for item in hexo-config('timeline.items') {
   bottom: 22%;
   left: 6vw;
   color: $black-light;
-  /* Times-style serif reads as typeset maths; the subsetted Chinese font
-     only covers the glyphs the site copy uses, so Latin there would fall back
-     inconsistently. */
-  font-family: "Times New Roman", "Songti SC", serif;
+  font-family: $font-family-serif;
   font-size: 22px;
   line-height: 1.9;
   white-space: nowrap;

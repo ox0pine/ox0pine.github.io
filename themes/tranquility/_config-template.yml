@@ -68,7 +68,7 @@ contacts:
 # 可以通过替换 _font/ 目录下的字体文件替换自己喜欢的字体
 zh_font:
   enable: true
-  fontName: sourceHanSerif
+  fontName: LXGWWenKai
   type: ttf
   style:
     - normal
