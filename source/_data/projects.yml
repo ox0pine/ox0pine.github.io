@@ -1,0 +1,49 @@
+# 作品集：卡片直接跳到仓库，不生成文章页。
+# meta 是卡片上的一行技术栈；demo 可选，填了会多一个「在线演示」入口。
+- name: RepoPilot
+  url: https://github.com/ox0pine/RepoPilot
+  description: 自托管的 AI 编码工作台：固定仓库与 Issue，先出方案、人工批准后再进 Docker 执行，最后交付可审阅的 diff。
+  meta: Python · FastAPI · Vue 3 · Docker
+
+- name: WebMonitor-Agent
+  url: https://github.com/webmonitor/WebMonitor-Agent
+  description: 用一句话创建监控。助手打开页面真实采样一次，你确认规则后才开始定时检查，条件满足时发邮件。
+  meta: Python · Postgres · MinIO · Docker
+
+- name: WebMonitor
+  url: https://github.com/webmonitor/WebMonitor
+  description: 盯住页面里的一块（URL + XPath），文本变化时发邮件；单个 compose 容器即可自托管，不需要模型 key。
+  meta: Python · FastAPI · React · Selenium
+  demo: https://webmonitor.qfpqhyl.top/
+
+- name: qfpqhyl.top
+  url: https://github.com/ox0pine/qfpqhyl.top
+  description: React + Vite 的个人主页，构建前抓取博客时间线与 GitHub 仓库，Actions 定时刷新。
+  meta: React · Vite · TypeScript · Base UI
+  demo: https://qfpqhyl.top
+
+- name: campus-connect-ddns
+  url: https://github.com/ox0pine/campus-connect-ddns
+  description: 校园网 SRun 自动认证与断线保活，可选把出口 IP 更新到 Cloudflare DDNS，systemd 托管。
+  meta: Python · Cloudflare · systemd
+
+- name: MindFlow
+  url: https://github.com/ox0pine/MindFlow
+  description: 把 AI 对话整理成结构化文档，再从文档建任务、到期发邮件提醒。
+  meta: FastAPI · React 18 · MUI
+
+- name: agent_devtools
+  url: https://github.com/ox0pine/agent_devtools
+  description: 面向 Claude Code 的 skills 与 MCP 工具包，首个技能覆盖 Base UI 的 34+ 组件与无障碍指南。
+  meta: Python · Claude Code · MCP
+
+- name: server-scripts
+  url: https://github.com/ox0pine/server-scripts
+  description: 新服务器从裸机到能用：换源、代理、Docker、Python 环境与性能调优，五个可单独执行的脚本。
+  meta: Bash · Linux · Docker
+
+- name: CodeRunner
+  url: https://github.com/ox0pine/CodeRunner
+  description: 自托管的 Python 代码执行平台：分级配额、执行隔离、AI 生成、代码库与社区。
+  meta: FastAPI · React · Docker
+  demo: https://code.qfpqhyl.cloudns.org/

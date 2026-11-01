@@ -15,7 +15,17 @@ const REDIRECTS = {
   '/2025/11/17/week1/': '/2025/11/17/weekly-01-restart/',
   '/2025/11/26/week2/': '/2025/11/26/weekly-02-goodbye-project/',
   '/2025/12/14/week3/': '/2025/12/14/weekly-03-exams/',
-  '/2025/12/31/year1/': '/2025/12/31/2025-year-in-review/'
+  '/2025/12/31/year1/': '/2025/12/31/2025-year-in-review/',
+  // 项目介绍曾以文章形式发布，现改为作品集页里的直链卡片
+  '/2026/11/01/repopilot/': '/apps/',
+  '/2026/11/01/webmonitor/': '/apps/',
+  '/2026/11/01/webmonitor-agent/': '/apps/',
+  '/2026/10/30/qfpqhyl-top/': '/apps/',
+  '/2026/10/24/campus-connect-ddns/': '/apps/',
+  '/2026/02/08/mindflow/': '/apps/',
+  '/2026/02/06/agent-devtools/': '/apps/',
+  '/2025/12/09/server-scripts/': '/apps/',
+  '/2025/11/17/coderunner/': '/apps/'
 };
 
 hexo.extend.generator.register('redirects', function () {

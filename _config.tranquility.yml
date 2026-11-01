@@ -23,11 +23,12 @@ subpage: # 开启"子页"功能，详见 README
       title: 生活随笔 # 菜单名
       icon: /images/icon/icon-book.svg # 图标的路径
       description: 生活感悟、日常记录、随笔杂谈 # 描述
-    - name: app # 作品集：每篇文章介绍一个自己开发的项目
+    - name: app # 作品集：直接列项目，点卡片跳仓库（数据在 source/_data/projects.yml）
       path: apps
       title: 作品集
       icon: /images/icon/icon-app.svg
-      description: 最近开发的项目，一个项目一篇记录
+      description: 最近开发的项目，点击直达仓库
+      type: projects
     # 非文章分类的子页：不聚合文章，而是渲染 X（Twitter）动态。
     # 内容来自 source/_data/twitter.json，由 .github/workflows/twitter.yml 每天抓取提交。
     - name: moments
@@ -99,10 +100,6 @@ timeline:
     - name: article
       color: "#ee936c"
       icon: /images/icon/icon-article.svg
-      checked: true
-    - name: app
-      color: "#60a465"
-      icon: /images/icon/icon-app.svg
       checked: true
     - name: event
       color: "#568dc4"

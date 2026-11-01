@@ -1,0 +1,37 @@
+{% extends "_partials/layout.njk" %}
+{% block link %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for("/css/category.css") }}"/>
+{% endblock link %}
+{% block body %}
+  {# 与分类页共用墙头；列表不聚合文章，每条都直接指向仓库。 #}
+  <div class="wall wall-category wall-category--plain">
+    <div class="wall-main">
+      <div class="wall-category-title">
+        <div class="title-icon"
+             style="background-image: url({{ url_for(page.icon) }})"></div>
+        {{ page.title }}
+      </div>
+      {% if page.description %}<div class="wall-category-description">{{ page.description }}</div>{% endif %}
+    </div>
+  </div>
+  <ul class="projects">
+    {% for project in page.projects %}
+      <li class="project">
+        <a class="project__link"
+           href="{{ project.url }}"
+           target="_blank"
+           rel="noopener">
+          <span class="project__name">{{ project.name }}<span class="project__arrow" aria-hidden="true">↗</span></span>
+          <span class="project__desc">{{ project.description }}</span>
+          {% if project.meta %}<span class="project__meta">{{ project.meta }}</span>{% endif %}
+        </a>
+        {% if project.demo %}
+          <a class="project__demo"
+             href="{{ project.demo }}"
+             target="_blank"
+             rel="noopener">在线演示 ↗</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock body %}

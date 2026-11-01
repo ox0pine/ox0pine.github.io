@@ -43,6 +43,7 @@ Hook priority is the ordering contract between scripts. Keep the comments that s
 | `scripts/` | Site-level filters/generators: slug, assets, git dates, legacy redirects |
 | `tools/` | Standalone maintenance scripts run by CI, not by Hexo |
 | `source/_data/twitter.json` | X 动态快照，written by `tools/fetch-twitter.js`; never hand-edit |
+| `source/_data/projects.yml` | 作品集数据：`/apps/` 的卡片直链，由 `_generator/projects.js` 读取，不为项目生成文章 |
 | `themes/tranquility/scripts/` | Theme hooks: `_generator/`, `_helper/`, `filters/` |
 | `themes/tranquility/layout/` | Nunjucks templates (`index`, `post`, `category`, `tag`, `twitter`, `cv`, `_partials/`) |
 | `themes/tranquility/source/` | Stylus CSS entries + client JS (`search.js`, `copy-code.js`, `heart-curve.js`) |
