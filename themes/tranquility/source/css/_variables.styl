@@ -26,9 +26,13 @@ $font-size-large = 1.125em;
 $font-size-larger = 1.25em;
 $font-size-largest = 1.5em;
 $font-size-title = 2.5em;
-/* The bundled subset font only covers decorative site text; body glyphs fall
-   back to the platform serif so Chinese text renders consistently. */
-$font-family-serif = LXGWWenKai, "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "SimSun", serif;
+/* The web font is a per-build subset of LXGW WenKai (~850 KB per weight), and
+   with `font-display: optional` a slow first visit renders the fallback
+   instead of swapping mid-read. The fallback is therefore a kai face first —
+   Kaiti SC / KaiTi ship with macOS, iOS and Windows — so that first paint is
+   already in the same hand as WenKai. Songti and friends only catch glyphs
+   that no kai face covers. */
+$font-family-serif = LXGWWenKai, "Kaiti SC", "STKaiti", "KaiTi", "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
 $font-family-base = $font-family-serif;
 $max-width = 1200px;
 $content-width = 900px;

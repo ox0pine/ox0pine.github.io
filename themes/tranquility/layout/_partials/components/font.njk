@@ -1,5 +1,6 @@
-{# 正文所有字重都会用到，但首屏关键路径只有 Regular；预加载它避免标题先以
-   回退字体闪现。Bold（Medium）留给浏览器按需请求。 #}
+{# 字体是 800KB 级的子集，`swap` 会让首屏先用回退字体渲染、下载完再整体替换，
+   看起来就是文字「冷不丁换了一张脸」。`optional` 则只在字体及时到位时使用它，
+   否则本次加载稳定用回退字体，字体仍在后台下载、下次导航直接命中缓存。 #}
 {% if theme.zh_font.style.length %}
   <link rel="preload"
         href="{{ url_for('/font/' ~ theme.zh_font.style[0] ~ '.' ~ theme.zh_font.type) }}"
@@ -14,7 +15,7 @@
       src: url('{{ url_for('/font/' ~ subfont ~ '.' ~ theme.zh_font.type) }}');
       font-weight: {{ subfont }};
       font-style: normal;
-      font-display: swap;
+      font-display: optional;
     }
   </style>
 {% endfor %}
