@@ -1,0 +1,16 @@
+{% extends "_partials/layout.njk" %}
+{% block link %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for("/css/index.css") }}"/>
+{% endblock link %}
+{% block body %}
+  <div class="timeline-page">
+    <h1 class="timeline-page__title">{{ page.title or "时间线" }}</h1>
+    {% if page.description %}<p class="timeline-page__lead">{{ page.description }}</p>{% endif %}
+    {% from "_partials/macros/timeline.njk" import timelineSection with context %}
+    {{ timelineSection(site.timelineData, null, 0, true) }}
+  </div>
+{% endblock body %}
+{% block script %}
+  {% from "_partials/scripts/Timeline.njk" import timeline %}
+  {{ timeline(site.timelineData) }}
+{% endblock script %}

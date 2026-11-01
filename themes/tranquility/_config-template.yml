@@ -78,6 +78,7 @@ zh_font:
 timeline:
   enable: true
   order: false # 是否按时间正序展示，false 为倒序
+  limit: 8 # 首页最多显示多少条，完整列表在 /timeline/；0 表示不限
   items:
     - name: article
       color: "#ee936c"

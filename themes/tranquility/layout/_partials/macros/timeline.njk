@@ -1,0 +1,32 @@
+{% macro timelineSection(data, moreHref, moreCount, hideTitle) %}
+  <section class="timeline">
+    <div class="timeline-head">
+      {% if not hideTitle %}<h2 class="title">时间线</h2>{% endif %}
+      <div class="radio-wrapper">
+        {% for item in theme.timeline.items %}
+          <div class="radio">
+            <input id="radio-{{ item.name }}"
+                   type="checkbox"
+                   aria-label="{{ item.name }}"
+                   {% if item.checked %}checked{% endif %}/>
+            <label class="radio-skin--{{ item.name }}" for="radio-{{ item.name }}"></label>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="timeline-body">
+      <div class="timeline-item-first">
+        <div class="line-anchor line-anchor--now"></div>
+      </div>
+      <div class="timeline-list" id="timeline-list"></div>
+      <div class="timeline-item-last">
+        <div class="line-anchor line-anchor--end"></div>
+      </div>
+    </div>
+    {% if moreHref %}
+      <a class="timeline-more" href="{{ moreHref }}">
+        查看全部{% if moreCount %}<span class="timeline-more__count">{{ moreCount }}</span>条{% endif %}
+      </a>
+    {% endif %}
+  </section>
+{% endmacro %}

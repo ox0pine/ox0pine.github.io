@@ -34,37 +34,15 @@
     </div>
   </section>
   {% if theme.timeline and theme.timeline.enable %}
-    <section class="timeline">
-      <div class="timeline-head">
-        <h2 class="title">时间线</h2>
-        <div class="radio-wrapper">
-          {% for item in theme.timeline.items %}
-            <div class="radio">
-              <input id="radio-{{ item.name }}"
-                     type="checkbox"
-                     aria-label="{{ item.name }}"
-                     {% if item.checked %}checked{% endif %}/>
-              <label class="radio-skin--{{ item.name }}" for="radio-{{ item.name }}"></label>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-      <div class="timeline-body">
-        <div class="timeline-item-first">
-          <div class="line-anchor line-anchor--now"></div>
-        </div>
-        <div class="timeline-list" id="timeline-list"></div>
-        <div class="timeline-item-last">
-          <div class="line-anchor line-anchor--end"></div>
-        </div>
-      </div>
-    </section>
+    {% from "_partials/macros/timeline.njk" import timelineSection with context %}
+    {{ timelineSection(site.timelineHome, site.timelineHasMore and url_for('timeline/'), site.timelineTotal) }}
   {% endif %}
+
 {% endblock body %}
 {% block script %}
   <script src="{{ url_for('js/leaves.js') }}" defer></script>
   {% if theme.timeline and theme.timeline.enable %}
     {% from "_partials/scripts/Timeline.njk" import timeline %}
-    {{ timeline(site.timelineData) }}
+    {{ timeline(site.timelineHome) }}
   {% endif %}
 {% endblock script %}

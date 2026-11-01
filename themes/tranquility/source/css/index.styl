@@ -188,6 +188,65 @@ for item in hexo-config('timeline.items') {
   }
 }
 
+/* Link from the cover timeline to the full list. */
+.timeline-more {
+  margin-top: 48px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 18px;
+  border: 1px solid $grey-lighter;
+  border-radius: 999px;
+  color: $black-light;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background-color 150ms ease, border-color 150ms ease,
+    color 150ms ease, transform 140ms $ease-out;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: $blue-link;
+      border-color: $grey-light;
+      background-color: $white-blue-lightest;
+    }
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.timeline-more__count {
+  color: $grey-dark;
+  font-variant-numeric: tabular-nums;
+  margin: 0 2px 0 6px;
+}
+
+/* /timeline/: the same section, without the cover's giant top margin. */
+.timeline-page {
+  max-width: 1100px;
+  margin: 70px auto 120px;
+  padding: 0 20px;
+
+  .timeline {
+    margin: 40px auto 0;
+  }
+}
+
+.timeline-page__title {
+  font-size: 40px;
+  font-family: $font-family-serif;
+  text-align: center;
+  margin: 0;
+}
+
+.timeline-page__lead {
+  margin: 12px 0 0;
+  text-align: center;
+  color: $black-extra-lighter;
+  font-size: 15px;
+}
+
 .timeline {
   max-width: 1100px;
   margin: 200px auto;
