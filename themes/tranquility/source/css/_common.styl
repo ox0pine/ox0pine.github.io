@@ -5,11 +5,10 @@
 .wall {
   user-select: none;
   -webkit-user-select: none;
-  /* Cover band that fills most of the first screen. It is capped so the
-     "关于我" section starts right below the fold instead of a full viewport
-     of empty paper on tall monitors. */
+  /* The cover owns the whole first screen: the about section is meant to be
+     discovered by scrolling, not to peek above the fold. */
   height: calc(100vh - 90px);
-  height: min(calc(100dvh - 90px), 620px);
+  height: calc(100dvh - 90px);
   min-height: 440px;
   display: flex;
   justify-content: center;
