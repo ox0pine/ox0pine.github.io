@@ -46,7 +46,7 @@
       </div>
     </div>
   </article>
-  <div class="post__foot">
+  <div class="post__foot{{ ' post__foot--toc' if page.toc else '' }}">
     {% include "_partials/components/post-nav.njk" %}
   </div>
 {% endblock body %}

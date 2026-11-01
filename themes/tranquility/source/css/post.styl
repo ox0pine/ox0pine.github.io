@@ -34,10 +34,10 @@
    The old implementation floated the TOC and pulled it back with a negative
    margin, which overflowed between 760px and 1023px wide viewports. */
 .post-inner--toc {
-  max-width: 1030px;
+  max-width: 1200px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
-  column-gap: 32px;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  column-gap: 72px;
   align-items: start;
 
   .post-content__head,
@@ -62,6 +62,13 @@
   text-align: justify;
 }
 
+/* Justifying text in a 330px column opens gaps around every Latin word. */
+@media screen and (max-width: 760px) {
+  .post-content__body p {
+    text-align: left;
+  }
+}
+
 /* The phone header is fixed over the page, so in-page anchors need clearance
    between the bar and the heading they land on. */
 @media screen and (max-width: 1023px) {
@@ -79,34 +86,45 @@
 }
 
 .post-title {
-  font-size: 30px;
+  font-size: 34px;
   font-weight: bold;
-  line-height: 1.45;
+  line-height: 1.4;
   margin: 0;
 }
 
 .post-content__head {
-  margin: 40px 0;
+  margin: 48px 0 40px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid $grey-lighter;
 }
 
+/* The excerpt reads as a standfirst: one step larger than body copy and
+   lighter than the title. */
 .post-content__head .post-excerpt {
-  color: $black-lighter;
-  font-size: $font-size-small;
-  line-height: 1.8em;
+  color: $black-light;
+  font-size: 17px;
+  line-height: 1.9em;
+  margin-top: 18px;
 
   p {
     margin: 0;
   }
 }
 
-/* Sticky table of contents. A hairline rail carries the current-section
-   marker so the list stays monochrome and a single accent colour is enough.
-   Rail + text colour both change on the active entry, so the state survives
-   greyscale rendering. */
+/* Sticky table of contents, centred against the viewport: `top: 50vh` pins
+   its top edge to the middle of the screen and the transform lifts it by half
+   its own height, so it stays optically centred while the article scrolls
+   (viewports units are used rather than `50%` because percentages resolve
+   against the grid area in some engines). */
 .toc-outer {
   position: sticky;
-  top: 32px;
-  max-height: calc(100vh - 64px);
+  top: 50vh;
+  top: 50dvh;
+  transform: translateY(-50%);
+  /* Capped so the centred box can never ride up under the 90px header on the
+     first screen; longer outlines scroll inside the column. */
+  max-height: calc(100vh - 200px);
+  max-height: calc(100dvh - 200px);
   overflow-y: auto;
   padding-right: 4px;
   border-left: 1px solid $gainsboro;
@@ -193,6 +211,14 @@
 .post__foot {
   max-width: 900px;
   margin: 100px auto;
+}
+
+/* Keep the prev/next row aligned with the article column when the sticky TOC
+   owns the right 332px of a 1200px shell. */
+.post__foot--toc {
+  max-width: 1200px;
+  padding-right: 332px;
+  box-sizing: border-box;
 }
 
 .post-nav {
@@ -290,5 +316,21 @@
     .toc-outer {
       display: none;
     }
+  }
+
+  .post__foot--toc {
+    padding-right: 0;
+  }
+}
+
+/* Tablet-landscape widths keep the TOC but give the article its room back. */
+@media screen and (max-width: 1199px) and (min-width: 1024px) {
+  .post-inner--toc {
+    grid-template-columns: minmax(0, 1fr) 200px;
+    column-gap: 40px;
+  }
+
+  .post__foot--toc {
+    padding-right: 240px;
   }
 }
