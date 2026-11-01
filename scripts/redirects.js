@@ -16,7 +16,7 @@ const REDIRECTS = {
   '/2025/11/26/week2/': '/2025/11/26/weekly-02-goodbye-project/',
   '/2025/12/14/week3/': '/2025/12/14/weekly-03-exams/',
   '/2025/12/31/year1/': '/2025/12/31/2025-year-in-review/',
-  // 项目介绍曾以文章形式发布，现改为作品集页里的直链卡片
+  // 项目介绍曾以文章形式发布，现改为“开源作品”页里的直链卡片
   '/2026/11/01/repopilot/': '/apps/',
   '/2026/11/01/webmonitor/': '/apps/',
   '/2026/11/01/webmonitor-agent/': '/apps/',

@@ -23,9 +23,9 @@ subpage: # 开启"子页"功能，详见 README
       title: 生活随笔 # 菜单名
       icon: /images/icon/icon-book.svg # 图标的路径
       description: 生活感悟、日常记录、随笔杂谈 # 描述
-    - name: app # 作品集：直接列项目，点卡片跳仓库（数据在 source/_data/projects.yml）
+    - name: app # 开源作品：直接列项目，点卡片跳仓库（数据在 source/_data/projects.yml）
       path: apps
-      title: 作品集
+      title: 开源作品
       icon: /images/icon/icon-app.svg
       description: 最近开发的项目，点击直达仓库
       type: projects

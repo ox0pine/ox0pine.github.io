@@ -1,4 +1,4 @@
-# 作品集：卡片直接跳到仓库，不生成文章页。
+# 开源作品：卡片直接跳到仓库，不生成文章页。
 # meta 是卡片上的一行技术栈；demo 可选，填了会多一个「在线演示」入口。
 - name: RepoPilot
   url: https://github.com/ox0pine/RepoPilot
