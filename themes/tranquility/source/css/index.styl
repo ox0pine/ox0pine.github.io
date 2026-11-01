@@ -153,54 +153,38 @@ for item in hexo-config('timeline.items') {
   }
 }
 
+/* 首页“关于”区：单栏纯文字。主题原本是「照片 + 短文」两栏，既然不放照片，
+   改成窄栏居中的行文排版，靠字号与行距撑起留白，而不是靠一列占位。 */
 .about {
-  max-width: 900px;
+  max-width: 720px;
   margin: 200px auto;
-  display: flex;
-  justify-content: space-between;
-}
-
-.about-photo {
-  width: 300px;
-  height: 450px;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  margin: 0 10px;
-  transition: transform 220ms $ease-out, box-shadow 220ms ease;
-
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      box-shadow: 0 0 14px 0 $anchor-border;
-      transform: translateY(-4px);
-    }
-  }
-}
-
-.about-text {
-  font-weight: bold;
-  font-family: $font-family-serif;
+  padding: 0 24px;
 }
 
 .about-title {
   text-align: center;
   font-size: 40px;
   font-weight: bold;
-  margin: 40px 0;
+  margin: 0 0 48px;
 }
 
-.about-detail {
-  font-size: 20px;
-  line-height: 2em;
-  letter-spacing: 0.3em;
-  margin: 0 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.about-body {
+  font-size: $font-size-base;
+  line-height: 2.1;
+  letter-spacing: 0.08em;
+  font-weight: bold;
+  font-family: $font-family-serif;
+  /* 中英混排时两端对齐会在西文单词处拉出明显字距，左对齐更稳。 */
+  text-align: left;
 }
 
-.about-text-p {
-  padding: 20px 10px;
+.about-body-p {
+  margin: 0 0 1.4em;
+  text-indent: 2em;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .timeline {
@@ -420,15 +404,6 @@ for v, k in timeline_colors {
   background: none;
 }
 
-.icon-anchor {
-  position: absolute;
-  left: -20px;
-  right: -20px;
-  height: 41px;
-  width: 41px;
-  top: 23px;
-}
-
 .line-anchor--end::after {
   background-color: $anchor-border;
 }
@@ -456,17 +431,10 @@ for v, k in timeline_colors {
 
   .about {
     margin: 100px auto;
-    flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
   }
 
-  .about-text {
-    margin-bottom: 50px;
-  }
-
-  .about-detail {
-    text-align: center;
+  .about-body-p {
+    text-indent: 0;
   }
 }
 
@@ -494,8 +462,19 @@ for v, k in timeline_colors {
     }
   }
 
-  .about-detail {
-    font-size: $font-size-base;
+  .about {
+    margin: 60px auto;
+    padding: 0 18px;
+  }
+
+  .about-title {
+    font-size: 30px;
+    margin-bottom: 32px;
+  }
+
+  .about-body {
+    font-size: 16px;
+    line-height: 2;
   }
 
   .hello-world {

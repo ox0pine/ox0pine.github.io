@@ -45,10 +45,7 @@ module.exports = hexo => function seoMeta(page, config, theme, flags = {}) {
   }
 
   const photos = page.photos ? [].concat(page.photos) : [];
-  const image = toAbsolute(
-    hexo,
-    photos[0] || (theme.index && theme.index.photo) || theme.logo
-  );
+  const image = toAbsolute(hexo, photos[0] || theme.logo);
 
   const url = toAbsolute(hexo, page.permalink || page.path || '/').replace(/\/index\.html$/, '/');
   const published = flags.post && page.date ? page.date.format('YYYY-MM-DDTHH:mm:ssZ') : '';

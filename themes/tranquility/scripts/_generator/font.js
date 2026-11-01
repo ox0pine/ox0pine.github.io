@@ -61,7 +61,6 @@ function getSubText(hexo) {
     ...hexo.locals.get('tags').map(tag => tag.name),
     ...config.index.about.text,
     ...config.index.poem,
-    ...(config.reward?.text ?? []),
     ...config.foot.title,
     ...(config.cv ? getObjValues(config.cv) : [])
   ];

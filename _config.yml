@@ -57,10 +57,6 @@ highlight:
   tab_replace: ""
   wrap: true
   hljs: false
-prismjs:
-  preprocess: true
-  line_number: true
-  tab_replace: ""
 
 # Markdown 渲染（hexo-renderer-marked）
 marked:

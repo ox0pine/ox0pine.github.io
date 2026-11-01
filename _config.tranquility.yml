@@ -40,13 +40,14 @@ index: # 配置首页个性化内容
   poem:
     - 秋风飘起黄叶落
     - 岁月静好心安然
-  photo: /images/about.jpg
+  # 关于区只放文字，不再配照片；`text` 的每一项渲染成一个段落。
   about:
     title: 关于我
     text:
-      - 在代码与日常间寻找平衡
-      -
-      - 分享技术与生活的美好
+      - 你好，我是 ox0pine——一个在实验室和服务器之间来回切换的人：白天读论文、调模型，晚上写代码、折腾站点。
+      - 着迷于「把想法做成能跑的东西」：大模型应用、全栈开发、自动化脚本，以及一切能替我干掉重复劳动的工程。踩过的坑大多写进了技术杂谈，从网络部署、CI 流程到工具链配置。
+      - 另一半交给生活随笔：周记与年度总结，记录读书、比赛、失眠和顿悟，也记录那些没什么用、但很快乐的瞬间。
+      - 这个博客中途换过 Hugo 和 WordPress，最后又绕回 Hexo。「风物长宜放眼量」是给自己的提醒，也是这里的态度。
 
 foot:
   title:
@@ -71,49 +72,8 @@ contacts:
     icon: "/images/icon/icon-email.svg"
     url: "mailto:ox0pine@gmail.com"
 
-reward: # 赞赏
-  enable: false
-
-# see https://github.com/gitalk/gitalk
-gitalk: # gitalk 评论
-  # 需要在 GitHub OAuth Apps 中创建应用并填入真实的 clientID / clientSecret 后再开启，
-  # 否则每篇文章的评论区都会渲染错误。
-  enable: false
-  owner: ox0pine # MUST HAVE, Your Github Username
-  admin:
-    - ox0pine
-  repo: ox0pine.github.io # MUST HAVE, The name of the repo you use to store Gitment comments
-  clientID: your_client_id_here # REQUIRED: 需要在 GitHub OAuth Apps 中创建
-  clientSecret: your_client_secret_here # REQUIRED: 需要在 GitHub OAuth Apps 中创建
-
-  distractionFreeMode: false # Facebook-like distraction free mode
-  # When the official proxy is not available, you can change it to your own proxy address
-  proxy: https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token # This is official proxy adress
-  # Gitalk's display language depends on user's browser or system environment
-  # If you want everyone visiting your site to see a uniform language, you can set a force language value
-  # Available values: en | es-ES | fr | ru | zh-CN | zh-TW
-  language: zh-CN
-
-# see https://github.com/tea3/hexo-related-popular-posts
-related_post:
-  enable: false
-  config:
-    maxCount: 5 # Maximum count of a list. default 5
-    ulClass: # Class name of element. deafult 'popular-posts'
-    PPMixingRate: 0.4 # Mixing ratio of popular posts and related posts. default 0.0(=Related posts only)
-    isDate: # visible the date. false
-    isImage: # visible the image. false
-    isExcerpt: # visible the excerpt. false
-    PPCategoryFilter: # Option to fix category on Popular Posts. undefined
-    PPTagFilter: # Option to fix tag on Popular Posts. undefined
-
-# Baidu Webmaster tools verification.
-# See: https://ziyuan.baidu.com/site
-baidu_site_verification:
-
-# Baidu Analytics
-# See: https://tongji.baidu.com
-baidu_analytics: # <app_id>
+# 未启用的第三方集成（gitalk 评论、赞赏、相关推荐、百度统计/验证、
+# Google AdSense、Algolia 搜索）连同其模板与样式一并删除，不再保留占位字段。
 
 # 自定义字体，用于美化部分汉字的显示效果.
 # 可以通过替换 _font/ 目录下的字体文件替换自己喜欢的字体
@@ -225,19 +185,7 @@ search:
   field: post
   content: true
 
-# Algolia DocSearch 需要真实的三项凭据；未配置时必须关闭，
-# 否则会顶掉本地搜索（search.enable），导致站内搜索不可用。
-algolia:
-  enable: false
-  appId: appId
-  apiKey: apiKey
-  indexName: indexName
-  insights: true
-  debug: false
+# Algolia DocSearch 已移除：它需要真实凭据，且开启后会顶掉本地搜索。
 
 nav:
   sticky: false
-
-google_ad:
-  enable: false
-  meta_tag: "G-XXXXXXXXXX" # Google Analytics meta tag

@@ -1,8 +1,5 @@
 {% extends "_partials/layout.njk" %}
 {% block link %}
-  {% if theme.baidu_site_verification %}
-    <meta name="baidu-site-verification" content="{{ theme.baidu_site_verification }}"/>
-  {% endif %}
   <link rel="stylesheet" type="text/css" href="{{ url_for("/css/index.css") }}"/>
 {% endblock link %}
 {% block body %}
@@ -39,26 +36,15 @@
     </div>
   </div>
   <section class="about">
-    <div class="about-photo"
-         style="background-image: url('{{ url_for(theme.index.photo) }}')"></div>
-    <div class="about-text">
-      <h2 class="about-title">
-        {% for word in theme.index.about.title %}
-          <span class="matts">{{ word }}</span>
-        {% endfor %}
-      </h2>
-      <div class="about-detail">
-        <div class="about-text-p">
-          {% for line in theme.index.about.text %}
-            {% if not line %}
-              <br/>
-            {% else %}
-              {{ line }}
-              <br/>
-            {% endif %}
-          {% endfor %}
-        </div>
-      </div>
+    <h2 class="about-title">
+      {% for word in theme.index.about.title %}
+        <span class="matts">{{ word }}</span>
+      {% endfor %}
+    </h2>
+    <div class="about-body">
+      {% for paragraph in theme.index.about.text %}
+        <p class="about-body-p">{{ paragraph }}</p>
+      {% endfor %}
     </div>
   </section>
   {% if theme.timeline and theme.timeline.enable %}
