@@ -115,11 +115,29 @@ for item in hexo-config('timeline.items') {
   }
 }
 
+/* Stand-in formula on the left margin: scaled dot-product attention, the
+   single line everyone in this field recognises. Typeset as text rather than
+   an SVG so it follows the site serif and needs no glyph subsetting. */
 .normal-eqt {
   position: absolute;
   bottom: 22%;
   left: 6vw;
-  opacity: 0.8;
+  color: $black-light;
+  /* Times-style serif reads as typeset maths; the subsetted Chinese font
+     only covers the glyphs the site copy uses, so Latin there would fall back
+     inconsistently. */
+  font-family: "Times New Roman", "Songti SC", serif;
+  font-size: 22px;
+  line-height: 1.9;
+  white-space: nowrap;
+
+  i {
+    font-style: italic;
+  }
+
+  sup, sub {
+    font-size: 0.68em;
+  }
 }
 
 .motto {

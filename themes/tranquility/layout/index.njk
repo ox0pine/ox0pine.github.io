@@ -16,11 +16,10 @@
           <div class="cursor"></div>
         </div>
         <div class="normal-eqt" aria-hidden="true">
-          <img alt=""
-               width="300"
-               height="94"
-               loading="lazy"
-               src="{{ url_for("/images/normal.svg") }}"/>
+          <div class="normal-eqt__line">Attention(<i>Q</i>, <i>K</i>, <i>V</i>)</div>
+          <div class="normal-eqt__line">
+            = softmax(<i>QK</i><sup>T</sup> / &radic;<i>d</i><sub>k</sub>) <i>V</i>
+          </div>
         </div>
         <canvas width="400" height="400" id="heart-curve" aria-hidden="true"></canvas>
         {% if theme.index.motto %}<div class="motto" aria-hidden="true">{{ theme.index.motto }}</div>{% endif %}
