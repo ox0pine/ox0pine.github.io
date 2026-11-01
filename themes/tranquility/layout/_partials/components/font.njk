@@ -1,3 +1,12 @@
+{# 正文所有字重都会用到，但首屏关键路径只有 Regular；预加载它避免标题先以
+   回退字体闪现。Bold（Medium）留给浏览器按需请求。 #}
+{% if theme.zh_font.style.length %}
+  <link rel="preload"
+        href="{{ url_for('/font/' ~ theme.zh_font.style[0] ~ '.' ~ theme.zh_font.type) }}"
+        as="font"
+        type="font/ttf"
+        crossorigin/>
+{% endif %}
 {% for subfont in theme.zh_font.style %}
   <style>
     @font-face {
