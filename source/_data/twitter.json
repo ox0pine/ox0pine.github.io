@@ -1,7 +1,25 @@
 {
   "username": "ox0pine",
-  "updated": "2026-11-01T03:27:53.527Z",
+  "updated": "2026-11-02T06:22:21.714Z",
   "tweets": [
+    {
+      "id": "2117107704460353848",
+      "url": "https://x.com/ox0pine/status/2117107704460353848",
+      "text": "最近瘦了不少",
+      "createdAt": "2026-11-02T04:13:05.000Z",
+      "media": [
+        {
+          "type": "photo",
+          "url": "https://pbs.twimg.com/media/HWF6OlJbcAAVauX.jpg?name=orig",
+          "alt": ""
+        },
+        {
+          "type": "photo",
+          "url": "https://pbs.twimg.com/media/HWF6OmxawAAU6cw.jpg?name=orig",
+          "alt": ""
+        }
+      ]
+    },
     {
       "id": "2114363214008062342",
       "url": "https://x.com/ox0pine/status/2114363214008062342",
@@ -167,20 +185,6 @@
       "url": "https://x.com/ox0pine/status/2089512893872255188",
       "text": "决定放弃Claude code，转而使用omp",
       "createdAt": "2026-08-18T00:41:09.000Z",
-      "media": []
-    },
-    {
-      "id": "2088875190289825816",
-      "url": "https://x.com/ox0pine/status/2088875190289825816",
-      "text": "ai审稿每次都会给出特别多的审稿意见，即便按照修改这个意见以后第二次ai审稿还会出现别的意见，那到底修正到什么时候可以不修正了呢？应该是ai指出的问题你可以和他正面battle以后。",
-      "createdAt": "2026-08-16T06:27:09.000Z",
-      "media": []
-    },
-    {
-      "id": "2080676986880696805",
-      "url": "https://x.com/ox0pine/status/2080676986880696805",
-      "text": "导师一直用gpt审稿我的论文，导致我的论文受到了极大的阻力，即使一些通用的实验设计，导师也会质问我为什么这么做，原因是gpt审稿给出的意见并没有很好的对齐通用的实验方法。\n尽管使用gpt审核一些已经发表过的论文，得到的结果依旧是大修或者拒稿，我们的教育确实有问题！",
-      "createdAt": "2026-07-24T15:30:25.000Z",
       "media": []
     }
   ]
