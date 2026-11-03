@@ -1,7 +1,20 @@
 {
   "username": "ox0pine",
-  "updated": "2026-11-02T06:22:21.714Z",
+  "updated": "2026-11-03T00:52:14.113Z",
   "tweets": [
+    {
+      "id": "2117263507083395507",
+      "url": "https://x.com/ox0pine/status/2117263507083395507",
+      "text": "rex简直神了，搭配neovim和lazygit简直太好用了",
+      "createdAt": "2026-11-02T14:32:11.000Z",
+      "media": [
+        {
+          "type": "photo",
+          "url": "https://pbs.twimg.com/media/HWIHz-maMAA3AoV.jpg?name=orig",
+          "alt": ""
+        }
+      ]
+    },
     {
       "id": "2117107704460353848",
       "url": "https://x.com/ox0pine/status/2117107704460353848",
@@ -172,20 +185,6 @@
           "alt": ""
         }
       ]
-    },
-    {
-      "id": "2090581779573010892",
-      "url": "https://x.com/ox0pine/status/2090581779573010892",
-      "text": "确实，最近辅助写论文也发现了，5.6总是擅长防御性写作和自证式写作的去修改、纠正某些段落。",
-      "createdAt": "2026-08-20T23:28:32.000Z",
-      "media": []
-    },
-    {
-      "id": "2089512893872255188",
-      "url": "https://x.com/ox0pine/status/2089512893872255188",
-      "text": "决定放弃Claude code，转而使用omp",
-      "createdAt": "2026-08-18T00:41:09.000Z",
-      "media": []
     }
   ]
 }
