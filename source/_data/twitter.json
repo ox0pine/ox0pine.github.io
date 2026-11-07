@@ -1,7 +1,14 @@
 {
   "username": "ox0pine",
-  "updated": "2026-11-05T11:00:04.996Z",
+  "updated": "2026-11-07T10:17:11.385Z",
   "tweets": [
+    {
+      "id": "2118722669827002820",
+      "url": "https://x.com/ox0pine/status/2118722669827002820",
+      "text": "omp and rex",
+      "createdAt": "2026-11-06T15:10:23.000Z",
+      "media": []
+    },
     {
       "id": "2118235356281872490",
       "url": "https://x.com/ox0pine/status/2118235356281872490",
@@ -137,48 +144,6 @@
       "url": "https://x.com/ox0pine/status/2100601773509706139",
       "text": "上个月27号终于投出去了 不知道什么时候一审才能回来 投出去以后发现发论文的难度也能克服 如果这学期还能做完一篇 可以考虑读个博了",
       "createdAt": "2026-09-17T15:04:24.000Z",
-      "media": []
-    },
-    {
-      "id": "2100601126219620552",
-      "url": "https://x.com/ox0pine/status/2100601126219620552",
-      "text": "前几天打得一把 笑死我了",
-      "createdAt": "2026-09-17T15:01:50.000Z",
-      "media": [
-        {
-          "type": "photo",
-          "url": "https://pbs.twimg.com/media/HSbVlbdaAAESTHS.jpg?name=orig",
-          "alt": ""
-        },
-        {
-          "type": "photo",
-          "url": "https://pbs.twimg.com/media/HSbVlbgbcAABSSx.jpg?name=orig",
-          "alt": ""
-        },
-        {
-          "type": "photo",
-          "url": "https://pbs.twimg.com/media/HSbVldmbsAAPXTx.jpg?name=orig",
-          "alt": ""
-        },
-        {
-          "type": "photo",
-          "url": "https://pbs.twimg.com/media/HSbVldSbsAAPImU.jpg?name=orig",
-          "alt": ""
-        }
-      ]
-    },
-    {
-      "id": "2100600733846687960",
-      "url": "https://x.com/ox0pine/status/2100600733846687960",
-      "text": "怎么在路上都能听到使用Apple store美区账号绑定visa、万事达卡购买gpt会员。\n感觉都魔怔了，我已经不想在下班时间听到ai相关的内容了，只想好好生活🥲",
-      "createdAt": "2026-09-17T15:00:16.000Z",
-      "media": []
-    },
-    {
-      "id": "2091804675570069519",
-      "url": "https://x.com/ox0pine/status/2091804675570069519",
-      "text": "滚滚长江东逝水",
-      "createdAt": "2026-08-24T08:27:53.000Z",
       "media": []
     }
   ]
