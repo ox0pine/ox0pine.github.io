@@ -1,7 +1,27 @@
 {
   "username": "ox0pine",
-  "updated": "2026-11-09T11:39:15.572Z",
+  "updated": "2026-11-11T11:03:50.432Z",
   "tweets": [
+    {
+      "id": "2120452337881993437",
+      "url": "https://x.com/ox0pine/status/2120452337881993437",
+      "text": "我瞳孔地震！",
+      "createdAt": "2026-11-11T09:43:28.000Z",
+      "media": [
+        {
+          "type": "photo",
+          "url": "https://pbs.twimg.com/media/HW1cKIpaYAAO4xg.jpg?name=orig",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "id": "2120322362180776358",
+      "url": "https://x.com/ox0pine/status/2120322362180776358",
+      "text": "差一点mojian就能上榜了 在开发工具的第七个😂",
+      "createdAt": "2026-11-11T01:06:59.000Z",
+      "media": []
+    },
     {
       "id": "2119646418365489258",
       "url": "https://x.com/ox0pine/status/2119646418365489258",
@@ -118,26 +138,6 @@
       "url": "https://x.com/ox0pine/status/2113502290837705065",
       "text": "感觉网心云快倒闭了，最近一年也不更新了，已经把去年买的oect盒子刷成了armbian￼",
       "createdAt": "2026-10-23T05:26:27.000Z",
-      "media": []
-    },
-    {
-      "id": "2109874128081834029",
-      "url": "https://x.com/ox0pine/status/2109874128081834029",
-      "text": "",
-      "createdAt": "2026-10-13T05:09:26.000Z",
-      "media": [
-        {
-          "type": "photo",
-          "url": "https://pbs.twimg.com/media/HUfHUu8bsAA-IPP.jpg?name=orig",
-          "alt": ""
-        }
-      ]
-    },
-    {
-      "id": "2106695215876866271",
-      "url": "https://x.com/ox0pine/status/2106695215876866271",
-      "text": "神了 审稿意见补指标的来了",
-      "createdAt": "2026-10-04T10:37:34.000Z",
       "media": []
     }
   ]
