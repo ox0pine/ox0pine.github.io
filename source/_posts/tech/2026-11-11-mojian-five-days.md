@@ -1,5 +1,5 @@
 ---
-title: 感谢 mygo，也感谢 mygo!!!
+title: 感谢 mygo，也感谢 mygo！！！
 date: 2026-11-11
 categories: tech
 tags: [Mojian, Go, MyGo, 桌面应用]
