@@ -1,0 +1,721 @@
+html {
+  font-family: LXGWWenKai, "Kaiti SC", "STKaiti", "KaiTi", "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
+  font-size: 18px;
+  color: #555;
+/* Chinese prose can be justified, but mixed CJK/Latin UI text (excerpts,
+     card titles, tag lists) opens rivers around every English word. Only
+     article paragraphs justify; see .post-content__body p in post.styl. */
+  text-align: left;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+a {
+  color: #555;
+}
+a:hover {
+  color: #222;
+}
+:focus-visible {
+  outline: 2px solid #143c74;
+  outline-offset: 2px;
+}
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  padding: 10px 16px;
+  background: #fff;
+  border: 1px solid #ddd;
+}
+.skip-link:focus {
+  left: 10px;
+  top: 10px;
+  color: #222;
+}
+blockquote {
+  border-left: 4px solid #ddd;
+  margin: 0;
+  padding-left: 1em;
+  color: #666;
+}
+iframe,
+img,
+video {
+  max-width: 100%;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 0.875em;
+  width: 100%;
+  margin: 0 0 20px;
+}
+caption,
+td,
+th {
+  padding: 8px;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+}
+caption {
+  border: none;
+}
+th {
+  border-bottom-width: 3px;
+}
+tbody tr:nth-of-type(odd) {
+  background: #f9f9f9;
+}
+figure figcaption {
+  text-align: center;
+  font-size: 0.8125em;
+  color: #666;
+}
+p img,
+figure img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-property: color, background-color, border-color, opacity !important;
+    transition-duration: 150ms !important;
+  }
+}
+.highlight figcaption {
+  display: flex;
+  justify-content: space-between;
+  background: #eff2f3;
+  padding: 0.1em 0.5em;
+  font-size: 0.875em;
+}
+.highlight td {
+  padding: 0;
+  border: 0;
+}
+code {
+  border-radius: 3px;
+  font-size: 0.875em;
+  padding: 2px 4px;
+  overflow-wrap: break-word;
+}
+.hljs {
+  display: block;
+}
+pre,
+code {
+  font-family: consolas, Menlo, monospace, 'PingFang SC', 'Microsoft YaHei';
+}
+pre.mermaid {
+  background: none;
+  text-align: center;
+}
+figure.highlight {
+  margin: 20px 0;
+  overflow: auto;
+  overscroll-behavior-x: contain;
+  position: relative;
+  padding-top: 32px;
+  border-radius: 5px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+  line-height: 1.5em;
+/* Narrow screens: a smaller monospace size fits a realistic command on
+     screen before the block has to scroll sideways. */
+}
+figure.highlight table {
+  width: auto;
+  border: 0;
+  margin: 0;
+}
+@media screen and (max-width: 760px) {
+  figure.highlight {
+    font-size: 14px;
+  }
+}
+figure.highlight::before {
+  background: #fc625d;
+  box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+  left: 12px;
+  margin-top: -22px;
+  position: absolute;
+  border-radius: 50%;
+  content: ' ';
+  height: 12px;
+  width: 12px;
+}
+figure.highlight .code pre {
+  padding-left: 10px;
+  width: 100%;
+}
+figure.highlight pre {
+  border: 0;
+  margin: 0;
+  padding: 10px 0;
+}
+code,
+pre,
+figure.highlight {
+  background-color: #f7f7f7;
+}
+.gutter {
+  padding: 0;
+}
+figure.highlight .gutter pre {
+  text-align: right;
+  margin: 0;
+  padding: 10px;
+  color: #bbb;
+  background-color: #eff2f3;
+}
+figure.highlight .copy-button {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  top: 0;
+  right: 16px;
+  height: 32px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+  cursor: pointer;
+}
+.wall {
+  user-select: none;
+  -webkit-user-select: none;
+/* The cover owns the whole first screen: the about section is meant to be
+     discovered by scrolling, not to peek above the fold. */
+  height: calc(100vh - 90px);
+  height: calc(100dvh - 90px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  overflow: hidden;
+}
+mjx-container {
+  overflow: auto hidden;
+}
+.math.disply {
+  display: block;
+  overflow: auto hidden;
+}
+.wall-main {
+  width: 100%;
+}
+.text {
+  display: flex;
+  align-items: center;
+}
+.text-icon {
+  height: 20px;
+  width: 20px;
+}
+.hover-line {
+  position: relative;
+}
+.hover-line::after {
+  transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  left: 0;
+  bottom: -2px;
+  background-color: #000;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hover-line:hover::after {
+    transform: scaleX(1);
+  }
+}
+.paginator {
+  display: flex;
+  align-items: center;
+}
+.page-number.current {
+  background-color: #333;
+  color: #fff;
+}
+.page-number {
+  text-decoration: none;
+  color: #333;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  width: 26px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid #333;
+  margin: 0 8px;
+  transition: background-color 180ms ease, color 180ms ease, transform 140ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.page-number:hover {
+  background-color: #555;
+  color: #fff;
+}
+.page-number:active:not(.current) {
+  transform: scale(0.94);
+}
+.post-info {
+  font-size: 16px;
+  color: #888;
+  margin: 6px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 14px;
+}
+.post-date {
+  margin: 0;
+}
+.post-category {
+  white-space: nowrap;
+}
+.post-tag {
+  text-decoration: none;
+  font-size: 16px;
+  color: #2c5fa5;
+  display: inline-block;
+  margin-right: 8px;
+  transition: color 150ms ease;
+}
+.post-tag:hover {
+  color: #2472e7;
+}
+.matts {
+  cursor: default;
+  display: inline-flex;
+  background: url("/images/matts.svg") center center/contain no-repeat;
+  align-items: center;
+  padding: 8px;
+  transition: opacity 150ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .matts:hover {
+    opacity: 0.8;
+  }
+}
+.search-outer {
+  font-weight: normal;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 999px;
+  transition: background-color 150ms ease, color 150ms ease, transform 140ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+@media (min-width: 1024px) {
+  .search-outer {
+    margin-right: 26px;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .search-outer:hover {
+    background-color: #f5f5f5;
+    color: #222;
+  }
+}
+.search-outer:active {
+  transform: scale(0.96);
+}
+#search-btn {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+@media screen and (max-width: 1023px) {
+  .search-outer {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    margin: 0;
+    padding: 0 8px;
+    transform: translateY(-50%);
+  }
+  .search-outer:active {
+    transform: translateY(-50%) scale(0.94);
+  }
+  #search-btn .search-label,
+  #search-btn .search-shortcut-key {
+    display: none;
+  }
+}
+.search__head {
+  padding: 0 20px 10px;
+}
+.search-shortcut-key {
+  display: flex;
+  padding: 2px 4px;
+  margin: 0 5px;
+  border: 1px solid #666;
+  border-radius: 5px;
+  font-size: 0.75em;
+}
+#search-main {
+  position: absolute;
+  margin: 60px auto 0;
+  width: 500px;
+  left: 0;
+  right: 0;
+  font-size: 18px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px 0;
+  box-shadow: 0 14px 44px rgba(0,0,0,0.14);
+  opacity: 1;
+  transition: opacity 160ms ease, transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+/* Closed state lives here rather than in @starting-style so the same
+     transition covers both directions. */
+}
+#search-mask:not(.is-open) #search-main {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+}
+@media (max-width: 760px) {
+  #search-main {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+}
+.search-form {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  border: 1px solid #555;
+  border-radius: 3px;
+  transition: border-color 150ms ease;
+}
+.search-form:focus-within {
+  border-color: #143c74;
+}
+.search-form .icon {
+  padding: 8px;
+}
+#search-clear {
+  cursor: pointer;
+}
+#search-input {
+  font-size: 18px;
+  outline: none;
+  flex: 1;
+  border: none;
+  height: 2em;
+  padding: 4px;
+  background: transparent;
+}
+#search-input::-webkit-search-cancel-button,
+#search-input::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+.search__body {
+  max-height: calc(80vh - 120px);
+  overflow: hidden auto;
+}
+@media (max-width: 760px) {
+  .search__body {
+    max-height: calc(100% - 80px);
+    padding-bottom: 10px;
+  }
+}
+.search-result-item {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-bottom: 1px solid #eff2f3;
+}
+.search-result__head {
+  font-size: 0.8125em;
+  color: #143c74;
+  margin: 8px 0;
+}
+.search-result__body {
+  font-size: 0.875em;
+}
+.search-keyword {
+  color: inherit;
+  background: rgba(255,208,0,0.32);
+  border-radius: 2px;
+}
+#search-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background: rgba(232,232,232,0.78);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 160ms ease, visibility 0s linear 160ms;
+}
+#search-mask.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 160ms ease;
+}
+.search-result-empty {
+  text-align: center;
+  padding: 10px 0;
+}
+.nav {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  height: 90px;
+  font-weight: bold;
+}
+.head--sticky {
+  position: fixed;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(15px) saturate(0.3);
+  top: 0;
+  z-index: 1;
+}
+#navBtn {
+  top: -100px;
+  position: fixed;
+  opacity: 0;
+  display: block;
+  height: 0;
+  width: 0;
+}
+.nav-btn {
+  display: none;
+}
+.nav-logo {
+  height: 60px;
+  width: 60px;
+}
+.nav-menu {
+  display: flex;
+  align-items: center;
+}
+.nav-menu-item {
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  margin: 0 20px;
+  position: relative;
+}
+.nav-menu-item:hover {
+  cursor: pointer;
+}
+.nav-menu-item[aria-current='page']::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background-color: #333;
+}
+@media screen and (max-width: 1023px) {
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    z-index: 99;
+    justify-content: center;
+/* Frosted strip via a pseudo element: backdrop-filter on .nav itself
+       would make it a containing block for the fixed menu panel, collapsing
+       the panel to the bar's height. */
+  }
+  .nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px) saturate(1.4);
+  }
+  .head--sticky {
+    position: relative;
+    backdrop-filter: none;
+    background: none;
+  }
+  .nav-menu {
+    position: fixed;
+    top: 60px;
+    bottom: 0;
+    height: 100%;
+/* Reveal with a composited clip instead of animating `height`, which
+       relayouts every row on each frame. Closed panels ignore the pointer so
+       the invisible panel never swallows taps meant for the page. */
+    clip-path: inset(0 0 100% 0);
+    pointer-events: none;
+    transition: clip-path 240ms cubic-bezier(0.23, 1, 0.32, 1);
+    left: 0;
+    right: 0;
+    z-index: 4;
+    background: rgba(255,255,255,0.96);
+    overflow: hidden;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 40px;
+  }
+  .nav-menu-item {
+    margin: 20px 0;
+  }
+  .nav-logo {
+    height: 40px;
+    width: 40px;
+  }
+  .nav-logo img {
+    height: 40px;
+    width: 40px;
+  }
+  .nav-btn {
+    display: block;
+    position: absolute;
+    left: 0;
+    padding: 10px 20px;
+    height: 40px;
+    width: 40px;
+  }
+  .nav-btn::before,
+  .nav-btn::after {
+    transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+    content: '';
+    background: #333;
+    width: 30px;
+    height: 2px;
+    border-radius: 1px;
+    position: absolute;
+  }
+  .nav-btn::before {
+    top: 25px;
+  }
+  .nav-btn::after {
+    bottom: 25px;
+  }
+  #navBtn:checked ~ .nav-right .nav-menu {
+    clip-path: inset(0 0 0 0);
+    pointer-events: auto;
+  }
+  #navBtn:checked ~ .nav-btn::before {
+    transform: translateY(4px) rotateZ(45deg);
+  }
+  #navBtn:checked ~ .nav-btn::after {
+    transform: translateY(-4px) rotateZ(-45deg);
+  }
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+.foot {
+  background-color: #000;
+}
+.foot-inner {
+  color: #aaa;
+  margin: 0 auto;
+  max-width: 1200px;
+  overflow: hidden;
+  padding: 40px 0 10px;
+}
+.foot-item {
+  margin: 22px;
+  line-height: 40px;
+}
+.foot__head {
+  margin: 0 20px 50px;
+  font-size: 36px;
+  font-weight: bold;
+  font-family: LXGWWenKai, "Kaiti SC", "STKaiti", "KaiTi", "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
+  cursor: default;
+  display: flex;
+  flex-wrap: wrap;
+}
+.foot__head .foot-line {
+  margin: 0 10px;
+}
+.foot__body {
+  display: flex;
+  flex-wrap: wrap;
+}
+.foot-item__head {
+  font-size: 24px;
+  margin: 10px 0;
+}
+.foot-item__body {
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 2.25rem;
+}
+.foot-link-group {
+  margin: 0 10px;
+}
+.foot-link {
+  display: inline-block;
+  padding-left: 8px;
+}
+.foot-link:hover {
+  color: #888;
+}
+.copyright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.8125em;
+  color: #999;
+}
+.copyright a {
+  color: #bbb;
+}
+.copyright a:hover {
+  color: #fff;
+}
+.body {
+  z-index: 0;
+  min-width: 0;
+}
+.head--sticky ~ .body {
+  padding-top: 90px;
+}
+@media screen and (max-width: 1023px) {
+  .body {
+    padding-top: 60px;
+  }
+}
