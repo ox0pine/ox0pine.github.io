@@ -1,6 +1,6 @@
 {
   "username": "ox0pine",
-  "updated": "2026-11-12T11:20:54.020Z",
+  "updated": "2026-11-15T10:59:48.568Z",
   "tweets": [
     {
       "id": "2120540883993219078",
@@ -129,19 +129,6 @@
         {
           "type": "photo",
           "url": "https://pbs.twimg.com/media/HVe57vGaIAEQmDP.jpg?name=orig",
-          "alt": ""
-        }
-      ]
-    },
-    {
-      "id": "2113662318735479274",
-      "url": "https://x.com/ox0pine/status/2113662318735479274",
-      "text": "除了跑一些小模型还能干什么",
-      "createdAt": "2026-10-23T16:02:21.000Z",
-      "media": [
-        {
-          "type": "photo",
-          "url": "https://pbs.twimg.com/media/HVU8qXLaoAIopyN.jpg?name=orig",
           "alt": ""
         }
       ]
