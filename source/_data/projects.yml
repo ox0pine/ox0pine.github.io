@@ -1,5 +1,11 @@
 # 开源作品：卡片直接跳到仓库，不生成文章页。
 # meta 是卡片上的一行技术栈；demo 可选，填了会多一个「在线演示」入口。
+- name: Mojian
+  url: https://github.com/ox0pine/mojian
+  description: 直接打开普通文件夹的原生文本编辑器：标签页即工作区，内置常驻终端、Git diff 与 SSH 远程项目；单个 Go 二进制，无 Electron。
+  meta: Go · MyGo · 原生 UI
+  demo: https://mojian.ox0pine.cn
+
 - name: RepoPilot
   url: https://github.com/ox0pine/RepoPilot
   description: 自托管的 AI 编码工作台：固定仓库与 Issue，先出方案、人工批准后再进 Docker 执行，最后交付可审阅的 diff。
@@ -16,11 +22,11 @@
   meta: Python · FastAPI · React · Selenium
   demo: https://webmonitor.qfpqhyl.top/
 
-- name: qfpqhyl.top
-  url: https://github.com/ox0pine/qfpqhyl.top
+- name: ox0pine.cn
+  url: https://github.com/ox0pine/ox0pine.cn
   description: React + Vite 的个人主页，构建前抓取博客时间线与 GitHub 仓库，Actions 定时刷新。
   meta: React · Vite · TypeScript · Base UI
-  demo: https://qfpqhyl.top
+  demo: https://ox0pine.cn
 
 - name: campus-connect-ddns
   url: https://github.com/ox0pine/campus-connect-ddns
