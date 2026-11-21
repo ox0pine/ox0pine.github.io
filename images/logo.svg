@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="黄叶">
+  <g transform="rotate(-12 32 32)">
+    <path fill="#c8802f" d="M32 47 Q 21 44 16 35 A 21 21 0 0 1 31 25 L32 31 L33 25 A 21 21 0 0 1 48 35 Q 43 44 32 47 Z"/>
+    <path fill="none" stroke="#2f2c28" stroke-width="3" stroke-linecap="round" d="M32 47 Q 30 52 33 57"/>
+  </g>
+</svg>
