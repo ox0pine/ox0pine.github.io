@@ -1,0 +1,399 @@
+/*
+  Theme: GitHub
+  Description: Light theme as seen on github.com
+  Author: github.com
+  Maintainer: @Hirse
+  Updated: 2021-05-15
+  Outdated base version: https://github.com/primer/github-syntax-light
+  Current colors taken from GitHub's CSS
+*/
+.hljs {
+  color: #24292e;
+  background: #f7f7f7;
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+/* prettylights-syntax-keyword */
+  color: #d73a49;
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+/* prettylights-syntax-entity */
+  color: #6f42c1;
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+/* prettylights-syntax-constant */
+  color: #005cc5;
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+/* prettylights-syntax-string */
+  color: #032f62;
+}
+.hljs-built_in,
+.hljs-symbol {
+/* prettylights-syntax-variable */
+  color: #e36209;
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+/* prettylights-syntax-comment */
+  color: #6a737d;
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+/* prettylights-syntax-entity-tag */
+  color: #22863a;
+}
+.hljs-subst {
+/* prettylights-syntax-storage-modifier-import */
+  color: #24292e;
+}
+.hljs-section {
+/* prettylights-syntax-markup-heading */
+  color: #005cc5;
+  font-weight: bold;
+}
+.hljs-bullet {
+/* prettylights-syntax-markup-list */
+  color: #735c0f;
+}
+.hljs-emphasis {
+/* prettylights-syntax-markup-italic */
+  color: #24292e;
+  font-style: italic;
+}
+.hljs-strong {
+/* prettylights-syntax-markup-bold */
+  color: #24292e;
+  font-weight: bold;
+}
+.hljs-addition {
+/* prettylights-syntax-markup-inserted */
+  color: #22863a;
+  background-color: #f0fff4;
+}
+.hljs-deletion {
+/* prettylights-syntax-markup-deleted */
+  color: #b31d28;
+  background-color: #ffeef0;
+}
+.body {
+  line-height: 2em;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.post-inner {
+  margin: 0 auto;
+  max-width: 900px;
+}
+.post-inner .video-container {
+  height: 0;
+  margin-bottom: 20px;
+  overflow: hidden;
+  padding-top: 75%;
+  position: relative;
+  width: 100%;
+}
+.post-inner .video-container iframe {
+  height: 100%;
+  left: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+/* Article + sticky table of contents as a two column grid.
+   The old implementation floated the TOC and pulled it back with a negative
+   margin, which overflowed between 760px and 1023px wide viewports. */
+.post-inner--toc {
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  column-gap: 64px;
+  align-items: start;
+}
+.post-inner--toc .post-content__head,
+.post-inner--toc .post-content__body {
+  grid-column: 1;
+}
+.post-inner--toc .toc-outer {
+  grid-column: 2;
+  grid-row: 1/span 2;
+}
+.post-content {
+  padding: 10px 0;
+  margin: 0 auto;
+}
+/* Article prose justifies; the rest of the site stays left-aligned so Latin
+   words in UI text do not open gaps between characters. */
+.post-content__body p {
+  text-align: justify;
+}
+/* Justifying text in a 330px column opens gaps around every Latin word. */
+@media screen and (max-width: 760px) {
+  .post-content__body p {
+    text-align: left;
+  }
+}
+/* The phone header is fixed over the page, so in-page anchors need clearance
+   between the bar and the heading they land on. */
+@media screen and (max-width: 1023px) {
+  .post-content__body :is(h2,
+  h3,
+  h4,
+  h5) {
+    scroll-margin-top: 76px;
+  }
+}
+.post-gallery {
+  align-items: center;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 20px;
+}
+.post-title {
+  font-size: 34px;
+  font-weight: bold;
+  line-height: 1.4;
+  margin: 0;
+}
+.post-content__head {
+  margin: 48px 0 40px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #ddd;
+}
+/* The excerpt reads as a standfirst: one step larger than body copy and
+   lighter than the title. */
+.post-content__head .post-excerpt {
+  color: #555;
+  font-size: 17px;
+  line-height: 1.9em;
+  margin-top: 18px;
+}
+.post-content__head .post-excerpt p {
+  margin: 0;
+}
+/* Sticky table of contents, centred against the viewport: `top: 50vh` pins
+   its top edge to the middle of the screen and the transform lifts it by half
+   its own height, so it stays optically centred while the article scrolls
+   (viewports units are used rather than `50%` because percentages resolve
+   against the grid area in some engines). */
+.toc-outer {
+  position: sticky;
+  top: 50vh;
+  top: 50dvh;
+  transform: translateY(-50%);
+/* Capped so the centred box can never ride up under the 90px header on the
+     first screen; longer outlines scroll inside the column. */
+  max-height: calc(100vh - 200px);
+  max-height: calc(100dvh - 200px);
+  overflow-y: auto;
+  padding-right: 4px;
+  border-left: 1px solid #eee;
+/* Nested levels keep a #666 floor: #999 on white is 2.8:1, which fails
+     WCAG AA at these sizes. Depth is carried by indent and size instead. */
+  color: #555;
+  font-size: 15px;
+  scrollbar-width: thin;
+}
+.toc-outer .toc-title {
+  display: block;
+  margin: 0;
+  padding: 6px 0 12px 16px;
+  color: #666;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 0.18em;
+  line-height: 1;
+}
+.toc-outer ol,
+.toc-outer li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.toc-outer .post-toc-link {
+  display: block;
+  margin-left: -1px;
+  padding: 6px 10px 6px 15px;
+  border-left: 2px solid transparent;
+  color: inherit;
+  line-height: 1.6;
+  text-decoration: none;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+.toc-outer .post-toc-link:hover {
+  color: #222;
+  border-left-color: #ccc;
+}
+.toc-outer .post-toc-level-3 .post-toc-link {
+  margin-left: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 14px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.toc-outer .post-toc-level-4 .post-toc-link {
+  margin-left: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 14px;
+  color: #666;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.toc-outer .post-toc-link.is-active {
+  border-left-color: #143c74;
+  color: #143c74;
+}
+.toc-outer .toc-top {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 4px 0 4px 15px;
+  color: #999;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+.toc-outer .toc-top:hover {
+  color: #143c74;
+}
+.post__foot {
+  max-width: 900px;
+  margin: 100px auto;
+}
+/* Keep the prev/next row aligned with the article column when the sticky TOC
+   owns the right 332px of a 1200px shell. */
+.post__foot--toc {
+  max-width: 1200px;
+  padding-right: 364px;
+  box-sizing: border-box;
+}
+.post-nav {
+  position: relative;
+  margin-top: 60px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.post-nav .vhr {
+  position: absolute;
+  top: 6px;
+  right: 0;
+  left: 0;
+  bottom: 6px;
+  margin: auto;
+  background-color: #eee;
+  width: 1px;
+}
+.post-nav-item,
+.post-nav-item-left,
+.post-nav-item-right,
+.post-nav-item-left-right {
+  text-decoration: none;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  color: #555;
+  transition: color 150ms ease;
+}
+.post-nav-item-left,
+.post-nav-item-left-left,
+.post-nav-item-right-left,
+.post-nav-item-left-right-left {
+  align-items: flex-start;
+  padding-right: 15px;
+}
+.post-nav-item-right,
+.post-nav-item-left-right,
+.post-nav-item-right-right,
+.post-nav-item-left-right-right {
+  align-items: flex-end;
+  padding-left: 15px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .post-nav-item-left:hover,
+  .post-nav-item-right:hover {
+    color: #143c74;
+  }
+}
+/* Direction label: small, muted, with the chevron doing the pointing so the
+   two sides read as "back" and "forward" without relying on a font glyph. */
+.post-nav-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #999;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  transition: color 150ms ease;
+}
+.post-nav-icon {
+  display: block;
+  transition: transform 150ms ease;
+}
+.post-nav-item-left:hover .post-nav-icon {
+  transform: translateX(-2px);
+}
+.post-nav-item-right:hover .post-nav-icon {
+  transform: translateX(2px);
+}
+.post-nav-title {
+  margin-top: 6px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+@media screen and (max-width: 1023px) {
+  .body {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .post-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .post-inner--toc {
+    display: block;
+    max-width: 900px;
+  }
+  .post-inner--toc .toc-outer {
+    display: none;
+  }
+  .post__foot--toc {
+    padding-right: 0;
+  }
+}
+/* Tablet-landscape widths keep the TOC but give the article its room back. */
+@media screen and (max-width: 1199px) and (min-width: 1024px) {
+  .post-inner--toc {
+    grid-template-columns: minmax(0, 1fr) 230px;
+    column-gap: 40px;
+  }
+  .post__foot--toc {
+    padding-right: 270px;
+  }
+}

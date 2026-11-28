@@ -1,0 +1,538 @@
+/* get timeline color config from __config.yml */
+.wall-bg,
+.wall-bg::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.wall-bg::before {
+  z-index: 2;
+  content: ' ';
+  background-color: rgba(255,255,255,0.95);
+  transition: background-color 150ms ease;
+}
+/* The backdrop is a watermark: nearly invisible at rest, legible while the
+   pointer is over the cover. Touch screens have no hover, so they keep a
+   slightly thinner veil instead and see the leaves drift. */
+@media (hover: hover) and (pointer: fine) {
+  .wall-main:hover+.wall-bg::before {
+    background-color: rgba(255,255,255,0.74);
+  }
+}
+@media (hover: none) {
+  .wall-bg::before {
+    background-color: rgba(255,255,255,0.9);
+  }
+}
+.wall-main {
+  position: relative;
+  text-align: center;
+  z-index: 3;
+}
+/* Only the home cover keeps a floor; category and moments pages reuse
+   .wall for their header and must stay content-sized. */
+.wall-index {
+  min-height: 440px;
+}
+.wall-title {
+  font-weight: 600;
+  font-size: clamp(2.25rem, 7.2vw, 4.5rem);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  animation: flyIn 320ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.wall-subtitle {
+  font-size: clamp(1.15rem, 3.4vw, 2.25rem);
+  font-weight: bold;
+  margin-top: 10px;
+}
+.wall-description {
+  font-size: clamp(0.9rem, 2vw, 1.25rem);
+  font-weight: 400;
+  margin: 10px 0;
+  font-family: LXGWWenKai, "Kaiti SC", "STKaiti", "KaiTi", "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
+  letter-spacing: 0.2em;
+}
+#leaf-field {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* The couplet runs down the right margin as a vertical inscription, the way
+   it would sit on a scroll. Reading order stays right-to-left. It only has
+   room to clear the headline once the cover is wider than 1200px. */
+.poem {
+  position: absolute;
+  top: 50%;
+  right: 24px;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  font-family: LXGWWenKai, "Kaiti SC", "STKaiti", "KaiTi", "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
+  font-size: 21px;
+  letter-spacing: 0.32em;
+  line-height: 1.6;
+  color: #666;
+  opacity: 0.85;
+}
+@media screen and (max-width: 1279px) {
+  .poem {
+    display: none;
+  }
+}
+.poem__line {
+  display: block;
+}
+/* Bottom-left signature: a hairline, then the motto in wide tracking. */
+.motto {
+  position: absolute;
+  left: 6vw;
+  bottom: 12%;
+  font-family: LXGWWenKai, "Kaiti SC", "STKaiti", "KaiTi", "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
+  font-size: 14px;
+  letter-spacing: 0.34em;
+  color: #555;
+}
+.motto::before {
+  content: '';
+  display: block;
+  width: 34px;
+  height: 1px;
+  margin-bottom: 12px;
+  background-color: #ccc;
+}
+/* 首页“关于”区：单栏纯文字。主题原本是「照片 + 短文」两栏，既然不放照片，
+   改成窄栏居中的行文排版，靠字号与行距撑起留白，而不是靠一列占位。 */
+.about {
+  max-width: 720px;
+/* The hero already ends the first screen, so the section only needs a
+     breathing gap, not another 200px of blank paper. */
+  margin: 120px auto 160px;
+  padding: 0 24px;
+}
+.about-title {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0 0 48px;
+}
+.about-body {
+  font-size: 18px;
+  line-height: 2.1;
+  letter-spacing: 0.08em;
+  font-weight: bold;
+  font-family: LXGWWenKai, "Kaiti SC", "STKaiti", "KaiTi", "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
+/* 中英混排时两端对齐会在西文单词处拉出明显字距，左对齐更稳。 */
+  text-align: left;
+}
+.about-body-p {
+  margin: 0 0 0.9em;
+  text-indent: 2em;
+}
+.about-body-p:last-child {
+  margin-bottom: 0;
+}
+/* Link from the cover timeline to the full list. */
+.timeline-more {
+  margin-top: 48px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 18px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  color: #555;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease, transform 140ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .timeline-more:hover {
+    color: #143c74;
+    border-color: #ccc;
+    background-color: #fcfcfb;
+  }
+}
+.timeline-more:active {
+  transform: scale(0.97);
+}
+.timeline-more__count {
+  color: #999;
+  font-variant-numeric: tabular-nums;
+  margin: 0 2px 0 6px;
+}
+/* /timeline/: the same section, without the cover's giant top margin. */
+.timeline-page {
+  max-width: 1100px;
+  margin: 70px auto 120px;
+  padding: 0 20px;
+}
+.timeline-page .timeline {
+  margin: 40px auto 0;
+}
+.timeline-page__title {
+  font-size: 40px;
+  font-family: LXGWWenKai, "Kaiti SC", "STKaiti", "KaiTi", "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
+  text-align: center;
+  margin: 0;
+}
+.timeline-page__lead {
+  margin: 12px 0 0;
+  text-align: center;
+  color: #888;
+  font-size: 15px;
+}
+.timeline {
+  max-width: 1100px;
+  margin: 200px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.timeline-head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.timeline-head .title {
+  font-size: 40px;
+  font-weight: bold;
+}
+.radio-wrapper {
+  display: flex;
+  align-items: flex-end;
+  margin: 0 10px;
+}
+.radio {
+  position: relative;
+  width: 20px;
+  margin: 0 10px;
+  height: 40px;
+}
+.radio>label {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  margin: auto;
+}
+.radio>input {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  margin: auto;
+}
+.radio-skin,
+.radio-skin--article,
+.radio-skin--event {
+  height: 100%;
+  width: 2px;
+  border-radius: 1px;
+  background: #ccc;
+  transition: background-color 180ms ease;
+}
+.radio-skin::after,
+.radio-skin--article::after,
+.radio-skin--event::after {
+  transition: background-color 180ms ease, transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
+  display: block;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #fafafa;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  content: '';
+  position: absolute;
+  left: -9px;
+  top: 22px;
+  box-shadow: 1px 0 5px rgba(0,0,0,0.2);
+}
+.radio-skin--article::after {
+  border-color: #ee936c;
+}
+#radio-article:checked+.radio-skin--article {
+  background-color: #ee936c;
+}
+#radio-article:checked+.radio-skin--article::after {
+  background-color: #ee936c;
+  transform: translateY(-24px);
+}
+.timeline-item-article .line-anchor::after,
+.timeline-item-article--hidden .line-anchor::after {
+  background-color: #ee936c;
+}
+.timeline-item-article .line-date-tag,
+.timeline-item-article--hidden .line-date-tag {
+  background-color: #ee936c;
+}
+/*
+  .timeline-item-app, .timeline-item-event {
+    font-weight: bold;
+  }
+  */
+.radio-skin--event::after {
+  border-color: #568dc4;
+}
+#radio-event:checked+.radio-skin--event {
+  background-color: #568dc4;
+}
+#radio-event:checked+.radio-skin--event::after {
+  background-color: #568dc4;
+  transform: translateY(-24px);
+}
+.timeline-item-event .line-anchor::after,
+.timeline-item-event--hidden .line-anchor::after {
+  background-color: #568dc4;
+}
+.timeline-item-event .line-date-tag,
+.timeline-item-event--hidden .line-date-tag {
+  background-color: #568dc4;
+}
+/*
+  .timeline-item-app, .timeline-item-event {
+    font-weight: bold;
+  }
+  */
+.timeline-body {
+  width: 100%;
+}
+.line-anchor::after {
+  content: '';
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  right: -9px;
+  bottom: 0;
+  left: -9px;
+  top: 0;
+  margin: auto;
+  border: 2px solid #eee;
+}
+.line-anchor {
+  position: relative;
+  height: 20px;
+  margin: 10px 4px;
+  flex: 0 0 20px;
+}
+.line-date,
+.line-title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.line-date {
+  justify-content: flex-end;
+}
+.line-title .text-icon {
+  margin: 0 8px;
+}
+.timeline-list {
+  position: relative;
+}
+.timeline-list::before {
+  position: absolute;
+  content: '';
+  top: -20px;
+  left: 0;
+  right: 0;
+  bottom: -20px;
+  margin: 0 auto;
+  width: 2px;
+  background-color: #eee;
+  z-index: -1;
+}
+.timeline-post {
+  text-decoration: none;
+}
+.timeline-item,
+.timeline-item-first,
+.timeline-item-last,
+.timeline-item--hidden-first,
+.timeline-item--hidden-last,
+.timeline-item--hidden {
+  width: 100%;
+  display: flex;
+  padding: 20px 0;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 18px;
+  overflow: hidden;
+  transition: opacity 160ms ease-out, transform 180ms cubic-bezier(0.23, 1, 0.32, 1), height 200ms cubic-bezier(0.23, 1, 0.32, 1), padding 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  height: 80px;
+}
+.timeline-item-first,
+.timeline-item-first-first,
+.timeline-item-last-first,
+.timeline-item--hidden-first-first,
+.timeline-item--hidden-last-first,
+.timeline-item--hidden-first,
+.timeline-item-last,
+.timeline-item-first-last,
+.timeline-item-last-last,
+.timeline-item--hidden-first-last,
+.timeline-item--hidden-last-last,
+.timeline-item--hidden-last {
+  height: auto;
+  padding: 0;
+  justify-content: center;
+}
+.timeline-item:nth-child(even),
+.timeline-item-first:nth-child(even),
+.timeline-item-last:nth-child(even),
+.timeline-item--hidden-first:nth-child(even),
+.timeline-item--hidden-last:nth-child(even),
+.timeline-item--hidden:nth-child(even) {
+  flex-direction: row-reverse;
+}
+.timeline-item:nth-child(even) .line-title,
+.timeline-item-first:nth-child(even) .line-title,
+.timeline-item-last:nth-child(even) .line-title,
+.timeline-item--hidden-first:nth-child(even) .line-title,
+.timeline-item--hidden-last:nth-child(even) .line-title,
+.timeline-item--hidden:nth-child(even) .line-title {
+  justify-content: flex-end;
+}
+.timeline-item:nth-child(even) .line-date,
+.timeline-item-first:nth-child(even) .line-date,
+.timeline-item-last:nth-child(even) .line-date,
+.timeline-item--hidden-first:nth-child(even) .line-date,
+.timeline-item--hidden-last:nth-child(even) .line-date,
+.timeline-item--hidden:nth-child(even) .line-date {
+  justify-content: flex-start;
+}
+.timeline-item--hidden {
+  height: 0;
+  padding: 0;
+  transform: translateY(-6px);
+  opacity: 0;
+}
+.line-anchor--now,
+.line-anchor--end {
+  height: 40px;
+  background: none;
+}
+.line-anchor--end::after {
+  background-color: #eee;
+}
+.line-anchor--now::after {
+  border: 2px solid #eee;
+}
+.line-date-tag {
+  display: inline-block;
+  font-size: 14px;
+  color: #fff;
+  padding: 0 4px;
+  border-radius: 3px;
+}
+@media screen and (max-width: 1023px) {
+  .wall-index {
+    height: calc(100vh - 60px);
+    height: calc(100dvh - 60px);
+    min-height: 420px;
+  }
+  .poem {
+    display: none;
+  }
+  .motto {
+    left: 20px;
+    bottom: 10%;
+    font-size: 13px;
+    letter-spacing: 0.28em;
+  }
+  .about {
+    margin: 96px auto 120px;
+  }
+  .about-body-p {
+    text-indent: 0;
+  }
+}
+@media screen and (max-width: 415px) {
+  .timeline {
+    margin: 150px auto;
+  }
+  .timeline-list .timeline-item {
+    flex-direction: column;
+    height: auto;
+  }
+  .timeline-list .timeline-item--hidden {
+    height: 0;
+    padding: 0;
+  }
+  .timeline-list .line-date {
+    border-radius: 4px;
+    border: 2px solid #f5f5f5;
+  }
+  .timeline-list .line-title {
+    background: #fff;
+    border-radius: 4px;
+    border: 2px solid #f5f5f5;
+    padding: 4px;
+  }
+  .about {
+    margin: 72px auto 96px;
+    padding: 0 18px;
+  }
+  .about-title {
+    font-size: 30px;
+    margin-bottom: 32px;
+  }
+  .about-body {
+    font-size: 16px;
+    line-height: 2;
+  }
+}
+@-moz-keyframes flyIn {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes flyIn {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@-o-keyframes flyIn {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes flyIn {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
